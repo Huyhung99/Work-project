@@ -1,0 +1,6 @@
+name = Quản lý vị trí sản phẩm
+description = Quản lý vị trí sản phẩm
+core = 7.x
+files[]=quan_ly_san_pham.module
+package = "minhhien solutions"
+php = 5.2

@@ -1,0 +1,291 @@
+.position-unset-img {
+  opacity: 1 !important;
+  position: unset !important;
+  visibility: unset !important;
+}
+span.pri {
+  font-size: 14pt;
+  color: #ff1818;
+}
+
+.mt-100 { margin-top: 100px; }
+.mt-90 { margin-top: 90px; }
+.mt-80 { margin-top: 80px; }
+.mt-70 { margin-top: 70px; }
+.mt-60 { margin-top: 60px; }
+.mt-50 { margin-top: 50px; }
+.mt-45 { margin-top: 45px; }
+.mt-40 { margin-top: 40px; }
+.mt-35 { margin-top: 35px; }
+.mt-30 { margin-top: 30px; }
+.mt-25 { margin-top: 25px; }
+.mt-20 { margin-top: 20px; }
+.mt-15 { margin-top: 15px; }
+.mt-10 { margin-top: 10px; }
+.mt-5 { margin-top: 5px; }
+
+/*------------------------------------------*/
+/*  Margin Bottom
+/*------------------------------------------*/
+
+.mb-100 { margin-bottom: 100px; }
+.mb-90 { margin-bottom: 90px; }
+.mb-80 { margin-bottom: 80px; }
+.mb-70 { margin-bottom: 70px; }
+.mb-60 { margin-bottom: 60px; }
+.mb-50 { margin-bottom: 50px; }
+.mb-45 { margin-bottom: 45px; }
+.mb-40 { margin-bottom: 40px; }
+.mb-35 { margin-bottom: 35px; }
+.mb-30 { margin-bottom: 30px; }
+.mb-25 { margin-bottom: 25px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-15 { margin-bottom: 15px; }
+.mb-10 { margin-bottom: 10px; }
+.mb-5 { margin-bottom: 5px; }
+.mb-0 { margin-bottom: 0; }
+
+/*------------------------------------------*/
+/*  Margin Left
+/*------------------------------------------*/
+
+.ml-70 { margin-left: 70px; }
+.ml-60 { margin-left: 60px; }
+.ml-50 { margin-left: 50px; }
+.ml-45 { margin-left: 45px; }
+.ml-40 { margin-left: 40px; }
+.ml-35 { margin-left: 35px; }
+.ml-30 { margin-left: 30px; }
+.ml-25 { margin-left: 25px; }
+.ml-20 { margin-left: 20px; }
+.ml-15 { margin-left: 15px; }
+.ml-10 { margin-left: 10px; }
+.ml-5 { margin-left: 5px; }
+
+/*------------------------------------------*/
+/*  Margin Right
+/*------------------------------------------*/
+
+.mr-70 { margin-right: 70px; }
+.mr-60 { margin-right: 60px; }
+.mr-50 { margin-right: 50px; }
+.mr-45 { margin-right: 45px; }
+.mr-40 { margin-right: 40px; }
+.mr-35 { margin-right: 35px; }
+.mr-30 { margin-right: 30px; }
+.mr-25 { margin-right: 25px; }
+.mr-20 { margin-right: 20px; }
+.mr-15 { margin-right: 15px; }
+.mr-10 { margin-right: 10px; }
+.mr-5 { margin-right: 5px; }
+
+/*------------------------------------------*/
+/*  Padding Top
+/*------------------------------------------*/
+
+.pt-100 { padding-top: 100px; }
+.pt-90 { padding-top: 90px; }
+.pt-80 { padding-top: 80px; }
+.pt-70 { padding-top: 70px; }
+.pt-60 { padding-top: 60px; }
+.pt-50 { padding-top: 50px; }
+.pt-45 { padding-top: 45px; }
+.pt-40 { padding-top: 40px; }
+.pt-35 { padding-top: 35px; }
+.pt-30 { padding-top: 30px; }
+.pt-25 { padding-top: 25px; }
+.pt-20 { padding-top: 20px; }
+.pt-15 { padding-top: 15px; }
+.pt-10 { padding-top: 10px; }
+
+/*------------------------------------------*/
+/*  Padding Bottom
+/*------------------------------------------*/
+
+.pb-100 { padding-bottom: 100px; }
+.pb-90 { padding-bottom: 90px; }
+.pb-80 { padding-bottom: 80px; }
+.pb-70 { padding-bottom: 70px; }
+.pb-60 { padding-bottom: 60px; }
+.pb-50 { padding-bottom: 50px; }
+.pb-45 { padding-bottom: 45px; }
+.pb-40 { padding-bottom: 40px; }
+.pb-35 { padding-bottom: 35px; }
+.pb-30 { padding-bottom: 30px; }
+.pb-25 { padding-bottom: 25px; }
+.pb-20 { padding-bottom: 20px; }
+.pb-15 { padding-bottom: 15px; }
+.pb-10 { padding-bottom: 10px; }
+.pb-0 { padding-bottom: 0; }
+
+/*------------------------------------------*/
+/*  Padding Left
+/*------------------------------------------*/
+
+.pl-100 { padding-left: 100px; }
+.pl-90 { padding-left: 90px; }
+.pl-80 { padding-left: 80px; }
+.pl-70 { padding-left: 70px; }
+.pl-60 { padding-left: 60px; }
+.pl-50 { padding-left: 50px; }
+.pl-45 { padding-left: 45px; }
+.pl-40 { padding-left: 40px; }
+.pl-35 { padding-left: 35px; }
+.pl-30 { padding-left: 30px; }
+.pl-25 { padding-left: 25px; }
+.pl-20 { padding-left: 20px; }
+.pl-15 { padding-left: 15px; }
+.pl-10 { padding-left: 10px; }
+.pl-5 { padding-left: 5px; }
+.pl-0 { padding-left: 0px; }
+
+/*------------------------------------------*/
+/*  Padding Right
+/*------------------------------------------*/
+
+.pr-100 { padding-right: 100px; }
+.pr-90 { padding-right: 90px; }
+.pr-80 { padding-right: 80px; }
+.pr-70 { padding-right: 70px; }
+.pr-60 { padding-right: 60px; }
+.pr-50 { padding-right: 50px; }
+.pr-45 { padding-right: 45px; }
+.pr-40 { padding-right: 40px; }
+.pr-35 { padding-right: 35px; }
+.pr-30 { padding-right: 30px; }
+.pr-25 { padding-right: 25px; }
+.pr-20 { padding-right: 20px; }
+.pr-15 { padding-right: 15px; }
+.pr-10 { padding-right: 10px; }
+.pr-5 { padding-right: 5px; }
+.pr-0 { padding-right: 0px; }
+
+/*------------------------------------------*/
+/*  Padding Centered
+/*------------------------------------------*/
+
+.pc-45 { padding-right: 45px; padding-left: 45px; }
+.pc-40 { padding-right: 40px; padding-left: 40px; }
+.pc-35 { padding-right: 35px; padding-left: 35px; }
+.pc-30 { padding-right: 30px; padding-left: 30px; }
+.pc-25 { padding-right: 25px; padding-left: 25px; }
+.pc-20 { padding-right: 20px; padding-left: 20px; }
+.pc-15 { padding-right: 15px; padding-left: 15px; }
+p.tom_tat {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+h2.title_du_an {
+  font-size: 14pt;
+  text-transform: uppercase;
+}
+p {
+  color: #000;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  margin-bottom: 10px;
+}
+.region-sidebar-right .single-feature {
+  margin-bottom: 15px;
+}
+.contact-form-wrap-1 {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  -webkit-box-shadow: 0 2px 12px #97a1b21a;
+  box-shadow: 0 2px 12px #97a1b21a;
+}
+h3.title_sidebar_right {
+  font-size: 14pt;
+  text-transform: uppercase;
+  text-align: center;
+}
+.title_sidebar {
+  font-size: 12pt;
+}
+/*.thong-tin_chi_tiet-body{*/
+/*  height: 700px;*/
+/*  overflow: hidden;*/
+/*  overflow-y: scroll;*/
+/*}*/
+div#admin-menu {
+  z-index: 9999999999999;
+}
+.nice-select {
+  -webkit-tap-highlight-color: transparent;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  box-sizing: border-box;
+  clear: both;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  float: unset;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  height: 42px;
+  line-height: 40px;
+  outline: 0;
+  padding-left: 18px;
+  padding-right: 30px;
+  position: relative;
+  text-align: left!important;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  width: auto;
+}
+.views-exposed-form .views-exposed-widget {
+  display: block;
+  width: 100%;
+  float: unset;
+  padding: 0px;
+}
+form#views-exposed-form-taxonomy-term-page-tim-kiem-san-pham-bat-dong-san label {
+  display: none;
+}
+.region-sidebar-right h2 {
+  font-size: 14pt;
+  text-transform: uppercase;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+h3.thongbao_gia {
+  clear: both;
+  font-size: 12pt;
+  display: block;
+  padding-top: 10px;
+  margin: 0px;
+  color: #0000009e;
+}
+.border_timkiem {
+  clear: both;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 14px;
+  border-radius: 5px;
+}
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,42 @@
+name = BĐS AN PHÁT
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+
+
+scripts[] = assets/js/jquery-3.3.1.js
+scripts[] = assets/js/jquery-migrate-3.0.0.min.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery.mmenu.all.js
+scripts[] = assets/js/ace-responsive-menu.js
+scripts[] = assets/js/bootstrap-select.min.js
+scripts[] = assets/js/isotop.js
+scripts[] = assets/js/snackbar.min.js
+scripts[] = assets/js/simplebar.js
+scripts[] = assets/js/parallax.js
+scripts[] = assets/js/scrollto.js
+scripts[] = assets/js/jquery-scrolltofixed-min.js
+scripts[] = assets/js/jquery.counterup.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/slider.js
+scripts[] = assets/js/timepicker.js
+scripts[] = assets/js/script.js
+
+regions[header_top] = Header Top
+regions[main_content_frontend] = Main content Frontend
+regions[footer_menu_widget] = Footer Menu Widget
+regions[copyright_widget] = Copyright Widget
+regions[content] = Nội dung chính
+regions[sidebar_first] = Siderbar First
+regions[col1_footer] = Col 1 footer
+regions[col2_footer] = Col 2 footer
+regions[col3_footer] = Col 3 footer
+regions[col4_footer] = Col 4 footer
+regions[col5_footer] = Col 5 footer
+regions[botttom_footer] = Bottom Footer

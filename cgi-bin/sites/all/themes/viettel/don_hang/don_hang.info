@@ -1,0 +1,6 @@
+name = Quản lý đơn hàng
+description = Quản lý đơn hàng
+core = 7.x
+files[]= don_hang.module
+package = "Quản lý đơn hàng"
+php = 5.2

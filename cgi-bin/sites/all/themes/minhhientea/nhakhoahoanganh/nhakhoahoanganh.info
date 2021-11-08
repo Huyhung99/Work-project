@@ -1,0 +1,56 @@
+name = GIAO DIỆN NHA KHOA HOÀNG ANH
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/jquery-ui.min.css
+stylesheets[all][] = assets/css/animate.css
+stylesheets[all][] = assets/css/css-plugin-collections.css
+
+stylesheets[all][] = assets/css/menuzord-megamenu.css
+stylesheets[all][] = assets/css/style-main.css
+stylesheets[all][] = assets/css/preloader.css
+stylesheets[all][] = assets/css/custom-bootstrap-margin-padding.css
+stylesheets[all][] = assets/css/responsive.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/js/revolution-slider/css/settings.css
+stylesheets[all][] = assets/js/revolution-slider/css/layers.css
+stylesheets[all][] = assets/js/revolution-slider/css/navigation.css
+stylesheets[all][] = assets/css/colors/theme-skin-color-set3.css
+
+
+scripts[] = assets/js/jquery-2.2.4.min.js
+scripts[] = assets/js/jquery-ui.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery-plugin-collection.js
+
+scripts[] = assets/js/revolution-slider/js/jquery.themepunch.tools.min.js
+scripts[] = assets/js/revolution-slider/js/jquery.themepunch.revolution.min.js
+
+scripts[] = assets/js/custom.js
+
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+(Load Extensions only on Local File Systems !
+The following part can be removed on Server for On Demand Loading) -->
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.actions.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.migration.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.video.min.js
+
+
+regions[content] = Content
+regions[main-content-front] = Main Content Front
+regions[col_1_footer] = Footer 1
+regions[col_2_footer] = Footer 2
+regions[col_3_footer] = Footer 3
+regions[col_4_footer] = Footer 4
+regions[bottom-footer] = Bottom Footer
+regions[sidebar_first] = Sidebar First

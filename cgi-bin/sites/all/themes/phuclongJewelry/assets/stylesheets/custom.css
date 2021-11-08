@@ -1,0 +1,60 @@
+h3#quick-shop-title {
+  text-align: center;
+  color: #211d1e;
+  font-size: 20pt;
+}
+div#quick-shop-description strong {
+  font-size: 12pt;
+}
+.color-red {
+  color: #b43235;
+}
+div#quick-shop-description p {
+  color: #211d1e;
+}
+div#quick-shop-container .price-sum {
+  font-size: 14pt;
+}
+.color-yellow {
+  color: #fcb71b;
+}
+.fa.fa-star {
+  margin: 0px 5px 0px 0px;
+}
+.color-price {
+  color: #a07936;
+  font-weight: 500;
+}
+td.detailtd .form-item {
+  margin: 0px !important;
+}
+.thead-table
+{
+  border-bottom: 3px solid #a3a3a3 !important;
+}
+div#edit-actions input#edit-submit {
+  width: auto;
+  height: auto;
+  margin-top: 20px;
+  margin-right: 20px;
+  color: #a07936;
+  border: 1px solid #a07936;
+}
+div#edit-actions input#edit-submit:hover{
+  color: #fff;
+}
+div#edit-actions input#edit-checkout {
+  font-size: 12pt !important;
+  margin-top: 20px;
+  border: 1px solid #a07936;
+  color: #a07936;
+}
+div#edit-actions input#edit-checkout:hover {
+  color: #fff;
+}
+div#addressfield-wrapper--2 label {
+  width: 90px !important;
+}
+.rating-star {
+  margin-bottom: 5px;
+}

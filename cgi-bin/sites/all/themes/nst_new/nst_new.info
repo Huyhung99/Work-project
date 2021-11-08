@@ -1,0 +1,31 @@
+name = NST NEW
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+
+
+scripts[] = assets/js/jquery.v1.12.4.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery-core-plugins.js
+scripts[] = assets/js/main.js
+scripts[] = assets/js/custom.js
+scripts[] = assets/js/lozad.min.js
+
+
+regions[lang] = Lang
+regions[header-left] = Header left
+regions[sidebar_front] = Sidebar_front
+regions[main_content_front] = Main content front
+regions[bottom_main_content_front] = Bottom main content front
+regions[content] = Content
+regions[map_contact] = Map contact
+regions[content_spam_khac] = Content sản phẩm khác
+regions[sidebar-right] = Sidebar right
+regions[footer_col_1] = Footer col 1
+regions[footer_col_2] = Footer col 2
+regions[footer_col_3] = Footer col 3
+regions[footer_col_4] = Footer col 4

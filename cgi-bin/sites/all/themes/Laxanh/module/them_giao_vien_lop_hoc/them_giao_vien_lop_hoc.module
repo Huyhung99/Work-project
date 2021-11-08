@@ -1,0 +1,151 @@
+<?php
+function them_giao_vien_lop_hoc_menu(){
+    $items['them-giao-vien-lop-hoc'] = array(
+        'title'=>'Thêm giáo viên lớp học',
+        'page callback'=>'drupal_get_form',
+        'page arguments' => array('them_giao_vien_lop_hoc'),
+        'access callback'=>'user_access',//phân quyền
+        'access arguments'=>array('them_giao_vien_lop_hoc'),//phân quyền
+        'type'=> MENU_CALLBACK
+    );
+    $items['sua-giao-vien-trang-thai'] = array(
+        'title' => 'Sửa thông tin giáo viên trạng thái',
+        'delivery callback' => 'sua_giao_vien_trang_thai',
+        'access callback' => 'TRUE',
+        'access arguments' => array('sua_giao_vien_trang_thai'),
+        'type' => MENU_CALLBACK
+    );
+    $items['luu-giao-vien-trang-thai-da-sua'] = array(
+        'title' => 'Lưu thông tin giáo viên trạng thái đã sửa',
+        'delivery callback' => 'luu_giao_vien_trang_thai_da_sua',
+        'access callback' => 'TRUE',
+        'access arguments' => array('luu_giao_vien_trang_thai_da_sua'),
+        'type' => MENU_CALLBACK
+    );
+    return $items;
+}
+
+function them_giao_vien_lop_hoc($form,&$form_state){
+    return $form;
+}
+function sua_giao_vien_trang_thai(){
+    $giaoviens = array();
+    $users = entity_load('user');
+    foreach ($users as $id => $user){
+        if (in_array('Giáo viên',$user->roles)){
+            $giaoviens[$id] = $user;
+        }
+    }
+
+    $arr_id_giao_vien = array();
+    if (isset($_POST['node'])){
+        $node = node_load($_POST['node']);
+        if (isset($node->field_giao_vien_1['und'])){
+            foreach ($node->field_giao_vien_1['und'] as $item){
+                array_push($arr_id_giao_vien,$item['target_id']);
+            }
+        }
+        if (isset($node->field_trang_thai_lop['und'][0]['value'])){
+            $trang_thai_hien_tai = $node->field_trang_thai_lop['und'][0]['value'];
+        }
+        foreach($giaoviens as $giaovien){
+            if ($arr_id_giao_vien[0] == $giaovien->uid){
+                $selected = 'selected';
+                $str_giaovien1 = $str_giaovien1.'<option value="'.$giaovien->uid.'" content="false" ' .$selected.'>'.$giaovien->name.'</option>';
+            }else{
+                $selected = '';
+                $str_giaovien1 = $str_giaovien1.'<option value="'.$giaovien->uid.'" content="false" ' .$selected.'>'.$giaovien->name.'</option>';
+            }
+            if ($arr_id_giao_vien[1] == $giaovien->uid){
+                $selected = 'selected';
+                $str_giaovien2 = $str_giaovien2.'<option value="'.$giaovien->uid.'" content="false" ' .$selected.'>'.$giaovien->name.'</option>';
+            }else{
+                $selected = '';
+                $str_giaovien2 = $str_giaovien2.'<option value="'.$giaovien->uid.'" content="false" ' .$selected.'>'.$giaovien->name.'</option>';
+            }
+        }
+
+        $states = array('- Chọn -','Đang học','Đã qua');
+        foreach ($states as $state){
+            if ($trang_thai_hien_tai == $state){
+                $selected = 'selected';
+            }else{
+                $selected = '';
+            }
+            $str_trang_thai_lop = $str_trang_thai_lop.'<option '.$selected.'>'.$state.'</option>';
+        }
+        if (isset($node->field_giao_vien_1['und'])){
+            $giaovien_hien_tai = user_load_multiple($arr_id_giao_vien);
+            $dem = 0;
+            foreach ($giaovien_hien_tai as $item){
+                $giaovien_hien_tai[$dem] = $item->name;
+                $dem++;
+            }
+        }else{
+            $giaovien_hien_tai[0] = 'Đang cập nhật';
+            $giaovien_hien_tai[1] = 'Đang cập nhật';
+        }
+
+        $trang_thai_lop_hien_tai = $node->field_trang_thai_lop['und'][0]['value'];
+        dpm($giaovien_hien_tai);
+//        if (isset($_POST['teacher_1'])){
+//            $giaovien_hien_tai_1 = $_POST['teacher_1'];
+//            $giaovien_hien_tai_1_1 = $giaovien_hien_tai_1;
+//        }else{
+//            $giaovien_hien_tai_1_1 = 'Đang cập nhật';
+//        }
+//        if (isset($_POST['teacher_2'])){
+//            $giaovien_hien_tai_2 = $_POST['teacher_2'];
+//            $giaovien_hien_tai_2_2 = $giaovien_hien_tai_2;
+//        }else{
+//            $giaovien_hien_tai_2_2 = 'Đang cập nhật';
+//
+//        }
+//        if (isset($_POST['state_class'])){
+//            $tinh_trang_hien_tai = $_POST['state_class'];
+//            $tinh_trang_hien_tai_1 = $tinh_trang_hien_tai;
+//        }else{
+//            $tinh_trang_hien_tai_1 = 'Đang cập nhật';
+//        }
+        $str_giaovien_1 = '<select class="form-control value_teacher_1">'.'<option value="- chọn -">- Chọn - </option>'.$str_giaovien1.'</select>';
+        $str_giaovien_2 = '<select class="form-control value_teacher_2">'.'<option value="- chọn -">- Chọn - </option>'.$str_giaovien2.'</select>';
+        $str_trang_thai_lop = '<select class="form-control value_state_class">'.$str_trang_thai_lop.'</select>';
+    }
+    echo drupal_json_encode(array(
+       'GiaoVien1' => $str_giaovien_1,
+       'GiaoVien2' => $str_giaovien_2,
+        'id_giao_vien_hien_tai' => $arr_id_giao_vien,
+        'TrangThaiLop' => $str_trang_thai_lop,
+        'giaovien_hien_tai_1' => $giaovien_hien_tai,
+        'tinh_trang_lop_hien_tai' => $trang_thai_lop_hien_tai,
+    ));
+}
+function luu_giao_vien_trang_thai_da_sua(){
+    if (($_POST['giaovien1'] != '- chọn -')&&($_POST['giaovien2'] != '- chọn -')&&isset($_POST['trang_thai_lop'])) {
+        $node = node_load($_POST['node']);
+        $giaovien1 = $_POST['giaovien1'];
+        $giaovien2 = $_POST['giaovien2'];
+        $tinh_trang_lop = $_POST['trang_thai_lop'];
+        $node_wrapper = entity_metadata_wrapper('node', $node);
+        $node_wrapper->field_giao_vien_1->set(array($giaovien1,$giaovien2));
+        $node_wrapper->field_trang_thai_lop->set($tinh_trang_lop);
+        $node_wrapper->save();
+        $name_giaovien1 = user_load($giaovien1)->name;
+        $name_giaovien2 = user_load($giaovien2)->name;
+        $class['giaovien1'] = $name_giaovien1;
+        $class['giaovien2'] = $name_giaovien2;
+        $class['tinh_trang_lop'] = $tinh_trang_lop;
+    }
+    echo drupal_json_encode(array(
+        'info_class' => $class
+    ));
+}
+/**
+ * Implements hook_permission().
+ */
+function them_giao_vien_lop_hoc_permission()
+{
+    return array('them_giao_vien_lop_hoc' =>array(
+        'title'=>'Phân quyền sửa giáo viên và trạng thái lớp học'));
+
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../AnhPhatFood/.idea/AnhPhatFood.iml" filepath="$PROJECT_DIR$/../AnhPhatFood/.idea/AnhPhatFood.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Berlin/.idea/Berlin.iml" filepath="$PROJECT_DIR$/../Berlin/.idea/Berlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../HiepHoiVanTai/.idea/HiepHoiVanTai.iml" filepath="$PROJECT_DIR$/../HiepHoiVanTai/.idea/HiepHoiVanTai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Linkhouse.iml" filepath="$PROJECT_DIR$/.idea/Linkhouse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../kachi/.idea/kachi.iml" filepath="$PROJECT_DIR$/../kachi/.idea/kachi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../noithat/.idea/noithat.iml" filepath="$PROJECT_DIR$/../noithat/.idea/noithat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nst_new/.idea/nst_new.iml" filepath="$PROJECT_DIR$/../nst_new/.idea/nst_new.iml" />
+    </modules>
+  </component>
+</project>

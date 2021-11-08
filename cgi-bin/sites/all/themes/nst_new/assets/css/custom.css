@@ -1,0 +1,343 @@
+.page-title-section {
+  background-color: #f8f8f8;
+  background: linear-gradient( rgb(0 0 0 / 0%), rgb(0 0 0 / 86%) ),url(/sites/default/files/cung-ung-thuyen-vien_0.jpg);
+  color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top calc(100% - -50px);
+}
+
+.title_page h3 {
+  font-size: 14pt;
+  text-transform: uppercase;
+  line-height: 18pt;
+}
+.para p {
+  text-align: justify;
+  margin-top: 5px;
+  display: block;
+}
+.back-ground-white {
+  background: #fff;
+}
+.case-study-item:hover .case-study-thumb .case-study-details {
+  -moz-transform: perspective(0) rotateX(0);
+  -o-transform: perspective(0) rotateX(0);
+  -ms-transform: perspective(0) rotateX(0);
+  -webkit-transform: perspective(0) rotateX(0);
+  transform: perspective(0) rotateX(0);
+  opacity: 1;
+  bottom: 10px;
+  left: 40px;
+  opacity: 1;
+}
+.case-study-item:hover .case-study-thumb .case-study-link-icon a {
+  visibility: visible;
+  opacity: 1;
+  left: 30px;
+}
+h3.title_sidebar {
+  font-size: 12pt;
+  line-height: 16pt;
+  padding-top: 5px;
+  font-weight: 400;
+}
+.case-study-item .case-study-thumb:after {
+  position: absolute;
+  background: linear-gradient(
+    0deg
+    ,#6d6875,transparent);
+  height: 100%;
+  width: 100%;
+  content: "";
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  -moz-transition: all 500ms ease-out 0s;
+  -webkit-transition: all 500ms ease-out 0s;
+  -ms-transition: all 500ms ease-out 0s;
+  -o-transition: all 500ms ease-out 0s;
+  transition: all 500ms ease-out 0s;
+}
+.single-blog-widget-title {
+  background: #034ea2;
+  color: #fff;
+  padding: 8px 24px;
+}
+#webform-client-form-1 label {
+  display: none;
+}
+#webform-client-form-1 .form-item {
+  margin: 5px 0px;
+}
+textarea#edit-submitted-noi-dung {
+  margin-top: 5px;
+}
+.contact-block {
+  min-height: 178px;
+}
+.contact-block a {
+  color: #3e3e3e;
+}
+.contact-block a:hover {
+  color: #034ea2;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+@media (max-width: 700px) {
+  .feature-content {
+    padding: 15px 20px 5px;
+  }
+  .feature-content .para p {
+    padding: 0px;
+  }
+  .page-title-section {
+    background-color: #f8f8f8;
+    background-position: top;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+  #block-block-1 .call-us-now {
+    bottom: -41px;
+    right: calc(50% - 111px);
+  }
+  .request-a-call-back-form {
+    padding: 55px 20px 10px 20px;
+  }
+  .request-a-call-back-form h3 {
+    text-align: center;
+  }
+  .request-a-call-back-form p {
+    padding: 0px 10px;
+    text-align: justify;
+  }
+  #block-block-1 .about-image-block-2 {
+    padding-right: 0px;
+  }
+  h2.faq-title {
+    font-size: 29pt !important;
+  }
+  div#block-block-3 {
+    margin-top: 30px;
+  }
+  .title_page {
+    padding-top: 10px;
+  }
+  .case-study-item:hover .case-study-thumb .case-study-details {
+    left: 45px !important;
+  }
+}
+@media (max-width: 425px)
+{
+  h2 {
+    font-size: 24pt !important;
+    line-height: 40px !important;
+  }
+  .page-title-content h1.title {
+    font-size: 25pt;
+    letter-spacing: 1px;
+    line-height: 30pt;
+  }
+  h2.faq-title {
+    font-size: 18pt !important;
+    line-height: 35px !important;
+  }
+  .contact-details h5 {
+    font-size: 17px;
+    line-height: 24px;
+  }
+  h5 {
+    font-size: 14pt;
+  }
+  .news-wrapper .news-details
+  {
+    padding: 15px 15px 20px 15px;
+  }
+  .client-item {
+    padding: 0px;
+  }
+  .pd-title-0 .title_page {
+    padding: 15px 0px 0px 0px;
+  }
+  .pd-title-0 .feature-content {
+    padding: 15px 18px 5px;
+  }
+  .pdl-sm-15{
+    padding-left: 15px;
+  }
+  .contact-block {
+    min-height: 90px;
+  }
+  .contact-icon i {
+    width: 60px;
+    height: 60px;
+    background: #034ea2;
+    text-align: center;
+    font-size: 12pt;
+    line-height: 60px;
+    display: inline-block;
+    border-radius: 50%;
+  }
+  .contact-icon i:before {
+    color: #fff;
+    font-size: 30px;
+  }
+}
+.btn-danger-edit {
+  background: #034ea2;
+  color: #fff;
+  border-radius: 5px;
+}
+.btn-danger-edit:hover {
+  color: #151a33;
+}
+form#user-login input#edit-name, form#user-login input#edit-pass {
+  border: 1px solid #dfdce6;
+  border-radius: 5px;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: Roboto, "sans-serif";
+  color: #17305e;
+  height: auto;
+  padding: 7px;
+  resize: none;
+  width: 100%;
+}
+form#user-login {
+  background: #edf0fa;
+  padding: 10px;
+  max-width: 600px;
+}
+input#edit-submit {
+  padding: 0px 20px;
+}
+form#user-login input#edit-submit {
+  display: inline-block;
+  width: auto;
+}
+.view-display-id-block_news_front .news-description h4 {
+  font-size: 12pt;
+  line-height: 18pt;
+  text-transform: uppercase;
+}
+.title-hinh-anh {
+  font-size: 12pt;
+  text-transform: uppercase;
+  line-height: 17pt;
+  margin-top: 10px;
+}
+#webform-client-form-1 {
+  background: #F7F8FC;
+  padding: 15px 15px 1px 15px;
+  margin-top: 40px;
+}
+.title_blogs {
+  font-size: 14pt;
+}
+.thongtin_chi_tiet {
+  font-size: 12pt;
+  text-align: justify;
+  line-height: 18pt;
+  padding-top: 5px;
+}
+.forn_anh_dai_dien {
+  background: #fff;
+  margin-right: 34%;
+  padding: 14px 25px;
+}
+.region-footer-col-1 p {
+  color: #cecece;
+}
+.region-footer-col-1 i, .region-footer-col-1 a {
+  color: #cecece;
+}
+.region-footer-col-1 a i:hover, .region-footer-col-1 a:hover {
+  color: #fff;
+}
+.footer-widget-list li a {
+  color: #cecece;
+  position: relative;
+  padding-left: 25px;
+}
+.footer-widget-list li a:hover {
+  color: #fff;
+}
+.text-primary-color {
+  color: #cecece;
+}
+.text-primary-color:hover {
+  color: #fff;
+}
+section.about-section .text-primary-color {
+  color: #034ea2;
+}
+.edit_search .en:hover, .edit_search .vi:hover {
+  cursor: pointer;
+}
+.menu_lang_mobile {
+  display: none;
+}
+.search_mobile {
+  display: none;
+}
+.header-searchbox-style-two .toggle-searchbox #searchform-all #searchsubmit {
+  right: -11px;
+  top: -11px;
+  width: 40px;
+  height: 50px;
+}
+@media (max-width: 990px)
+{
+  .menu_lang_mobile {
+    position: absolute;
+    left: calc(50% - 24px);
+    top: 20px;
+    display: block;
+  }
+  .menu_lang_mobile img.language-icon {
+    width: 35px;
+  }
+  .form_search_mobile {
+    position: absolute;
+    right: 0px;
+    top: 100%;
+  }
+  .form_search_mobile input#s {
+    padding: 5px 20px;
+    max-height: 40px;
+  }
+  .form_search_mobile input#searchsubmit {
+    height: 0px;
+  }
+  .form_search_mobile i.fas.fa-search {
+    height: 30px;
+    width: 15px;
+    text-align: center;
+    position: relative;
+    top: -3px;
+  }
+  .search_mobile .show-searchbox-edit {
+    position: absolute;
+    top: 15px;
+    left: calc(73% - 2px);
+    border: 1px solid #024da1;
+    padding: 1px 9px;
+  }
+  .search_mobile .show-searchbox-edit i.webex-icon-Search {
+    color: #024da1;
+  }
+  .search_mobile {
+    display: block;
+  }
+  .form_search_mobile {
+    display: none;
+  }
+  .hien_thi .form_search_mobile {
+    display: block;
+  }
+}

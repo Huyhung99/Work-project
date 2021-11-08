@@ -1,0 +1,89 @@
+.side-bar .entry-meta-content h6.entry-title a {
+    font-weight: 400;
+    font-size: 13pt;
+    color: #000;
+}
+.side-bar .entry-meta-content h6.entry-title a:hover{
+    color: #2e7ccc;
+}
+.side-bar .entry-meta-content h6.entry-title {
+    padding-top: 10px;
+    padding-left: 0px;
+}
+.full-width .product-box.mb-md-20 {
+    padding: 10px;
+}
+h6.giaca {
+    font-size: 16px;
+    padding-top: 15px;
+}
+h6.giaca span {
+    color: #d60402;
+}
+.side-bar a.text-light-black {
+    font-weight: 400;
+}
+
+.our-articles.bg-light-theme.section-padding div#block-system-main article.blog-item.blog-item-box {
+    margin-bottom: 10px;
+}
+.side-bar h6.entry-title {
+    margin-bottom: 5px;
+}
+article.side-post.sidebardanhmuc.u-line {
+    margin-top: 15px;
+}
+.side-bar h5.text-light-black {
+    margin-bottom: 10px;
+}
+.full-width .product-box.mb-md-20 .product-caption.text-center {
+    padding: 0px;
+}
+span.text-color-primary.fs-18.fw-600.text-color-red {
+    margin-left: 10px;
+}
+.region.region-header-top-left ul li {
+    color: #fcfcfc;
+}
+section.browse-cat.bg-theme-primary.section-padding .swiper-slide {
+    margin-left: 42px;
+}
+footer .footer-links ul li a {
+    color: #ffffff;
+}
+.side-bar span.text-color-primary.fs-18.fw-600.text-color-red a {
+    font-size: 10pt;
+}
+section.section-padding.our-product .product-caption.text-center span.text-color-primary.fs-18.fw-600.text-color-red a {
+    font-size: 12pt;
+}
+article.side-post.pb-xl-20.pt-20.u-line {
+    padding-top: 20px;
+}
+.region.region-header-top li {
+    color: #ffff;
+}
+@media all and (max-width: 1035px) {
+    .header .navigation .logo {
+        position: absolute;
+        top: -20px;
+        display: flex;
+        align-items: center;
+        width: 79px;
+        height: 28px;
+        justify-content: center;
+        z-index: -1;
+    }
+    .detail-slider .gallery-thumbs {
+        top: 15px;
+    }
+    section.browse-cat.bg-theme-primary.section-padding .swiper-slide {
+        margin-left: 0px;
+    }
+    .top-header .region.region-header-top li {
+        color: #ffff;
+    }
+}
+.m-b20{
+    margin-bottom: 20pt;
+}

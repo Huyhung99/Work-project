@@ -1,0 +1,59 @@
+{
+  "name": "yiisoft/yii2-app-advanced",
+  "description": "Yii 2 Advanced Project Template",
+  "keywords": ["yii2", "framework", "advanced", "project template"],
+  "homepage": "http://www.yiiframework.com/",
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+    "forum": "http://www.yiiframework.com/forum/",
+    "wiki": "http://www.yiiframework.com/wiki/",
+    "irc": "irc://irc.freenode.net/yii",
+    "source": "https://github.com/yiisoft/yii2"
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "~2.0.6",
+    "yiisoft/yii2-bootstrap": "~2.0.0",
+    "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+    "yiisoft/yii2-jui": "^2.0",
+    "2amigos/yii2-selectize-widget": "~1.0",
+    "johnitvn/yii2-ajaxcrud": "*",
+    "moonlandsoft/yii2-phpexcel": "*",
+    "boundstate/yii2-mailgun": "*",
+    "yii2tech/html2pdf": "^1.0",
+    "2amigos/yii2-grid-view-library": "~1.0",
+    "grptx/yii2-firebase": "~0.3.1",
+    "bariew/yii2-pusher": "^0.1.1",
+    "prasanth-gandiva/yii2-yashop-ses": "*",
+    "2amigos/qrcode-library": "~1.1",
+    "2amigos/yii2-ckeditor-widget": "^1.0@dev",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "richweber/yii2-google-translate-api": "dev-master",
+    "google/cloud-translate": "dev-master",
+    "skagarwal/google-places-api": "^1.4",
+    "sr1871/yii2-youtube-api": "dev-master"
+  },
+  "require-dev": {
+    "yiisoft/yii2-debug": "~2.0.0",
+    "yiisoft/yii2-gii": "~2.0.0",
+    "yiisoft/yii2-faker": "~2.0.0",
+    "codeception/base": "^2.2.3",
+    "codeception/verify": "~0.3.1"
+  },
+  "config": {
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+name = AVNZ 2020 V2
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/font-awesome.css
+stylesheets[all][] =  assets/css/font/flaticon.css
+stylesheets[all][] =  assets/css/pe-icon-7-stroke.css
+stylesheets[all][] =  assets/css/swiper.min.css
+
+stylesheets[all][] =  assets/css/ion.rangeSlider.min.css
+stylesheets[all][] =  assets/css/magnific-popup.css
+stylesheets[all][] =  assets/css/nice-select.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/ion.rangeSlider.min.js
+scripts[] = assets/js/swiper.min.js
+scripts[] = assets/js/jquery.nice-select.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/main.js
+
+regions[header_top] = Header Top
+regions[middle_link] = Middle Link
+regions[main_content_frontend] = Main content Frontend
+regions[content] = Nội dung chính
+regions[sidebar_first] = Sidebar First
+regions[sidebar_search] = Sidebar Search
+regions[search_top_menu] = Search Top Menu
+regions[distributor] = Distributor
+regions[form_contact] = Form Contact
+regions[col1_footer] = Col 1 footer
+regions[col2_footer] = Col 2 footer
+regions[col3_footer] = Col 3 footer
+regions[col4_footer] = Col 4 footer
+regions[col5_footer] = Col 5 footer
+regions[bottom_footer] = Bottom Footer

@@ -1,0 +1,6 @@
+name = HPMAP
+description = Module hiển thị bản đồ và xử lý dữ liệu trên bản đồ bds
+core = 7.x
+files[] = hpmap.module
+package = "MH-Solutions"
+php = 5.2

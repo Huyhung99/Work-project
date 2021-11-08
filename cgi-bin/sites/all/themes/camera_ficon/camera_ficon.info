@@ -1,0 +1,38 @@
+name = CAMERA FICON - REPAIR TECH
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = 1.0
+
+stylesheets[all][] =  assets/css/plugins.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+
+scripts[] = assets/js/jquery-min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/plugins.js
+scripts[] = assets/js/venobox.min.js
+scripts[] = assets/js/jquery.counterup.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/custom.js
+
+regions[top_bar] = Top bar
+regions[search_block] = Search
+
+regions[content_html] = Main content HTML
+regions[main_frontend_content] = Main content
+
+regions[content_html2] = Main content HTML 2
+regions[main_frontend_content2] = Main Frontent Content 2
+
+regions[content_html3] = Main content HTML 3
+regions[main_frontend_content3] = Main Frontent Content 3
+
+regions[content] = Content
+regions[form_lien_he] = Form liên hệ
+regions[sidebar_first] = Sidebar Right
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer
+regions[copyright] = Copyright

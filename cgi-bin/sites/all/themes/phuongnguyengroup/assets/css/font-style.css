@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Linotte";
+  src: url("../fonts/linotte/Linotte_Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Linotte";
+  src: url("../fonts/linotte/Linotte_Heavy.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Linotte";
+  src: url("../fonts/linotte/Linotte_Light.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Linotte";
+  src: url("../fonts/linotte/Linotte_Semi_Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Linotte";
+  src: url("../fonts/linotte/Linotte_Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}

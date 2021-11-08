@@ -1,0 +1,123 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function order_management_menu()
+    //get-detail-order
+{
+    $items['get-detail-order'] = array(
+        'title' => 'lấy thông tin chi tiết đơn hàng',
+        'delivery callback' => 'get_detail_order',
+//        'type' => MENU_CALLBACK,
+        'access callback' => 'user access',
+        'access arguments' => array('get_detail_order')
+    );
+    return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function order_management_permission()
+{
+    return  array(
+        'get_detail_order' => array(
+            'title' => 'Phân quyền xem chi tiết đơn hàng',
+        ),
+    );
+}
+function get_detail_order(){
+    $order = commerce_order_load($_POST['myOrder']);
+//    dsm($order);
+    $header = array(
+      array(
+        'data' => 'STT',
+        'width' => '1%'
+      ),
+      array(
+        'data' => 'Ảnh sản phẩm',
+        'width' => '1%'
+      ),
+      'Tên sản phẩm',
+      array(
+        'data' => 'Số lượng',
+        'width' => '1%'
+      ),
+      array(
+        'data' => 'Đơn giá',
+        'width' => '1%'
+      ),
+      array(
+        'data' => 'Tổng tiền',
+        'width' => '1%'
+      ),
+
+    );
+
+    $rows = array();
+    $i = 1;
+    $tong_sl = 0;
+    $tong_tien = 0;
+    dsm($order);
+  foreach ($order->commerce_line_items['und'] as $item){
+    $line_items = commerce_line_item_load($item['line_item_id']);
+    $product = commerce_product_load($line_items->commerce_product['und'][0]['product_id']);
+//      file_create_url($node->field_image['und'][0]['uri']);
+      $image_array = $product->field_images['und'][0];
+      $image_array['path'] = file_create_url($image_array['uri']);
+      $image_array['attributes'] = array(
+        'class' => array('img-responsive')
+      );
+      $image_array['width'] = '150px';
+    dsm($line_items);
+
+    if ($product->product_id != ''){
+
+        array_push($rows,
+          array(
+            $i,
+            theme_image($image_array),
+            implode('',array(
+              '<p><strong>SKU: </strong>'.$product->title.'</p>',
+              '<p><strong>Tên sản phẩm: </strong>'.$product->sku.'</p>',
+            )),
+            number_format($line_items->quantity,'2','.',','),
+            number_format(substr($product->commerce_price['und'][0]['amount'],0,strlen($product->commerce_price['und'][0]['amount'])-2),0,',','.'),
+            number_format(substr($line_items->commerce_total['und'][0]['amount'],0,strlen($line_items->commerce_total['und'][0]['amount'])-2),0,',','.'),
+          ));
+        $tong_sl += floatval($line_items->quantity);
+        $tong_tien += floatval($line_items->commerce_total['und'][0]['amount']);
+        $i++;
+      }
+    dsm($tong_tien);
+    dsm($line_items->commerce_unit_price['und'][0]['data']['components'][1]['price']['amount']);
+  }
+
+    array_push($rows,array(
+      array(
+        'data' => '<h4>Tổng</h4>',
+        'colspan' => 3,
+        'class' => array('text-left','color-red')
+      ),
+      array(
+        'data' => number_format($tong_sl,'2','.',','),
+        'class' => 'text-center'
+      ),
+      array(
+        'data'=>''
+      ),
+      array(
+        'data' => number_format(substr($tong_tien,0,strlen($tong_tien)-2),0,',','.'),
+        'class' => 'text-center'
+      )
+    ));
+
+    echo drupal_json_encode(array(
+        'content'=> theme('table',array(
+          'header' => $header,
+          'rows' => $rows,
+          'attributes' => array(
+            'class' => array('table', 'table-bordered', 'table-striped'))
+        ))));
+}
+

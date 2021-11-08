@@ -1,0 +1,86 @@
+<?php
+function don_hang_menu()
+{
+    $items['them-don-hang'] = array(
+        'title' => '',
+        'delivery callback' => 'them_don_hang',
+        'access callback' => 'TRUE',
+        'access arguments' => array('them_don_hang'),
+        'type' => MENU_CALLBACK
+    );
+    $items['quan-ly-trang-thai-don-hang'] = array(
+        'title' => '',
+        'delivery callback' => 'quan_ly_trang_thai',
+        'access callback' => 'TRUE',
+        'access arguments' => array('quan_ly_trang_thai'),
+        'type' => MENU_CALLBACK
+    );
+    return $items;
+}
+
+function them_don_hang(){
+    $phone = $_POST['phone'];
+    $ho_ten = $_POST['ho_ten'];
+    $thanh_pho = $_POST['thanh_pho'];
+    $quan_huyen = $_POST['quan_huyen'];
+    $phuong_xa = $_POST['phuong_xa'];
+    $dia_chi_chi_tiet = $_POST['dia_chi_chi_tiet'];
+    $ghi_chu = $_POST['ghi_chu'];
+    $image = $_POST['path_image'];
+    $title = $_POST['title_product'];
+    $node = node_load($_POST['node']);
+    $newnode = array(
+        'type' => 'don_hang_bao_gia',
+        'language' => 'vi',
+        'status' => 1,
+        'comment' => 0,
+        'uid'=>1,
+        'promote' => 0,
+        'title' => $title
+    );
+    $khoitaonode=entity_create('node',$newnode);
+    $truyva=entity_metadata_wrapper('node',$khoitaonode);
+    $truyva->field_so_dien_thoai->set($phone);
+    $truyva->field_dia_chi->set($dia_chi_chi_tiet);
+    $truyva->field_thanh_pho->set($thanh_pho);
+    $truyva->field_quan_huyen->set($quan_huyen);
+    $truyva->field_phuong_xa->set($phuong_xa);
+    $truyva->field_ghi_chu->set($ghi_chu);
+    $truyva->field_ho_ten->set($ho_ten);
+    $truyva->field_trang_thai_don_hang->set('dang_treo');
+    $fid = $node->field_image['vi'][0]['fid'];
+    $truyva->field_image->set(array('fid' => $fid, 'title'=>$title));
+    $image_obj = file_load($fid);
+    $truyva->field_image->file = $image_obj;
+    $truyva->field_image->title = $title;
+    $truyva->field_image->alt = $title;
+    try {
+        $truyva->save();
+    }catch (Exception $e){
+        print $e->getMessage();
+    }
+}
+function quan_ly_trang_thai(){
+    if (isset($_POST['nid'])){
+        $state_order = $_POST['state_order'];
+        $node = node_load($_POST['nid']);
+        $query = entity_metadata_wrapper('node',$node);
+        $query->field_trang_thai_don_hang->set($state_order);
+        $check = $query->save();
+        if ($check){
+        }else{
+            drupal_set_message('Lỗi không thêm được','error');
+        }
+    }
+}
+function don_hang_permission() {
+    return array(
+        'them_don_hang'=>array(
+            'title'=>'Thêm đơn hàng',
+        ),
+        'quan_ly_trang_thai'=>array(
+            'title'=>'Sửa trạng thái đơn hàng',
+        ),
+    );
+}
+

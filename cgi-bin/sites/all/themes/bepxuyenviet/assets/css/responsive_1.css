@@ -1,0 +1,74 @@
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+@media only screen and (max-width: 1024px) {
+    .mainmenu ul li a{
+        padding: 22px 12px;
+    }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .pd-tb-md-30{
+        padding: 30px 0;
+    }
+    .footer-addres .title_footer {
+        font-size: 13pt;
+    }
+    .mainmenu ul li a {
+        padding: 0;
+    }
+
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 600px) {}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (max-width: 600px) {
+    .title-page-sub{
+        padding-right: 30px;
+        font-size: 24pt;
+    }
+    .container {
+        width: 100%;
+    }
+    .buttons-cart input, .coupon input[type=submit] {
+        margin-right: 5px;
+    }
+    .breadcrumbs{
+        position: relative;
+    }
+    .categories-product .owl-controls .owl-nav div{
+        top: -45%;
+    }
+    .title-page-sub{
+        top: 50%;
+    }
+    .title-product h3 a{
+        padding: 30% 5px 20px;
+    }
+    .region-sidebar-right {
+        padding-top: 30px;
+    }
+    .single-purchase {
+        margin-top: 30px;
+        flex: 0 0 49%;
+        padding: 0 5px;
+    }
+    .purchase-info h3 {
+        font-size: 19px;
+    }
+    .mainmenu ul li a{
+        padding: 0;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+
+
+

@@ -1,0 +1,461 @@
+.input-text input[type=email] {
+    font-family: Arial,Helvetica,sans-serif;
+    color: #fff;
+    font-size: 15px;
+    line-height: 48px;
+    padding: 0 20px;
+    border: none;
+    width: 100%;
+    height: 50px;
+    font-weight: 400;
+    transition: all .3s ease-in-out;
+    border-bottom: 1px dotted #fff;
+    background-color: transparent;
+}
+.form-textarea{
+    font-family: Arial,Helvetica,sans-serif;
+    color: #fff;
+    font-size: 15px;
+    line-height: 24px;
+    padding: 5px 20px;
+    border: none;
+    width: 100%;
+    height: 120px;
+    font-weight: 400;
+    transition: all .3s ease-in-out;
+    resize: none;
+    border-bottom: 1px dotted #fff;
+    background-color: transparent;
+}
+.form-textarea:focus{
+    opacity: 1;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(0,47,75,.8);
+    box-shadow: 0 20px 20px rgb(0 0 0 / 20%);
+}
+.form-textarea::placeholder{
+    color: #fff;
+}
+.webform-component-textarea .grippie{
+    display: none;
+}
+.input-but input {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    padding: 10px 20px;
+    text-align: center;
+    color: #fff;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    margin: 0;
+    text-transform: uppercase;
+    border: none;
+    background-color: #d09c3f;
+    vertical-align: middle;
+}
+.input-text input[type=email]:focus {
+    opacity: 1;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(0,47,75,.8);
+    box-shadow: 0 20px 20px rgb(0 0 0 / 10%);
+}
+.input-text input[type=text]::placeholder,
+.input-text input[type=email]::placeholder,
+.input-text input[type=textarea]::placeholder{
+    color: #fff;
+}
+.form-item, .form-actions{
+ margin-top: 0;
+ margin-bottom: 0;
+}
+.input-but input:hover {
+    background: #002f4b;
+}
+.contact .company-info ul {
+    max-width: 640px;
+}
+li.pager-current {
+    color: #d09c3f;
+}
+li.pager-item a {
+    color: #fff;
+}
+li.pager-next a {
+    color: #fff;
+}
+li.pager-last a {
+    color: #fff;
+}
+.item-list ul li a:hover {
+    color: #d09c3f;
+}
+.d-none{
+    display:none;
+}
+body.auto .copyright {
+  background-color: #1f8850 !important;
+  color: #fff !important;
+}
+body.auto .footer {
+  background-color: rgb(30 135 79 / 82%) !important;
+}
+body.auto .container {
+  background-color: #1e874f !important;
+}
+.load-content {
+  background: linear-gradient(
+    0deg
+    ,#358e68,#1e874f) !important;
+}
+.row-product {
+  background-color: #003e1f !important;
+}
+.txt-product {
+  background-color: #1e874f !important;
+}
+.txt-product h4
+{
+  color: #fff;
+}
+body {
+  background-color: #004d24 !important;
+}
+.message {
+  padding: 0 0 5vw;
+  background: radial-gradient(circle farthest-corner at center center,#1e874f 0,#219d5b 100%) !important
+}
+.message .grey {
+  color: #ffffff !important;
+}
+.message:after{
+  background: url("/sites/default/files/logo-1.png") no-repeat 50%/contain !important;
+  filter:brightness(0.25);
+  background-size: 200px !important;
+  z-index: -1;
+  -webkit-transform: rotate(90deg) !important;
+  margin-left: calc(3% - 10px) !important;
+  opacity:0.75 !important;
+}
+.value {
+  background-color: #1e874f !important;
+}
+.grey {
+  color: #ffffff !important;
+}
+.commitment {
+  background: #1e874f !important;
+}
+.capacity{
+  background: #219d5b !important;
+}
+.distribution{
+  background: linear-gradient(
+    0deg
+    ,#075129,#1e874f) !important;
+}
+.outer-nav.second {
+  background-color: #1e874f !important;
+}
+.products {
+  background-color: #1e874f !important;
+}
+.catalogue {
+  background: linear-gradient(
+    0deg
+    ,#003e1f,#1e874f) !important;
+}
+.load-title h3{
+  color: #fff !important;
+}
+.load-content {
+  background: linear-gradient(
+    0deg
+    ,#358e68,#1e874f) !important;
+}
+.news-list {
+  background-color: #187c46 !important;
+}
+.load-news-list{
+  background: #1e874f !important;
+}
+.product-details{
+  background: radial-gradient(circle farthest-corner at center center,#1e874f 0,#219d5b 100%) !important;
+}
+.product-content {
+  background-color: #003e1f !important;
+}
+.product-info-details {
+  background-color: #1e874f !important;
+}
+.other-related {
+  background: linear-gradient(
+    0deg
+    ,#003e1f,#1e874f) !important;
+}
+.outer-nav{
+  background-color: #187c46 !important;
+}
+.news-highlight {
+  padding: 0 0 5vw;
+  background: radial-gradient(circle farthest-corner at center center,#1e874f 0,#003e1f 100%) !important;
+}
+.box-news {
+  background-color: #1e874f !important;
+}
+.text-news h3{
+  color: #fff !important;
+}
+.text-news:hover h3{
+  color: #d09c3f !important;
+}
+.txt-product:hover h4
+{
+  color: #d09c3f !important;
+}
+.item-product .txt-product h4 {
+  color: #fff !important;
+}
+.item-product:hover .txt-product h4 {
+  color: #d09c3f !important;
+}
+.language li a{
+  color: #fff !important;
+}
+.language li a{
+  color: #d09c3f !important;
+}
+.showroom{
+  background: radial-gradient(circle farthest-corner at center center,#1e874f 0,#219d5b 100%) !important;
+}
+.showroom-list{
+  background: radial-gradient(circle farthest-corner at center center,#1e874f 0,#003e1f 100%) !important;
+}
+.wrap-info {
+  border-bottom: 1px solid #ffffff !important;
+}
+.project-list {
+  background: linear-gradient(
+    0deg
+    ,#1e874f,#003e1f) !important;
+}
+.txt-project {
+  background: linear-gradient(
+    0deg
+    ,#004d24,rgba(3,26,43,0)) !important;
+}
+.interior-list:nth-of-type(2n) {
+  background-color: #1e874f !important;
+}
+.interior-list:nth-of-type(odd) {
+  background-color: #003e1f !important;
+}
+.video-thumb .title-pic {
+  background-color: #1e874f !important;
+}
+.album-thumb_1 .title-pic {
+  background-color: #003e1f !important;
+}
+.view-album {
+  background-color: #1e874f !important;
+}
+.album-thumb_1 .view-album {
+  width: 0px !important;
+  height: 0px !important;
+}
+.consultant {
+  background-color: #219d5b !important;
+}
+.header .overlay-menu:before {
+  -webkit-transform: rotate(
+    90deg
+  ) !important;
+  margin-left: 105px !important;
+  width: 243px !important;
+}
+.contact {
+  background-color: #1e874f !important;
+}
+.contact-form {
+  background: #1e874f !important;
+}
+.contact-form .require-col, .order-form .require-col {
+  background: linear-gradient( 0deg , #24995b, #003e1f) !important;
+}
+.overlay-form {
+  background: radial-gradient(circle farthest-corner at center center,#24995b 0, #1e874f 60%,rgba(0,0,0,.3) 100%) !important;
+}
+.register-form .require-col, .showroom-form .require-col {
+  background: linear-gradient(
+    0deg
+    , #003e1f, #24995b) !important;
+}
+.input-text input[type=text]:focus {
+  background-color: #1e874f !important;
+}
+.input-select select option {
+  background-color: #1e874f !important;
+}
+.form-textarea:focus {
+  background-color: #1e874f !important;
+}
+.benefit {
+  background: linear-gradient(
+    0deg
+    , #24995b, #003e1f) !important;
+}
+.benefit:after{
+  background: url("/sites/default/files/logo-1.png") no-repeat 50%/contain !important;
+  filter:brightness(0.25);
+  background-size: 200px !important;
+  z-index: -1;
+  -webkit-transform: rotate(90deg) !important;
+  margin-left: calc(3% - 10px) !important;
+  opacity:0.75 !important;
+}
+.condition {
+  background-color: #003e1f !important;
+}
+.register {
+  background: linear-gradient(
+    0deg
+    , #003e1f, #24995b) !important;
+}
+.member-form {
+  background: radial-gradient(circle farthest-corner at center center,#1e874f 0,#003e1f 100%) !important;
+}
+.input-text input[type=email]:focus {
+  background-color: #1e874f !important;
+}
+.filter-product {
+  background-color: #003e1f !important;
+}
+.box-filter li {
+  color: #fff !important;
+}
+.box-filter li:hover {
+  color: #d09c3f !important;
+}
+section.products .row-product {
+  background-color: #24995b!important;
+}
+.list-product.grid {
+  background: #24995b !important;
+}
+.txt-product h3:hover{
+  color: #d09c3f !important;
+}
+.box-filter {
+  padding: 10px 25px !important;
+}
+.item-box h3 {
+  background-color: #003e1f !important;
+}
+.col-md-6 {
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.box-video-center {
+  height: auto !important;
+}
+.wrap-pic .picture-thumb {
+  border: 1px solid !important;
+  margin-top: 30px !important;
+  background: #00421338 !important;
+}
+.height-full {
+  height: 100%;
+  display: block;
+  padding-top: 30px;
+  border-bottom: 1px solid hsla(0,0%,100%,.3);
+}
+body.auto .height-full .title-main {
+  margin: 0px 0px 50px 0px;
+}
+.video-youtube-full {
+  height: unset !important;
+  min-height: 400px !important;
+}
+.product-info-details .text-collapsible {
+  border-bottom: unset !important;
+}
+.youtube-video iframe {
+  width: 100%;
+  height: 56.25vw;
+  position: absolute;
+  left: 0;
+  transform: translateY(-30%) !important;
+  z-index: -1;
+}
+@media (max-width: 700px){
+  .video-youtube-full {
+    min-height: unset;
+  }
+  .col-12{
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .value-content .text-intro {
+    width: 90%;
+    display: block;
+    margin: auto;
+    padding: 0 5%;
+    text-align: left !important;
+  }
+  .img-edit{
+    margin-bottom: 10px;
+  }
+}
+li {
+  line-height: 16pt;
+}
+button#fullscreen {
+  display: none;
+}
+section.message {
+  padding-bottom: 30px !important;
+}
+.img-fluid {
+  max-width: 100% !important;
+  height: auto !important;
+}
+section.message .ani-item ul {
+  margin-bottom: 15px;
+}
+.introduce-project {
+  background: #1e874f !important;
+}
+.new-icon {
+  opacity: 0.8;
+  left: 10px !important;
+  top: 10px !important;
+  background: url(/sites/default/files/2560px-ikea_logo.png) no-repeat !important;
+  text-align: center;
+}
+.mobile-option .link-load.current {
+  display: block !important;
+}
+.mobile-option .link-load {
+  display: none;
+}

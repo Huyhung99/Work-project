@@ -1,0 +1,6 @@
+name = Quản lý mầm non
+description = Quản lý lớp, học sinh, phụ huynh
+core = 7.x
+files[]=mam_non_quan_ly.module
+package = "K58"
+php = 5.2

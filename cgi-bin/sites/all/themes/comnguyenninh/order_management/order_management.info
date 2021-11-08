@@ -1,0 +1,6 @@
+name = Sữa chua Rozaluta
+description = Nhận thông tin ajax lưu vào CSDL
+core = 7.x
+files[] = order_management.module
+package = "MinhHien Solutions"
+php = 5.2

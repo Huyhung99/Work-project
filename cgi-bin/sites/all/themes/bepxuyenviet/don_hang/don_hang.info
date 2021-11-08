@@ -1,0 +1,6 @@
+name = Quản lý đơn hàng báo giá
+description = Quản lý đơn hàng báo giá
+core = 7.x
+files[]= don_hang.module
+package = "Quản lý đơn hàng báo giá"
+php = 5.2

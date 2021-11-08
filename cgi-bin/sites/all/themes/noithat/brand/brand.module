@@ -1,0 +1,31 @@
+<?php
+function brand_menu()
+{
+    $items['hien-thi-thuong-hieu'] = array(
+        'title' => '',
+        'delivery callback' => 'hien_thi_thuong_hieu',
+        'access callback' => 'TRUE',
+        'access arguments' => array('hien_thi_thuong_hieu'),
+        'type' => MENU_CALLBACK
+    );
+    return $items;
+}
+
+function hien_thi_thuong_hieu(){
+        if (isset($_POST['node'])) {
+            $node_brand = node_load($_POST['node']);
+            $data = $node_brand->body['und'][0]['value'];
+            echo drupal_json_encode(array(
+                'str' => $data,
+            ));
+        }
+
+}
+function brand_permission() {
+    return array(
+        'hien_thi_thuong_hieu'=>array(
+            'title'=>'Hiển thị thương hiệu',
+        ),
+    );
+}
+

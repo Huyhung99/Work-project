@@ -1,0 +1,85 @@
+name = PHUONG NGUYEN GROUP
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/flaticon.css
+stylesheets[all][] =  assets/css/menu.css
+stylesheets[all][] =  assets/css/dropdown-effects/fade-down.css
+stylesheets[all][] =  assets/css/magnific-popup.css
+stylesheets[all][] =  assets/css/owl.carousel.min.css
+stylesheets[all][] =  assets/css/owl.theme.default.min.css
+stylesheets[all][] =  assets/css/animate.css
+stylesheets[all][] =  assets/css/jquery.datetimepicker.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/jquery-hortree-master/dist/jquery.hortree.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/jquery-3.3.1.min.js
+scripts[] = assets/js/popper.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/modernizr.custom.js
+scripts[] = assets/js/jquery.easing.js
+scripts[] = assets/js/jquery.appear.js
+scripts[] = assets/js/jquery.stellar.min.js
+scripts[] = assets/js/menu.js
+scripts[] = assets/js/sticky.js
+scripts[] = assets/js/jquery.scrollto.js
+scripts[] = assets/js/materialize.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/jquery-hortree-master/dist/jquery.line.js
+;scripts[] = assets/jquery-hortree-master/dist/jquery.hortree.min.js
+scripts[] = assets/jquery-hortree-master/src/jquery.hortree.js
+scripts[] = assets/js/wow.js
+scripts[] = assets/js/custom.js
+;scripts[] = assets/js/changer.js
+
+regions[header_banner] = Header Banner
+regions[date] = Date
+regions[col1_top_main_content] = Col 1 Top Main Content
+regions[col2_top_main_content] = Col 2 Top Main Content
+regions[col3_top_main_content] = Col 3 Top Main Content
+regions[banner_1] = Banner 1
+regions[col1_html_inner_main_content] = Col 1 HTML Inner Main Content
+regions[col1_inner_main_content] = Col 1 Inner Main Content
+
+regions[col2_top_left_inner_main_content] = Col 2 Top Left Inner Main Content
+regions[col2_left_inner_main_content] = Col 2 Left Inner Main Content
+
+regions[col2_top_right_inner_main_content] = Col 2 Top Right Inner Main Content
+regions[col2_right_inner_main_content] = Col 2 Right Inner Main Content
+
+regions[col3_html_inner_main_content] = Col 3 HTML Inner Main Content
+regions[col3_inner_main_content] = Col 3 Inner Main Content
+
+regions[banner_2] = Banner 2
+
+regions[col1_bottom_bottom_main_content] = Col 1 Bottom of Bottom Main Content
+regions[col2_bottom_bottom_main_content] = Col 2 Bottom of Bottom Main Content
+
+regions[content] = Content
+regions[title_search] = Title search
+regions[term_search] = Term search
+regions[bussinesses_search] = Bussinesses search
+regions[block_doanh_nghiep_list] = Danh sách loại doanh nghiệp
+regions[block_doanh_nghiep_slider] = Danh sách doanh nghiệp
+
+regions[left_sidebar_front_bottom_content] = Left sidebar Front Bottom
+regions[right_sidebar_front_bottom_content] = Right sidebar Front Bottom
+
+regions[header_slider] = Header Slider
+regions[main-content-front] = Main Content Front
+regions[content_footer] = Content footer
+regions[bottom-footer] = Bottom Footer
+regions[contact] = Contact
+regions[contact_info] = Contact info
+regions[contact_map] = Contact map
+regions[search] = Search
+regions[btn-search] = Button search
+regions[sidebar_first] = Sidebar First

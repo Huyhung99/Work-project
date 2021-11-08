@@ -1,0 +1,374 @@
+.hotlinefix {
+    position: fixed;
+    bottom: 66px;
+    left: 52px;
+    z-index: 99
+}
+
+.circle-hotline-chat {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #0080FF;
+    -webkit-transition: height .25s ease, width .25s ease;
+    transition: height .25s ease, width .25s ease;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 3px;
+    margin-left: -3px
+}
+
+.circle-hotline-chat span {
+    margin: 12px;
+    display: inline-block
+}
+
+.circle-hotline-chat:before, .circle-hotline-chat:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    border: 1px solid #0080FF
+}
+
+.circle-hotline-chat:before {
+    -webkit-animation: ripple 2s linear infinite;
+    animation: ripple 2s linear infinite
+}
+
+.circle-hotline-chat:after {
+    -webkit-animation: ripple 2s linear 1s infinite;
+    animation: ripple 2s linear 1s infinite
+}
+
+.circle-hotline-chat:hover:before, .circle-hotline-chat:hover:after {
+    -webkit-animation: none;
+    animation: none
+}
+
+@-webkit-keyframes ripple {
+    0% {
+        -webkit-transform: scale(1)
+    }
+    75% {
+        -webkit-transform: scale(1.75);
+        opacity: 1
+    }
+    100% {
+        -webkit-transform: scale(2);
+        opacity: 0
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1)
+    }
+    75% {
+        transform: scale(1.75);
+        opacity: 1
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0
+    }
+}
+
+.circle-hotline-chat img {
+    width: 50px;
+    max-width: 100%;
+    height: auto
+}
+
+.hotline-chat .phone {
+    font-size: 16px;
+    font-weight: bold;
+    background: #F00;
+    color: white;
+    padding: 1px 30px 1px 75px;
+    border-radius: 39px;
+    left: -25px;
+    top: -25px;
+    position: absolute;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4)
+}
+
+#home-chat .hotline-chat .phone p {
+    line-height: 15px;
+    margin-top: 8px;
+    margin-bottom: 8px
+}
+
+#home-chat .hotline-chat .phone p a {
+    font-style: inherit;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.circle-hotline {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #F00;
+    -webkit-transition: height .25s ease, width .25s ease;
+    transition: height .25s ease, width .25s ease;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 3px;
+    margin-left: -3px
+}
+
+.circle-hotline span {
+    margin: 12px;
+    display: inline-block
+}
+
+.circle-hotline:before, .circle-hotline:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    border: 1px solid #F00
+}
+
+.circle-hotline:before {
+    -webkit-animation: ripple 2s linear infinite;
+    animation: ripple 2s linear infinite
+}
+
+.circle-hotline:after {
+    -webkit-animation: ripple 2s linear 1s infinite;
+    animation: ripple 2s linear 1s infinite
+}
+
+.circle-hotline:hover:before, .circle-hotline:hover:after {
+    -webkit-animation: none;
+    animation: none
+}
+
+@-webkit-keyframes ripple {
+    0% {
+        -webkit-transform: scale(1)
+    }
+    75% {
+        -webkit-transform: scale(1.75);
+        opacity: 1
+    }
+    100% {
+        -webkit-transform: scale(2);
+        opacity: 0
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1)
+    }
+    75% {
+        transform: scale(1.75);
+        opacity: 1
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0
+    }
+}
+
+.circle-hotline img {
+    width: 50px;
+    max-width: 100%;
+    height: auto
+}
+
+.hotlinefix .phone {
+    font-size: 14px;
+    font-weight: bold;
+    background: #FFF;
+    color: #F00;
+    padding: 0px 30px 1px 75px;
+    border-radius: 39px;
+    left: -30px;
+    top: -29px;
+    position: absolute;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4)
+}
+
+.hotlinefix .phone a {
+    display: block;
+    padding: 16px 0;
+    font-size: 14pt
+}
+
+.hotlinefix .phone p {
+    line-height: 8px;
+    margin-top: 6px;
+    margin-bottom: 4px
+}
+
+.hotlinefix .phone p a {
+    font-style: inherit;
+    color: #F00;
+    text-shadow: none;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.breadcrumb {
+    background: none;
+    margin-bottom: 0;
+    padding: 0
+}
+
+.breadcrumb a:first-child {
+    margin-right: 10px;
+    margin-left: 0px
+}
+
+.breadcrumb a {
+    margin-left: 10px
+}
+
+.details-1 h4 a {
+    color: #000
+}
+
+.img-small {
+    width: 90px;
+    height: 80px
+}
+
+.ace-responsive-menu > li > a.active span {
+    color: #484848
+}
+
+.sidebar_recent_product .media .media-body a, .sidebar_feature_listing .media .media-body a:hover {
+    color: rgb(199, 0, 57)
+}
+
+.footer_about_widget.home3 {
+    padding: 0
+}
+
+a.banner-btn {
+    position: absolute;
+    top: 90%;
+    left: 44%
+}
+
+.tc_content {
+    text-align: left
+}
+
+.webform-progressbar {
+    display: none
+}
+
+.feat_property .thumb .thmb_cntnt p.fp_price {
+    bottom: 15px;
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: bold;
+    left: 20px;
+    line-height: 1.2;
+    position: absolute
+}
+
+@media only screen and (max-width: 630px) {
+    .banner-style-one .slide {
+        padding: 0
+    }
+
+    .main-title h2, .main-title h1 {
+        text-align: center
+    }
+}
+
+@media only screen and (max-width: 1199.98px) {
+    .stylehome1 .nav_logo_img {
+        width: 200px
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .banner-style-one .slide {
+        padding: 0
+    }
+}
+
+.sidebar_recent_product .media .media-body a, .sidebar_feature_listing .media .media-body a {
+    color: #484848
+}
+
+.feat_property {
+    border-radius: 0
+}
+
+.feat_property.home7.style3 .thumb, .feat_property.home7.style4 .thumb, .feat_property .thumb {
+    border-radius: 0px
+}
+
+.feat_property.home7 .thumb, .sidebar_recent_product, .sidebar_feature_listing, .sidebar_search_widget {
+    border-radius: 0px 0px 0 0
+}
+
+.feat_property.home7.style4 .thumb {
+    margin: 0
+}
+
+.feat_property .details .tc_content {
+    height: 120px
+}
+
+.feat_property .details .tc_content_1 {
+    height: auto;
+    padding: 10px
+}
+
+.sidebar_recent_product .media, .sidebar_feature_listing .media {
+    margin-bottom: 20px
+}
+
+.content {
+    text-align: unset
+}
+
+.sidebar_recent_product .title, .sidebar_feature_listing .title, .terms_condition_widget .title, .block-sidebar h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #484848;
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: 16pt;
+    text-transform: uppercase;
+    margin: 10px 0
+}
+
+.terms_condition_widget ul li a {
+    font-size: 12pt;
+    font-family: 'Roboto', sans-serif
+}
+
+.feat_property {
+    margin-bottom: 30px
+}
+
+.footer_one {
+    padding: 10px 0
+}
+
+.copyright {
+    text-align: center
+}

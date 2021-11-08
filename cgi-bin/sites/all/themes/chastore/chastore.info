@@ -1,0 +1,49 @@
+name = GIAO DIỆN CHASTORE
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+
+stylesheets[all][] = assets/css/vendor/bootstrap.min.css
+stylesheets[all][] = assets/css/vendor/font-awesome.min.css
+stylesheets[all][] = assets/css/vendor/plaza-font.css
+stylesheets[all][] = assets/css/plugins/slick.css
+stylesheets[all][] = assets/css/plugins/swiper.min.css
+stylesheets[all][] = assets/css/plugins/animation.css
+stylesheets[all][] = assets/css/plugins/nice-select.css
+stylesheets[all][] = assets/css/plugins/fancy-box.css
+stylesheets[all][] = assets/css/plugins/jqueryui.min.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/custom.css
+
+
+scripts[] = assets/js/vendor/modernizr-3.6.0.min.js
+scripts[] = assets/js/vendor/jquery-3.3.1.min.js
+scripts[] = assets/js/vendor/popper.min.js
+scripts[] = assets/js/vendor/bootstrap.min.js
+scripts[] = assets/js/plugins/slick.min.js
+scripts[] = assets/js/plugins/swiper.min.js
+scripts[] = assets/js/plugins/jquery.nice-select.min.js
+scripts[] = assets/js/plugins/countdown.min.js
+scripts[] = assets/js/plugins/image-zoom.min.js
+scripts[] = assets/js/plugins/fancybox.js
+scripts[] = assets/js/plugins/scrollup.min.js
+scripts[] = assets/js/plugins/jqueryui.min.js
+scripts[] = assets/js/plugins/ajax-contact.js
+scripts[] = assets/js/vendor/vendor.min.js
+scripts[] = assets/js/plugins/plugins.min.js
+scripts[] = assets/js/main.js
+
+regions[content] = Nội dung chính
+regions[main_slider] = Slider
+regions[top_header] = Top Header
+regions[full_content] = Nội dung chính Full Width
+regions[mini_cart] = Mini Cart
+regions[tim_kiem_block] = Block tìm kiếm
+regions[sidebar-right] = Sidebar Right
+regions[end_footer_col_1] = End Footer Col 1
+regions[end_footer_col_2] = End Footer Col 2
+regions[end_footer_col_3] = End Footer Col 3
+regions[end_footer_col_4] = End Footer Col 4
+regions[copyright] = Copyright

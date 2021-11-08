@@ -1,0 +1,33 @@
+name = Wholesale 2020
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.custom.min.css
+stylesheets[all][] =  assets/css/listing.css
+stylesheets[all][] =  assets/css/product_page.css
+stylesheets[all][] =  assets/css/cart.css
+stylesheets[all][] =  assets/css/checkout.css
+stylesheets[all][] =  assets/css/blog.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/home_1.css
+stylesheets[all][] =  assets/css/custom.css
+
+scripts[] = assets/js/common_scripts.min.js
+scripts[] = assets/js/main.js
+scripts[] = assets/js/carousel-home.min.js
+
+regions[content] = Nội dung chính
+regions[hotline_block] = Hotline Block
+regions[categories] = Danh mục sản phẩm
+regions[search_custom] = Search Custom
+regions[drop_cart] = Drop Cart
+regions[sign_in] = Sign in
+regions[search_mob_wp] = Search_mob_wp
+regions[main_content_front] = Nội dung chính trang chủ
+regions[sidebar_first] = Sidebar_first
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer
+regions[copyright_footer] = Copyright Footer

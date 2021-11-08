@@ -1,0 +1,6 @@
+name = Quản lý phụ thu
+description = Quản lý phụ thu
+core = 7.x
+files[]=quan_ly_phu_thu.module
+package = "K58"
+php = 5.2

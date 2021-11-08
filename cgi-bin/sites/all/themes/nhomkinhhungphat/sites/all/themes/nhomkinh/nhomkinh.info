@@ -1,0 +1,38 @@
+name = NHÔM KÍNH HƯNG PHÁT
+description = Giao diện được thiết kế bởi Công ty TNHH Công nghệ và Dịch vụ Minh Hiền
+core = 7.x
+package = Core
+
+stylesheets[all][] = assets/css/bootstrap.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/responsive.css
+stylesheets[all][] = assets/css/color.css
+stylesheets[all][] = assets/css/font-awesome.css/font-awesome.min.css
+
+
+scripts[] =assets/js/jquery.js
+scripts[] =assets/js/popper.min.js
+scripts[] =assets/js/bootstrap.min.js
+scripts[] =assets/js/bootstrap-select.min.js
+scripts[] =assets/js/jquery.fancybox.js
+scripts[] =assets/js/isotope.js
+scripts[] =assets/js/owl.js
+scripts[] =assets/js/appear.js
+scripts[] =assets/js/wow.js
+scripts[] =assets/js/lazyload.js
+scripts[] =assets/js/scrollbar.js
+scripts[] =assets/js/TweenMax.min.js
+scripts[] =assets/js/swiper.min.js
+scripts[] =assets/js/script.js
+
+
+regions[header] = header
+regions[tim_kiem_block] = Block Tìm kiếm
+regions[content] = Content
+regions[main_frontend] = Main Frontend
+regions[sidebar_first] = Sidebar First
+regions[logo_footer] = Logo Footer
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[footer_bottom] = Bottom Footer

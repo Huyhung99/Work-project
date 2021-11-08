@@ -1,0 +1,42 @@
+name = Linkhouse - Tủ bếp nhập khẩu cao cấp
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/flaticon.css
+stylesheets[all][] =  assets/css/sitefont.css
+stylesheets[all][] =  assets/css/fontawesome-all.css
+stylesheets[all][] =  assets/css/owl.carousel.css
+stylesheets[all][] =  assets/css/odometer-theme-default.css
+stylesheets[all][] =  assets/css/animate.css
+stylesheets[all][] =  assets/css/video.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/owl.carousel2.thumbs.js
+scripts[] = assets/js/jarallax.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/appear.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/twenty.js
+scripts[] = assets/js/odometer.js
+scripts[] = assets/js/script.js
+scripts[] = assets/js/custom.js
+
+regions[top_main_content_frontend] = Top main content Frontend
+regions[main_content_frontend] = Main content Frontend
+regions[right_logo] = Right Logo
+regions[content] = Nội dung chính
+regions[sidebar_second] = Sidebar Second
+regions[col1_footer] = col1_footer
+regions[col2_footer] = col2_footer
+regions[col3_footer] = col3_footer
+regions[col4_footer] = col4_footer
+regions[searchbox] = Search Box
+regions[footer] = Bottom Footer

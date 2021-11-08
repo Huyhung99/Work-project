@@ -1,0 +1,24 @@
+.lgx-header .lgx-navbar .lgx-logo a img {
+  float: left;
+  -webkit-transition: all .4s ease-in-out 0s;
+  -moz-transition: all .4s ease-in-out 0s;
+  -o-transition: all .4s ease-in-out 0s;
+  transition: all .4s ease-in-out 0s;
+  width: 80px;
+}
+p.text-about {
+  font-size: 16pt;
+  margin: 10px 0;
+  line-height: 20pt;
+}
+.d-none{
+  display: none;
+}
+.logo_footer {
+  max-width: 180px;
+}
+.buttonload{
+  font-size: 30px;
+  display: block;
+  text-align: center;
+}

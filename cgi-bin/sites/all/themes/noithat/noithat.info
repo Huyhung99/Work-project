@@ -1,0 +1,24 @@
+name = NOI THAT
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] = assets/css/styles.css
+stylesheets[all][] = assets/css/custom.css
+
+scripts[] =  assets/js/jquery-3.6.0.min.js
+scripts[] =  assets/js/script.js
+scripts[] =  assets/js/custom.js
+
+regions[content] = Content
+regions[main_content_front] = Main Content front
+regions[lang] = Language
+regions[contact_info] = Contact info
+regions[product_page] = Product Page
+regions[col_1_footer] = Footer 1
+regions[col_2_footer] = Footer 2
+regions[col_3_footer] = Footer 3
+regions[col_4_footer] = Footer 4
+regions[bottom-footer] = Bottom Footer
+regions[sidebar_first] = Sidebar First

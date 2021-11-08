@@ -1,0 +1,47 @@
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .box-product .content-product .title-product {
+        padding: 0 10px;
+        font-size: 14px;
+        line-height: 23px;
+    }
+    .item-product .content-product {
+        padding-top: 10px;
+    }
+    .item-product{
+        padding-bottom: 10px;
+    }
+    .sidebar-page-container{
+        padding: 40px 0 30px !important;
+    }
+    .page-title{
+        padding: 100px 0px 50px!important;
+    }
+    .page-title .content-box{
+        padding-left: 0;
+    }
+    .page-title .content-box h1 {
+        font-size: 30px !important;
+        line-height: 37px!important;
+    }
+    .block_danh_sach_sp h3 a{
+        overflow: hidden;
+        padding: 0px 5px;
+        text-overflow: clip;
+        max-height: 50px;
+    }
+}
+
+
+
+
+

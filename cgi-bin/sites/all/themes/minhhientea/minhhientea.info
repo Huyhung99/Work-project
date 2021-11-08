@@ -1,0 +1,37 @@
+name = MINH HIEN TEA 2020
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/animate.css
+stylesheets[all][] =  assets/css/owl.carousel.min.css
+stylesheets[all][] =  assets/css/slick.css
+stylesheets[all][] =  assets/css/chosen.min.css
+stylesheets[all][] =  assets/css/font-awesome.min.css
+stylesheets[all][] =  assets/css/themify-icons.css
+stylesheets[all][] =  assets/css/ionicons.min.css
+stylesheets[all][] =  assets/css/jquery-ui.css
+stylesheets[all][] =  assets/css/meanmenu.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/vendor/modernizr-2.8.3.min.js
+scripts[] = assets/js/vendor/jquery-1.12.0.min.js
+scripts[] = assets/js/popper.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/ajax-mail.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/plugins.js
+scripts[] = assets/js/main.js
+
+regions[content] = Nội dung chính
+regions[mini_cart_wrap] = Mini Cart
+regions[main_content_front] = Nội dung chính trang chủ
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer
+regions[copyright_footer] = Copyright Footer

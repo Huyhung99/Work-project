@@ -1,0 +1,47 @@
+name = NHÔM KÍNH HƯNG PHÁT
+description = Giao diện được thiết kế bởi Công ty TNHH Công nghệ và Dịch vụ Minh Hiền
+core = 7.x
+package = Core
+
+stylesheets[all][] = assets/css/bootstrap.css
+stylesheets[all][] = assets/css/fontawesome-all.css
+stylesheets[all][] = assets/css/custom.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/custom-responsive.css
+stylesheets[all][] = assets/css/responsive.css
+stylesheets[all][] = assets/css/color.css
+
+
+scripts[] =assets/js/jquery.js
+scripts[] =assets/js/popper.min.js
+scripts[] =assets/js/bootstrap.min.js
+scripts[] =assets/js/bootstrap-select.min.js
+scripts[] =assets/js/jquery.fancybox.js
+scripts[] =assets/js/isotope.js
+scripts[] =assets/js/owl.js
+scripts[] =assets/js/appear.js
+scripts[] =assets/js/wow.js
+scripts[] =assets/js/lazyload.js
+scripts[] =assets/js/scrollbar.js
+scripts[] =assets/js/TweenMax.min.js
+scripts[] =assets/js/swiper.min.js
+scripts[] =assets/js/script.js
+
+
+regions[header] = header
+regions[tim_kiem_block] = Block Tìm kiếm
+regions[gioi_thieu] = Giới Thiệu
+regions[main_frontend_right] = Main Frontend Right
+regions[main_frontend_tin_tuc] = Main Frontend Tin Tức
+regions[form_tư_van] = Form Tư Vấn
+regions[content] = Content
+regions[form_contact] = Form contact
+regions[map_contact] = Map contact
+regions[main_frontend] = Main Frontend
+regions[sidebar_first] = Sidebar First
+regions[logo_footer] = Logo Footer
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer
+regions[footer_bottom] = Bottom Footer

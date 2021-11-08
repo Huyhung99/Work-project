@@ -1,0 +1,72 @@
+name = PHUONG NGUYEN GROUP
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/flaticon.css
+stylesheets[all][] =  assets/css/menu.css
+stylesheets[all][] =  assets/css/dropdown-effects/fade-down.css
+stylesheets[all][] =  assets/css/magnific-popup.css
+stylesheets[all][] =  assets/css/owl.carousel.min.css
+stylesheets[all][] =  assets/css/owl.theme.default.min.css
+stylesheets[all][] =  assets/css/animate.css
+stylesheets[all][] =  assets/css/jquery.datetimepicker.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+stylesheets[all][] =  dist/jquery-confirm.min.css
+
+scripts[] = assets/js/jquery-3.3.1.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/modernizr.custom.js
+scripts[] = assets/js/jquery.easing.js
+scripts[] = assets/js/jquery.appear.js
+scripts[] = assets/js/jquery.stellar.min.js
+scripts[] = assets/js/menu.js
+scripts[] = assets/js/sticky.js
+scripts[] = assets/js/jquery.scrollto.js
+scripts[] = assets/js/materialize.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/wow.js
+scripts[] = assets/js/custom.js
+scripts[] = assets/js/custom_2.js
+scripts[] = assets/js/changer.js
+scripts[] = js/jquery-confirm.js
+scripts[] = dist/jquery-confirm.min.js
+
+regions[content] = Content
+regions[main-content-front] = Main Content Front
+regions[head_right] = Head Right
+regions[head_left] = Head Left
+regions[Chia_se_nuoi_day_con_left] = Chia sẻ các nuôi dạy con left
+regions[Chia_se_nuoi_day_con_right] = Chia sẻ các nuôi dạy con right
+regions[main-content-front-bottom] = Main Content Front Bottom
+regions[name_header] = Tên H1
+regions[gioi_thieu_left] = Giới Thiệu Trái
+regions[gioi_thieu_right] = Giới Thiệu Phải
+
+regions[table_bang_lop_hoc] = Table Bảng Lớp Học
+
+regions[hinh_anh_front] = Hình Ảnh Front
+
+regions[chi_se_cach_nuoi_day_con] = Chia Sẻ Cách Nuôi Dạy Con
+regions[tin_tuc_su_kien] = Tin Tức và Sự kiện
+
+regions[left_form_dang_ky] = Left Form đăng ký
+regions[form_dang_ky] = Form đăng ký
+
+regions[gg_map] = Bản Đồ
+
+regions[search_page_form] = Tìm kiếm form
+
+regions[col_1_footer] = Footer 1
+regions[col_2_footer] = Footer 2
+regions[col_3_footer] = Footer 3
+regions[col_4_footer] = Footer 4
+regions[bottom-footer] = Bottom Footer
+regions[sidebar_first] = Sidebar First

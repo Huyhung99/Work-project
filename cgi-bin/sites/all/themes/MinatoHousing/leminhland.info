@@ -1,0 +1,38 @@
+name = Minato - Đầu tư Bất động sản, dự án, môi giới nhà đất
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/vendor.css
+stylesheets[all][] =  assets/css/jquery.multiselect.css
+stylesheets[all][] =  assets/icomoon/style.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+stylesheets[all][] =  assets/css/custom_responsive.css
+
+scripts[] = assets/js/vendor.js
+scripts[] = assets/js/jquery.multiselect.js
+scripts[] = assets/js/lozad.min.js
+scripts[] = assets/js/main.js
+scripts[] = assets/js/custom.js
+
+regions[content] = Content
+regions[header_right] = Header Right
+regions[slider_front] = Slider front
+regions[main_content_front] = Main Content Front
+regions[three_project_front] = Three project front
+regions[projects_bottom_front] = Project bottom front
+regions[contact_front] = Contact front
+regions[product_front] = Product front
+regions[search_product_front] = Search product front
+regions[bottom_main_content_front] = Bottom main content front
+regions[sidebar_right] = Side Right
+regions[form_lien_he] = Form Liên Hệ
+regions[footer_col_1] = Footer col 1
+regions[footer_col_2] = Footer col 2
+regions[footer_col_3] = Footer col 3
+regions[footer_col_4] = Footer col 4
+regions[bottom_footer] = Bottom Footer
+

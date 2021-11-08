@@ -1,0 +1,52 @@
+name = Kachi
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/font-awesome.min.css
+stylesheets[all][] =  assets/css/animate.css
+stylesheets[all][] =  assets/css/owl.carousel.css
+stylesheets[all][] =  assets/css/slick.css
+stylesheets[all][] =  assets/css/magnific-popup.css
+stylesheets[all][] =  assets/css/off-canvas.css
+stylesheets[all][] =  assets/fonts/flaticon.css
+stylesheets[all][] =  assets/fonts/fonts2/flaticon.css
+stylesheets[all][] =  assets/css/rsmenu-main.css
+stylesheets[all][] =  assets/css/rsmenu-transitions.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/spacing.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/jquery-3.3.1.min.js
+scripts[] = assets/js/modernizr-2.8.3.min.js
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/slick.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/waypoints.min.js
+scripts[] = assets/js/jquery.counterup.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/rsmenu-main.js
+scripts[] = assets/js/time-circle.js
+scripts[] = assets/js/plugins.js
+scripts[] = assets/js/main.js
+
+regions[content] = Content
+regions[main_content_front] = Main Content Front
+regions[contact_footer] = Contact Footer
+regions[footer_col1] = Footer col 1
+regions[footer_col2] = Footer col 2
+regions[footer_col3] = Footer col 3
+regions[footer_col4] = Footer col 4
+regions[footer_share] = Footer share
+regions[sidebar_first] = Sidebar first
+regions[contact_info] = Contact information
+regions[contact_form] = Contact Form
+regions[map_info] = Map information
+
+

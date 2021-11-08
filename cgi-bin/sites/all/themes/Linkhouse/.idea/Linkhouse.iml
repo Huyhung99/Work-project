@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="noithat" />
+    <orderEntry type="module" module-name="kachi" />
+    <orderEntry type="module" module-name="Berlin" />
+    <orderEntry type="module" module-name="AnhPhatFood" />
+    <orderEntry type="module" module-name="nst_new" />
+    <orderEntry type="module" module-name="HiepHoiVanTai" />
+  </component>
+</module>

@@ -1,0 +1,1950 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+/**
+ * Implements hook_node_delete().
+ */
+/**
+ * Implements hook_menu().
+ */
+function mam_non_quan_ly_menu()
+{
+    $items['them-lop-hoc'] = array(
+        'title' => 'Thêm lớp học',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('form_them_sua_lop_hoc'),
+        'access callback' => 'user_access',//phân quyền
+        'access arguments' => array('them_lop_hoc'),//phân quyền
+        'type' => MENU_CALLBACK
+    );
+    $items['them-lop-hoc-0'] = array(
+        'title' => 'Thêm lớp học',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('form_them_lop_hoc_0'),
+        'access callback' => 'user_access',//phân quyền
+        'access arguments' => array('them_lop_hoc_0'),//phân quyền
+        'type' => MENU_CALLBACK
+    );
+    $items['hoc-phi'] = array(
+        'title' => 'Thêm lớp học',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('form_them_hoc_phi'),
+        'access callback' => 'user_access',//phân quyền
+        'access arguments' => array('them_hoc_phi'),//phân quyền
+        'type' => MENU_CALLBACK
+    );
+    $items['sua-hoc-sinh'] = array(
+        'title' => 'Lưu thông tin lớp học',
+        'delivery callback' => 'sua_hoc_sinh',
+        'access callback' => 'TRUE',
+        'access arguments' => array('sua_hoc_sinh'),
+        'type' => MENU_CALLBACK
+    );
+    $items['load-lop-hoc'] = array(
+        'title' => 'Lưu thông tin lớp học',
+        'delivery callback' => 'load_lop_hoc',
+        'access callback' => 'TRUE',
+        'access arguments' => array('load_lop_hoc'),
+        'type' => MENU_CALLBACK
+    );
+    $items['sua-hoc-phi'] = array(
+        'title' => 'Sửa thông tin học phí',
+        'delivery callback' => 'sua_hoc_phi',
+        'access callback' => 'TRUE',
+        'access arguments' => array('sua_hoc_phi'),
+        'type' => MENU_CALLBACK
+    );
+    $items['luu-hoc-phi'] = array(
+        'title' => 'Sửa thông tin học phí',
+        'delivery callback' => 'luu_hoc_phi',
+        'access callback' => 'TRUE',
+        'access arguments' => array('luu_hoc_phi'),
+        'type' => MENU_CALLBACK
+    );
+    $items['len-lop'] = array(
+        'title' => 'Sửa thông tin học phí',
+        'delivery callback' => 'len_lop',
+        'access callback' => 'TRUE',
+        'access arguments' => array(''),
+        'type' => MENU_CALLBACK
+    );
+    $items['luu-hoc-sinh-trong-danh-sach'] = array(
+        'title' => 'Sửa thông tin học phí',
+        'delivery callback' => 'luu_hoc_sinh_trong_danh_sach',
+        'access callback' => 'TRUE',
+        'access arguments' => array('luu_hoc_sinh_trong_danh_sach'),
+        'type' => MENU_CALLBACK
+    );
+    $items['hoc-sinh-dong-hoc-phi'] = array(
+        'title' => 'Học sinh đóng học phí',
+        'delivery callback' => 'thao_tac_hoc_sinh_dong_hoc_phi',
+        'access callback' => 'TRUE',
+        'access arguments' => array('thao_tac_hoc_sinh_dong_hoc_phi'),
+        'type' => MENU_CALLBACK
+    );
+    $items['thay-doi-lop-hoc'] = array(
+        'delivery callback' => 'thay_doi_thong_tin_lop',
+        'access callback' => 'TRUE',
+        'access arguments' => array('thay_doi_thong_tin_lop'),
+        'type' => MENU_CALLBACK
+    );
+    $items['thao-tao-hoc-sinh-moi'] = array(
+        'delivery callback' => 'thao_tao_hoc_sinh_moi',
+        'access callback' => 'TRUE',
+        'access arguments' => array('thao_tao_hoc_sinh_moi'),
+        'type' => MENU_CALLBACK
+    );
+    return $items;
+}
+
+function thao_tao_hoc_sinh_moi()
+{
+    if (isset($_POST['them_dong_nhap_hoc_sinh'])) {
+        $str = '';
+        $danhsachlop = danhsachlophoc();
+        foreach ($danhsachlop as $id => $lop) {
+            $str = $str . '<option value="' . $id . '">' . $lop . '</option>';
+        }
+        $str = '<div><select name="lop_hoc" class="lop_hoc form-control">' . $str . '
+                    </select></div>';
+        $str2 = '';
+        $danhsachnam = danhsachnamhoc();
+        foreach ($danhsachnam as $id => $nam) {
+            $str2 = $str2 . '<option value="' . $id . '">' . $nam . '</option>';
+        }
+        $str2 = '<div><select name="nam_hoc" class="nam_hoc form-control">' . $str2 . '
+                    </select></div>';
+        echo drupal_json_encode(array(
+            'str' => '<div class="row mt-20"><div class="col-md-6">' . $str . '</div><div class="col-md-6">' . $str2 . '</div></div>'
+        ));
+    }
+    if (isset($_POST['sodt_thay_doi'])) {
+        $user = user_load_by_name(str_replace('.', '', str_replace(' ', '', $_POST['sodt_thay_doi'])));
+        $tenbo = '';
+        $tenme = '';
+        if ($user != '') {
+            if (isset($user->field_phu_huynh['und'][0]['value'])) {
+                $tenbo = $user->field_phu_huynh['und'][0]['value'];
+            }
+            if (isset($user->field_ten_me['und'][0]['value'])) {
+                $tenme = $user->field_ten_me['und'][0]['value'];
+            }
+        }
+        if ($tenbo != '' || $tenme != '') {
+            echo drupal_json_encode(array(
+                'tenbo' => $tenbo,
+                'tenme' => $tenme,
+                'id_phu_huynh_moi' => $user->uid
+            ));
+        }
+    }
+    if (isset($_POST['xoahan'])) {
+        node_delete($_POST['xoahan']);
+        dsm('Đã xóa thành công');
+    }
+    if (isset($_POST['xoa_han_ra_khoi_lop'])) {
+        $lophoc1 = node_load($_POST['xoa_han_ra_khoi_lop']);
+        $wrapper1 = entity_metadata_wrapper('node', $lophoc1);
+        $danhsachhocsinh1 = $wrapper1->value()->field_danh_sach_hoc_sinh['und'];// lấy danh sách học sinh
+        $chotdanhsachhocsinh1 = array();
+        foreach ($danhsachhocsinh1 as $item1) {
+            if ($item1['target_id'] != $_POST['id'])// lọc id học sinh trùng ra khỏi danh sách id học sinh
+            {
+                array_push($chotdanhsachhocsinh1, $item1['target_id']);//thêm vào mảng
+            }
+        }
+        $wrapper1->field_danh_sach_hoc_sinh->set($chotdanhsachhocsinh1);
+        $ktra = $wrapper1->save();
+        if ($ktra) {
+            dsm('Đã xóa ra khỏi lớp thành công');
+        }
+    }
+}
+
+function len_lop()
+{
+    if ($_POST['bienhoc'] && $_POST['idlophoc']) {
+        $nam_hoc = node_load($_POST['idlophoc'])->field_nam_hoc['und'][0]['tid'];
+        $bien_hien_thi = '<p>Lên lớp cho : ' . node_load($_POST['idlophoc'])->title;
+        $namhocmoi = explode(" - ", taxonomy_term_load($nam_hoc)->name);
+        $khoi_lop = taxonomy_term_load(node_load($_POST['idlophoc'])->field_lop['und'][0]['tid'])->name;
+        if ($khoi_lop == 'M1T1') {
+            $khoi_lop = 'M2T1';
+        } else if ($khoi_lop == 'M1T2') {
+            $khoi_lop = 'M2T2';
+        }
+        $nam_hoc_moi = (intval($namhocmoi[0]) + 1) . ' - ' . (intval($namhocmoi[1]) + 1);
+        $tenlop = 'Lớp ' . $khoi_lop . ' Khóa (' . $nam_hoc_moi . ')';
+        if (count(taxonomy_term_load(node_load($_POST['idlophoc'])->field_lop['und'][0]['tid'])->field_nam_cuoi) > 0) {
+            $bien_hien_thi = '<p>' . node_load($_POST['idlophoc'])->title . ' khối cuối nên sẽ được chuyển từ trạng thái Đang học về trạng thái Đã qua </p>';
+            $nuthienthi = '<a href="#" class="btn btn-default btn-primary ket_thuc_nam_hoc" id-value="' . $_POST['idlophoc'] . '" data-toggle="modal" data-target="#myModal1" data-dismiss="modal">Kết thúc năm học</a> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+        } else {
+            $bien_hien_thi = $bien_hien_thi . '<p>Lớp mới : ' . $tenlop . ' </p>';
+            $nuthienthi = '<a href="#" class="btn btn-default btn-primary duoc_len_lop" tenkhoi="' . $khoi_lop . '" ten-lop="' . $tenlop . '" nam_hoc_moi="' . $nam_hoc_moi . '" id-value="' . $_POST['idlophoc'] . '" data-toggle="modal" data-target="#myModal1" data-dismiss="modal">Lên lớp</a> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+        }
+        echo drupal_json_encode(array(
+            'bien_hien_thi' => $bien_hien_thi,
+            'nuthienthi' => $nuthienthi
+        ));
+    }
+    if ($_POST['ok_idlophoc'] && $_POST['tenlopmoi'] && $_POST['namhocmoi']) {
+        $node_lop_hoc = node_load($_POST['ok_idlophoc']);
+        $title = $_POST['tenlopmoi'];
+        $value = array(
+            'type' => 'lop_hoc',
+            'language' => 'vi',
+            'status' => 1,
+            'comment' => 0,
+            'uid' => 1,
+            'promote' => 0,
+            'title' => $title
+        );
+        $idtimkiemnamhoc = ktranamhocmoi($_POST['namhocmoi']);
+        if ($idtimkiemnamhoc != 0) {
+            $entity = entity_create('node', $value);
+            $ewrapper = entity_metadata_wrapper('node', $entity);
+            $ewrapper->field_nam_hoc->set($idtimkiemnamhoc);
+            $danhsachhocsinhtronglopdo = $node_lop_hoc->field_danh_sach_hoc_sinh['und'];
+            $array_hs = array();
+            foreach ($danhsachhocsinhtronglopdo as $id => $itemhocsinh) {
+                $array_hs[$id] = $itemhocsinh['target_id'];
+            }
+            $ewrapper->field_lop->set(array(ktrlophoc($_POST['tenkhoilop'])));
+            $ewrapper->field_danh_sach_hoc_sinh->set($array_hs);
+            $ewrapper->field_giao_vien_1->set(array($node_lop_hoc->field_giao_vien_1['und'][0]['target_id'], $node_lop_hoc->field_giao_vien_1['und'][1]['target_id']));
+            $ktra = $ewrapper->save();
+
+            $lopdaqua = node_load($_POST['ok_idlophoc']);
+            $ewrapper1 = entity_metadata_wrapper('node', $lopdaqua);
+            $daqua = 'Đã qua';
+            $ewrapper1->field_trang_thai_lop->set($daqua);
+            $ktra2 = $ewrapper1->save();
+
+            if ($ktra && $ktra2) {
+                drupal_set_message(t('Thành công'));
+            } else {
+                drupal_set_message(t('lỗi không lên được'), 'error');
+            }
+        } else // nếu không tồn tại năm học mới này
+        {
+            taxonomy_term_save((object)array(
+                'name' => $_POST['namhocmoi'],
+                'vid' => 5,
+            ));
+            $idtimkiemnamhoc = ktranamhocmoi($_POST['namhocmoi']);
+            $entity = entity_create('node', $value);
+            $ewrapper = entity_metadata_wrapper('node', $entity);
+            $ewrapper->field_nam_hoc->set($idtimkiemnamhoc);
+            $array_hs = array();
+            if (count($node_lop_hoc->field_danh_sach_hoc_sinh) > 0) {
+                $danhsachhocsinhtronglopdo = $node_lop_hoc->field_danh_sach_hoc_sinh['und'];
+                foreach ($danhsachhocsinhtronglopdo as $id => $itemhocsinh) {
+                    $array_hs[$id] = $itemhocsinh['target_id'];
+                }
+            }
+
+            $ewrapper->field_lop->set(array(ktrlophoc($_POST['tenkhoilop'])));
+            $ewrapper->field_danh_sach_hoc_sinh->set($array_hs);
+            $ewrapper->field_giao_vien_1->set(array($node_lop_hoc->field_giao_vien_1['und'][0]['target_id'], $node_lop_hoc->field_giao_vien_1['und'][1]['target_id']));
+            $ktra = $ewrapper->save();
+
+            $lopdaqua = node_load($_POST['ok_idlophoc']);
+            $ewrapper1 = entity_metadata_wrapper('node', $lopdaqua);
+            $daqua = 'Đã qua';
+            $ewrapper1->field_trang_thai_lop->set($daqua);
+            $ktra2 = $ewrapper1->save();
+
+            if ($ktra && $ktra2) {
+                drupal_set_message(t('Thành công'));
+            } else {
+                drupal_set_message(t('lỗi không lên được'), 'error');
+            }
+        }
+    }
+    if ($_POST['id_lop_cho_qua']) {
+        $node_lop_hoc = node_load($_POST['id_lop_cho_qua']);
+        $truyvan = entity_metadata_wrapper('node', $node_lop_hoc);
+        $daqua = 'Đã qua';
+        $truyvan->field_trang_thai_lop->set($daqua);
+        $ktra1 = $truyvan->save();
+        if ($ktra1) {
+            drupal_set_message(t('Thành công'));
+        } else {
+            drupal_set_message(t('lỗi không lên được'), 'error');
+        }
+    }
+}
+
+function ktranamhocmoi($namhocmoi)
+{
+    $nam_hoc_moi = danhsachnamhoc();
+    foreach ($nam_hoc_moi as $id => $item) {
+        if ($item == $namhocmoi) {
+            return $id;
+        }
+    }
+    return 0;
+}
+
+function ktrlophoc($lophoc)
+{
+    $lop_hoc = danhsachlophoc();
+    foreach ($lop_hoc as $id => $item) {
+        if ($item == $lophoc) {
+            return $id;
+        }
+    }
+    return 0;
+}
+
+function luu_hoc_sinh_trong_danh_sach()
+{
+    if ($_POST['id_node']) {
+        $node = node_load($_POST['id_node']);// lấy dũ liệu học sinh
+        $node->title = $_POST['name_hoc_sinh'];// thay tên hs
+        $wrapper = entity_metadata_wrapper('node', $node);
+        if ($_POST['phuhuynh']) {
+            $wrapper->field_ten_phu_huynh->set($_POST['phuhuynh']);
+        }
+        if ($_POST['ngaySinh']) {
+            $wrapper->field_ngay_sinh_cua_ban->set(strtotime($_POST['ngaySinh']));
+        }
+        if (($_POST['lop_hoc_cu'] != $_POST['lop_hoc']) && $_POST['lop_hoc_cu'] && $_POST['lop_hoc'])// nếu lớp học cũ khác lớp học mới
+        {
+            $lophoc1 = node_load($_POST['lop_hoc_cu']);
+            $wrapper1 = entity_metadata_wrapper('node', $lophoc1);
+            $lophoc2 = node_load($_POST['lop_hoc']);
+            $wrapper2 = entity_metadata_wrapper('node', $lophoc2);
+            $danhsachhocsinh1 = $wrapper1->value()->field_danh_sach_hoc_sinh['und'];// lấy danh sách học sinh
+            $chotdanhsachhocsinh1 = array();
+            foreach ($danhsachhocsinh1 as $item1) {
+                if ($item1['target_id'] != $_POST['id_node'])// lọc id học sinh trùng ra khỏi danh sách id học sinh
+                {
+                    array_push($chotdanhsachhocsinh1, $item1['target_id']);//thêm vào mảng
+                }
+            }
+            $wrapper1->field_danh_sach_hoc_sinh->set($chotdanhsachhocsinh1);// lưu danh sách học sinh
+            $ktra1 = $wrapper1->save();
+            $danhsachhocsinh2 = $wrapper2->value()->field_danh_sach_hoc_sinh['und'];
+            $chotdanhsachhocsinh2 = array();
+            $id2 = 0;
+            foreach ($danhsachhocsinh2 as $item2) {
+                array_push($chotdanhsachhocsinh2, $item2['target_id']);// lấy toàn bộ tùng học sinh
+                $id2 = $id2 + 1;
+            }
+            $chotdanhsachhocsinh2[$id2] = $_POST['id_node'];// thêm học sinh mới
+            $wrapper2->field_danh_sach_hoc_sinh->set($chotdanhsachhocsinh2);// lưu lại
+            $ktra2 = $wrapper2->save();// Lấy học sinh ở lớp cũ cho vào lớp mới
+        } else {
+            if (!$_POST['lop_hoc'] && $_POST['lop_hoc_cu']) {
+                $lophoc1 = node_load($_POST['lop_hoc_cu']);
+                $wrapper1 = entity_metadata_wrapper('node', $lophoc1);
+                $danhsachhocsinh1 = $wrapper1->value()->field_danh_sach_hoc_sinh['und'];
+                $chotdanhsachhocsinh1 = array();
+                foreach ($danhsachhocsinh1 as $item1) {
+                    if ($item1['target_id'] != $_POST['id_node']) {
+                        array_push($chotdanhsachhocsinh1, $item1['target_id']);
+                    }
+                }
+                $wrapper1->field_danh_sach_hoc_sinh->set($chotdanhsachhocsinh1);
+                $ktra1 = $wrapper1->save();
+            } else if (!$_POST['lop_hoc_cu'] && $_POST['lop_hoc']) {
+                $lophoc2 = node_load($_POST['lop_hoc']);
+                $wrapper2 = entity_metadata_wrapper('node', $lophoc2);
+                $danhsachhocsinh2 = $wrapper2->value()->field_danh_sach_hoc_sinh['und'];
+                $chotdanhsachhocsinh2 = array();
+                $id2 = 0;
+                foreach ($danhsachhocsinh2 as $item2) {
+                    array_push($chotdanhsachhocsinh2, $item2['target_id']);
+                    $id2 = $id2 + 1;
+                }
+                $chotdanhsachhocsinh2[$id2] = $_POST['id_node'];
+                $wrapper2->field_danh_sach_hoc_sinh->set($chotdanhsachhocsinh2);
+                $ktra2 = $wrapper2->save();
+            }
+        }
+        $wrapper->field_ten_hoc_sinh->set($_POST['name_hoc_sinh']);
+        $ktra = $wrapper->save();
+        if ($ktra) {
+            dsm("Lưu thành công");
+        }
+    }
+    if ($_POST['id_hoc_sinh_sua']) {
+        $node_hoc_sinh_sua = node_load($_POST['id_hoc_sinh_sua']);
+        $id_lop_hoc_cu = $_POST['id_lop_hoc_cu'];
+        $id_lop_taxonomy = $_POST['id_lop_taxonomy'];
+        $id_nam_hoc_taxonomy = $_POST['id_nam_hoc_taxonomy'];
+        $ten_hoc_sinh = $_POST['ten_hoc_sinh_sua'];
+        $ten_bo_sua = $_POST['ten_bo_sua'];
+        $ten_bo_cu = $_POST['ten_bo_cu'];
+        $ten_me_sua = $_POST['ten_me_sua'];
+        $ten_me_cu = $_POST['ten_me_cu'];
+        $so_dien_thoai_sua = $_POST['so_dien_thoai_sua'];
+        $so_dien_thoai_cu = $_POST['so_dien_thoai_cu'];
+        $node_hoc_sinh_sua->title = $ten_hoc_sinh;
+        $truyvanhocsinh = entity_metadata_wrapper('node', $node_hoc_sinh_sua);
+        $truyvanhocsinh->field_ngay_sinh_cua_ban->set(strtotime($_POST['ngay_sinh_sua']));
+        $user_edit = user_load_by_name(str_replace('.', '', str_replace(' ', '', $so_dien_thoai_sua)));
+        if (isset($user_edit->uid) && $user_edit->uid != 0) {
+            $truyvanphuhuynh = entity_metadata_wrapper('user', $user_edit);
+            if ($ten_bo_sua != $ten_bo_cu) {
+                $truyvanphuhuynh->field_phu_huynh->set($ten_bo_sua);
+            }
+            if ($ten_me_sua != $ten_me_cu) {
+                $truyvanphuhuynh->field_ten_me->set($ten_me_sua);
+            }
+            $truyvanphuhuynh->field_dia_chi->set($_POST['dia_chi_sua']);
+            $truyvanphuhuynh->save();
+        } else {
+            require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+            $new_user = array(
+                'name' => $so_dien_thoai_sua,
+                'pass' => user_hash_password('12345612'),
+                'mail' => $so_dien_thoai_sua . '@gmail.com',
+                'status' => 1,
+                'init' => $so_dien_thoai_sua . '@gmail.com',
+                'access' => REQUEST_TIME,
+            );
+            $entity = entity_create('user', $new_user);
+            $data_feild = entity_metadata_wrapper('user', $entity);
+            $data_feild->field_phu_huynh->set($ten_bo_sua);
+            //        $data_feild->field_dia_chi->set($form_state['input']['diaChi'][$dem]);
+            $data_feild->field_so_dien_thoai->set($so_dien_thoai_sua);
+            $data_feild->field_ten_me->set($ten_me_sua);
+            $data_feild->roles->set(array(8));
+            $data_feild->save();
+            $user_edit = user_load_by_name(str_replace('.', '', str_replace(' ', '', $so_dien_thoai_sua)));
+        }
+        if (str_replace('.', '', str_replace(' ', '', $so_dien_thoai_sua)) != str_replace('.', '', str_replace(' ', '', $so_dien_thoai_cu))) {
+            $id_phu_huynh = $user_edit->uid;
+            $truyvanhocsinh->field_ten_phu_huynh->set($id_phu_huynh);
+        }
+        $ktra = $truyvanhocsinh->save();
+        if ($ktra) {
+            dsm('Sửa học sinh thành công');
+        }
+        $id_lop_hoc_moi = idlop_theo_nam_va_lop_khoi($id_nam_hoc_taxonomy, $id_lop_taxonomy);
+        if ($id_lop_hoc_moi != $id_lop_hoc_cu) {
+            $lophoc1 = node_load($id_lop_hoc_cu);
+            $wrapper1 = entity_metadata_wrapper('node', $lophoc1);
+            $lophoc2 = node_load($id_lop_hoc_moi);
+            $wrapper2 = entity_metadata_wrapper('node', $lophoc2);
+            $danhsachhocsinh1 = $wrapper1->value()->field_danh_sach_hoc_sinh['und'];// lấy danh sách học sinh
+            $chotdanhsachhocsinh1 = array();
+            foreach ($danhsachhocsinh1 as $item1) {
+                if ($item1['target_id'] != $_POST['id_hoc_sinh_sua'])// lọc id học sinh trùng ra khỏi danh sách id học sinh
+                {
+                    array_push($chotdanhsachhocsinh1, $item1['target_id']);//thêm vào mảng
+                }
+            }
+            $wrapper1->field_danh_sach_hoc_sinh->set($chotdanhsachhocsinh1);// lưu danh sách học sinh
+            $wrapper1->save();
+            $danhsachhocsinh2 = $wrapper2->value()->field_danh_sach_hoc_sinh['und'];
+            $chotdanhsachhocsinh2 = array();
+            $id2 = 0;
+            foreach ($danhsachhocsinh2 as $item2) {
+                array_push($chotdanhsachhocsinh2, $item2['target_id']);// lấy toàn bộ tùng học sinh
+                $id2 = $id2 + 1;
+            }
+            $chotdanhsachhocsinh2[$id2] = $_POST['id_hoc_sinh_sua'];// thêm học sinh mới
+            $wrapper2->field_danh_sach_hoc_sinh->set($chotdanhsachhocsinh2);// lưu lại
+            $ktra2 = $wrapper2->save();// Lấy học sinh ở lớp cũ cho vào lớp mới
+            if ($ktra2) {
+                dsm('Đổi lớp thành công học sinh : ' . $ten_hoc_sinh . ' từ lớp ' . node_load($id_lop_hoc_moi)->title . ' đến lớp ' . node_load($id_lop_hoc_cu)->title);
+            }
+        }
+    }
+    if ($_POST['giatricuaphuhuynh']) {
+        $giatricuaphuhuynh = user_load($_POST['giatricuaphuhuynh']);
+        $giatricuaphuhuynh = $giatricuaphuhuynh->field_so_dien_thoai['und'][0]['value'];
+        echo drupal_json_encode(array(
+            'giatricuaph' => $giatricuaphuhuynh
+        ));
+    }
+}
+
+function thay_doi_thong_tin_lop()
+{
+    if (isset($_POST['tuong'])) {
+        if ($_POST['tuong'] && $_POST['lop'] && $_POST['nam']) {
+            $nodelop = node_load(idlop_theo_nam_va_lop_khoi($_POST['nam'], $_POST['lop']));
+            if (isset($nodelop->field_giao_vien_1['und']) && count($nodelop->field_giao_vien_1['und']) == 2) {
+                $giaovien1 = $nodelop->field_giao_vien_1['und'][0]['target_id'];
+                $giaovien2 = $nodelop->field_giao_vien_1['und'][1]['target_id'];
+            }
+            if (isset($giaovien1) && $giaovien1 != '' && isset($giaovien2) && $giaovien2 != '') {
+                echo drupal_json_encode(array(
+                    'giao_vien_1' => $giaovien1,
+                    'giao_vien_2' => $giaovien2,
+                ));
+            }
+        }
+    }
+}
+
+function luu_hoc_phi()
+{
+    $bienthongb = "";
+    if (isset($_POST['name_hoc_phi']) && isset($_POST['gia_tri']) && isset($_POST['namhoc']) && isset($_POST['danhsachlophoc']) && isset($_POST['id_node'])) {
+        $node = node_load($_POST['id_node']);
+        if ($_POST['name_hoc_phi']) {
+            $node->title = $_POST['name_hoc_phi'];
+        }
+        $wrapper = entity_metadata_wrapper('node', $node);
+        $dasachfeild = $wrapper->value();
+        if ($_POST['danhsachlophoc']) {
+            $wrapper->field_lop->set($_POST['danhsachlophoc']);
+        }
+        if ($_POST['field_gia_tri']) {
+            $wrapper->field_gia_tri->set($_POST['gia_tri']);
+        }
+        $ktra = $wrapper->save();
+        if ($ktra) {
+            $bienthongb = "Sửa thành công";
+        }
+    } else {
+        $bienthongb = "Nhập đầy đủ thông tin";
+    }
+    echo drupal_json_encode(array(
+        'bienthongb' => $bienthongb
+    ));
+}
+
+function load_lop_hoc()
+{
+    //change danh sách
+    $bien_string = '';
+    $str = '';
+    $thongbao = '';
+    if (isset($_POST['chon_nam_hoc']) && isset($_POST['chon_lop_hoc']) && isset($_POST['chon_nam_hoc'])) {
+        if ($_POST['chon_nam_hoc'] != '' && $_POST['chon_lop_hoc'] != '' && $_POST['chon_thang_hoc'] != '') {
+            $namhocidthu = $_POST['chon_nam_hoc'];
+            $lophocidthu = $_POST['chon_lop_hoc'];
+            $thanghocidthu = $_POST['chon_thang_hoc'];
+            $bien_string = '';
+            $allhocphi = node_type_arr('hoc_phi');
+            //tìm chi phí
+            foreach ($allhocphi as $itemhocphi) {
+                // tìm node học phí theo id
+                $idnamhoc = 0;
+                $idlophoc = 0;
+                $idthanghoc = 0;
+                if ($itemhocphi->field_nam_hoc['und'][0]['tid'] == $namhocidthu) {
+                    $idnamhoc = 1;// có học phí của năm học này
+                }
+                $danhsachloptronghocphi = $itemhocphi->field_lop['und'];
+                foreach ($danhsachloptronghocphi as $itemlophoc) {
+                    if ($itemlophoc['tid'] == $lophocidthu) {
+                        $idlophoc = 1;// Có lớp học này trong danh sách học phí đã chọn
+                        break;
+                    }
+                }
+                $danhsachthanghoctronghocphi = $itemhocphi->field_thang['und'];
+                foreach ($danhsachthanghoctronghocphi as $itemthanghoc) {
+                    if ($itemthanghoc['value'] == $thanghocidthu) {
+                        $idthanghoc = 1; // học phí có tháng học này
+                    }
+                }
+                if (($idthanghoc == 1) && ($idlophoc == 1) && ($idnamhoc == 1)) {
+                    // đúng học phí đang cần
+                    $idchiphi = $itemhocphi->field_gia_tri['und'][0]['value'];// giá trị của học phí
+                    $idhocphi = $itemhocphi->nid;
+                    break;
+                }
+            }
+            //tìm danh sách học sinh theo lớp học
+            if ($idchiphi != '') {
+                //tìm id lớp học từ tất cả lớp
+                $danhsachalllophoc = node_type_arr('lop_hoc');
+                foreach ($danhsachalllophoc as $itemalllophoc) {
+                    if (($itemalllophoc->field_nam_hoc['und'][0]['tid'] == $namhocidthu) && ($itemalllophoc->field_lop['und'][0]['tid'] == $lophocidthu)) {
+                        $idlophoccan = $itemalllophoc->nid;// tìm được id lớp học
+                    }
+                }
+                $danhsachdonghoc = node_type_arr('dong_tien_hoc_phi');
+                $iddonghocchitiet = 0;
+                foreach ($danhsachdonghoc as $danhsachdongtunglop) {
+                    if ($danhsachdongtunglop->field_lop_hoc_chi_tiet_hoc_phi['und'][0]['nid'] == $idlophoccan && $danhsachdongtunglop->field_hoc_phi['und'][0]['nid'] == $idhocphi && $danhsachdongtunglop->field_thang_dong['und'][0]['value'] == $thanghocidthu) {
+                        $iddonghocchitiet = $danhsachdongtunglop->nid;
+                        break;
+                    }
+                }
+                if ($iddonghocchitiet == 0) {
+                    $demthu = 0;
+                    $danhsachhocsinhdongtieng = node_load($idlophoccan)->field_danh_sach_hoc_sinh['und'];// danh sách học sinh trong lớp đó
+                    $tenlophoc1 = node_load($idlophoccan)->title; // tên lớp
+                    foreach ($danhsachhocsinhdongtieng as $idtemhocsinh)// foreach danh sách học sinh để hiển thị
+                    {
+                        $inputthem = "";
+                        $tenhocsinh1 = node_load($idtemhocsinh['target_id'])->title;
+                        if (isset($tenhocsinh1) && $tenhocsinh1 != '') {
+                            if ($demthu == 0) {
+                                $inputthem = '<input name="id_hoc_phi" value="' . $idhocphi . '" class="d-none"><input name="lop_hoc_sinh" value="' . $idlophoccan . '" class="d-none"><input name="luu_hoc_phi_chi_tiet" class="d-none">';
+                                $demthu = 1;
+                            }
+                            $bien_string = $bien_string . '<tr>
+                  <td>' . $tenhocsinh1 . '</td>
+                  <td>' . $inputthem . '<input name="hoc_phi[' . $idtemhocsinh['target_id'] . '][]" type="number" min="0" max="' . $idchiphi . '" value="" class="form-control nhap_tien" placeholder="Chưa đóng"></td>
+                  <td class="gia_tri_tien_hoc">' . $idchiphi . '</td>
+                  <td>' . $tenlophoc1 . '</td>
+                  <td>' . $thanghocidthu . '</td>
+                  <td> Chưa đóng tiền <br><a class="btn btn-success dong-du-lieu">Nhập nhanh</a>
+                  </td>
+              </tr>';
+                        }
+                    }
+                    $str = 'hienthi';
+                    $thongbao = "khong";
+                } else {
+                    $hoc_phi_chi_tiet = node_load($iddonghocchitiet);
+                    $phantichdulieu = $hoc_phi_chi_tiet->field_du_lieu_dong_hoc_phi['und'][0]['value'];
+                    $manghsdonghoc = array();
+                    $phantichdulieu = explode('/', $phantichdulieu);
+                    foreach ($phantichdulieu as $tung_du_lieu) {
+                        $tung_du_lieu = explode('-', $tung_du_lieu);
+                        $manghsdonghoc[$tung_du_lieu[0]] = $tung_du_lieu[1];
+                    }
+                    $chi_phi = node_load($hoc_phi_chi_tiet->field_hoc_phi['und'][0]['nid'])->field_gia_tri['und'][0]['value'];
+                    $id_lop_hoc_sinh_chi_tiet_hoc_phi = $hoc_phi_chi_tiet->field_lop_hoc_chi_tiet_hoc_phi['und'][0]['nid'];
+                    $nodelophocsinh = node_load($id_lop_hoc_sinh_chi_tiet_hoc_phi);
+                    $tenlop_ban_ghi_da_co = $nodelophocsinh->title;
+                    $thang_dong_ban_ghi_da = $hoc_phi_chi_tiet->field_thang_dong['und'][0]['value'];
+                    $inputthem = '';
+                    $chaythu = 0;
+                    foreach ($nodelophocsinh->field_danh_sach_hoc_sinh['und'] as $tunghsdonghoc) {
+                        $tenhocsinhcantim = node_load($tunghsdonghoc['target_id'])->title;
+                        if (isset($tenhocsinhcantim) && $tenhocsinhcantim != '') {
+                            if (isset($manghsdonghoc[$tunghsdonghoc['target_id']])) {
+                                if ($chaythu == 0) {
+                                    $inputthem = '<input name="id_hoc_phi_chi_tiet" value="' . $iddonghocchitiet . '" class="d-none"><input name="sua_hoc_phi_chi_tiet" class="d-none">';
+                                    $chaythu = 1;
+                                }
+                                $sotiendadong = $manghsdonghoc[$tunghsdonghoc['target_id']];
+                                $hoanthanhtien = '';
+                                $classtiendo = '';
+                                if ($sotiendadong == $chi_phi) {
+                                    $hoanthanhtien = "Đã hoàn thành";
+                                    $classtiendo = "hs_hoan_thanh";
+                                } else if ($sotiendadong < $chi_phi) {
+                                    if ($sotiendadong == '0') {
+                                        $hoanthanhtien = "Chưa đóng tiền";
+                                    } else {
+                                        $hoanthanhtien = "Còn thiếu";
+                                    }
+                                    $classtiendo = "hs_chua_hoan_thanh";
+                                } else {
+                                    $hoanthanhtien = "Vượt mức";
+                                    $classtiendo = "hs_hoan_thanh";
+                                }
+                                $bien_string = $bien_string . '<tr>
+                  <td>' . $tenhocsinhcantim . '</td>
+                  <td>' . $inputthem . '<input name="hoc_phi[' . $tunghsdonghoc['target_id'] . '][]" type="number" min="0" max="' . $chi_phi . '" value="' . $sotiendadong . '" class="form-control nhap_tien"></td>
+                  <td class="gia_tri_tien_hoc">' . $chi_phi . '</td>
+                  <td>' . $tenlop_ban_ghi_da_co . '</td>
+                  <td>' . $thang_dong_ban_ghi_da . '</td>
+                  <td class="' . $classtiendo . '"> ' . $hoanthanhtien . ' <br><a class="btn btn-success dong-du-lieu">Nhập nhanh</a>
+                  </td>
+              </tr>';
+                            } else {
+                                $bien_string = $bien_string . '<tr>
+                  <td>' . $tenhocsinhcantim . '</td>
+                  <td>' . $inputthem . '<input name="hoc_phi[' . $tunghsdonghoc['target_id'] . '][]" type="number" min="0" max="' . $chi_phi . '" value="" class="form-control nhap_tien" placeholder="Chưa đóng"></td>
+                  <td class="gia_tri_tien_hoc">' . $chi_phi . '</td>
+                  <td>' . $tenlop_ban_ghi_da_co . '</td>
+                  <td>' . $thang_dong_ban_ghi_da . '</td>
+                  <td> Chưa đóng tiền <br><a class="btn btn-success dong-du-lieu">Nhập nhanh</a>
+                  </td>
+              </tr>';
+                            }
+                            $str = 'hienthi';
+                            $thongbao = "co";
+                        }
+                    }
+                }
+            } else {
+                $bien_string = '<tr><td colspan="6" class="empty message">Chưa có học phí cho lớp này</td></tr>';
+            }
+        } else {
+            $bien_string = '<tr class="odd"><td colspan="6" class="empty message">Nhập đẩy đủ thông tin</td> </tr>';
+        }
+    }
+
+    if (isset($_POST['dataco'])) {
+        $namhocchon = taxonomy_get_tree(5);
+        $str = '-- Chọn năm --';
+        foreach ($namhocchon as $item) {
+            $str = $str . '<option value="' . $item->tid . '">' . $item->name . '</option>';
+        }
+        $arrlophoc = danhsachlophoc();
+        foreach ($arrlophoc as $idlop_hoc => $lophoc) {
+            $arrlophoc = $arrlophoc . '<option value="' . $idlop_hoc . '">' . $lophoc . '</option>';
+        }
+        $danhsachthangdong = '';
+        for ($ichaythu = 0; $ichaythu < 12; $ichaythu++) {
+            $danhsachthangdong = $danhsachthangdong . '<option value="' . ($ichaythu + 1) . '">' . ($ichaythu + 1) . '</option>';
+        }
+        $str = '<tr class="ktrathu">
+            <td><input type="text" name="" class="form-control"></td>
+            <td><input type="text" disabled class="form-control" placeholder="Không cần điền"></td>
+            <td><input type="text" class="giatritiencandong form-control"></td>
+            <td>
+                <select id="cars" class="namhocdongtien form-control">' . $str . '
+                </select>
+            </td>
+            <td>
+                <select id="cars" multiple="multiple" size="6" class="lophoc form-control">' . $arrlophoc . '
+                </select>
+            </td>
+            <td>
+                <select multiple="multiple" size="6" class="thangdonghoc form-control">' . $danhsachthangdong . '</select></td>
+            </td>
+            <td>Giữ Ctrl để chọn nhiều tháng</td>
+            </tr>
+
+            ';
+    }
+    if (isset($_POST['id_hocsinh_donghocphi'])) {
+        if ($_POST['id_hocsinh_donghocphi'] != '' && $_POST['id_hocsinh'] != '' && $_POST['thang_dong'] != '' && $_POST['chi_phi'] != '') {
+            $title = '';
+            if ($_POST['id_hocsinh']) {
+                $title = 'Học phí tháng ' . $_POST['thang_dong'] . ' của học sinh ' . node_load($_POST['id_hocsinh'])->title;
+            }
+            $value = array(
+                'type' => 'dong_tien_hoc_phi',
+                'language' => 'vi',
+                'status' => 1,
+                'comment' => 0,
+                'uid' => 1,
+                'promote' => 0,
+                'title' => $title
+            );
+            if (intval(node_load($_POST['id_hocsinh_donghocphi'])->field_gia_tri['und'][0]['value']) >= intval($_POST['chi_phi'])) {
+                $khoitaonode = entity_create('node', $value);
+                $lenhtruyvan = entity_metadata_wrapper('node', $khoitaonode);
+                $lenhtruyvan->field_hoc_phi->set($_POST['id_hocsinh_donghocphi']);
+                $lenhtruyvan->field_thang_dong->set($_POST['thang_dong']);
+                $lenhtruyvan->field_so_tien_da_dong->set($_POST['chi_phi']);
+                $lenhtruyvan->field_hoc_sinh->set($_POST['id_hocsinh']);
+                $ktratruyvan1 = $lenhtruyvan->save();
+                if ($ktratruyvan1) {
+                    drupal_set_message('Thêm học sinh đóng học phí thành công');
+                } else {
+                    drupal_set_message('Không thêm được chi tiết học phí của 1 học sinh', 'error');
+                }
+            } else {
+                drupal_set_message('Số tiền quá mức cần đóng', 'error');
+            }
+        } else {
+            drupal_set_message('Nhập đầy đủ thông tin', 'error');
+        }
+    }
+    if ((isset($bien_string) && isset($str)) && ($bien_string != '' || $str != '')) {
+        echo drupal_json_encode(array(
+            'bien_string' => $bien_string,
+            'str_chuoi' => $str,
+            'thongbao' => $thongbao
+        ));
+    }
+}
+
+function taxonomy_name_type()
+{
+    dsm(danhsachnamhoc());
+}
+
+function ktrahocsinhdadonghocphichua($idhocphi, $idhocsinh, $idthanghoc)
+{
+    $danhsachdadonghocphi = node_type_arr('dong_tien_hoc_phi');
+    foreach ($danhsachdadonghocphi as $item) {
+        if ($item->field_hoc_sinh['und'][0]['nid'] == $idhocsinh && $item->field_hoc_phi['und'][0]['nid'] == $idhocphi && $item->field_thang_dong['und'][0]['value'] == $idthanghoc) {
+            return $item->nid;
+        }
+    }
+    return 0;
+}
+
+function sua_hoc_phi()
+{
+    if (isset($_POST['idhocphi'])) {
+        if ($_POST['idhocphi']) {
+            $hocphi = node_load($_POST['idhocphi']);
+            $danhsachnamhoc = danhsachnamhoc();
+            $danhsachnamhocmang = '';
+            foreach ($danhsachnamhoc as $idchay => $items) {
+                $selected = '';
+                if ($idchay == $hocphi->field_nam_hoc['und'][0]['tid']) {
+                    $selected = 'selected="selected"';
+                }
+                $danhsachnamhocmang = $danhsachnamhocmang . '<option value="' . $idchay . '" ' . $selected . '>' . $items . '</option>';
+            }
+            $danhsachlophocmang = '';
+            $danhsachlophoc = danhsachlophoc();
+            foreach ($danhsachlophoc as $id => $item) {
+                $selected = '';
+                foreach ($hocphi->field_lop['und'] as $value) {
+                    if ($id == $value['tid']) {
+                        $selected = 'selected="selected"';
+                        break;
+                    }
+                }
+                $danhsachlophocmang = $danhsachlophocmang . '<option value="' . $id . '" ' . $selected . '>' . $item . '</option>';
+            }
+            $danhsachthangdong = '';
+            $danhsachthangdonghoc = $hocphi->field_thang['und'];
+            for ($ichaythu = 0; $ichaythu < 12; $ichaythu++) {
+                $dachon = '';
+                foreach ($danhsachthangdonghoc as $item3) {
+                    if ($item3['value'] == ($ichaythu + 1)) {
+                        $dachon = 'selected="selected"';
+                    }
+                }
+                $danhsachthangdong = $danhsachthangdong . '<option value="' . ($ichaythu + 1) . '" ' . $dachon . '>' . ($ichaythu + 1) . '</option>';
+            }
+            $strcanthem = '
+        <td width="1%"><input type="text" name="id_node" value="' . $_POST['idhocphi'] . '" class="form-control d-none" ></td>
+        <td width="20%"><input type="text" name="name_hoc_phi" value="' . $hocphi->title . '" class="form-control"></td>
+        <td width="20%"><input type="text" name="gia_tri" value="' . number_format(intval($hocphi->field_gia_tri['und'][0]['value']), 0, '', ',') . '" class="form-control"></td>
+        <td width="20%">
+          <select id="cars" name="namhoc" class="form-control">' . $danhsachnamhocmang . '
+                          </select>
+        </td>
+        <td width="20%">
+                    <select multiple="multiple" name="danhsachlophoc[]" size="6" class="form-control">' . $danhsachlophocmang . '</select></td>
+        </td>
+        <td width="20%">
+                    <select multiple="multiple" name="danhsachthangdong[]" size="6" class="form-control">' . $danhsachthangdong . '</select></td>
+        </td>
+        <td width="10%"><a class="btn btn-success luu-hoc-phi" href="#" data-value="' . $_POST['idhocphi'] . '"><i class=""></i>Lưu học phí</a><br><a class="btn btn-primary huy_bo" href="#" data-value=""><i class="luu-hoc-phi"></i>Hủy bỏ</a></td>';
+        } else {
+            $strcanthem = '';
+        }
+        echo drupal_json_encode(array(
+            'strcanthem' => $strcanthem,
+        ));
+    }
+    if (isset($_POST['themhocphihocsinh'])) {
+        if ($_POST['hocphi'] != '' && $_POST['namhocdongtien'] != '' && $_POST['lophoc'] != '' && $_POST['thangdonghoc'] != '') {
+            $giatri_hocphi = $_POST['hocphi'];
+            $namhocdongtien = $_POST['namhocdongtien'];
+            $lophocdongtien = $_POST['lophoc'];
+            $danhsachthangdongthem = $_POST['thangdonghoc'];
+            $thongbao = timkiemhocphitheonamlopthang($namhocdongtien, $lophocdongtien, $danhsachthangdongthem);
+            if ($thongbao == 0) {
+                $new_hocphi = array(
+                    'type' => 'hoc_phi',
+                    'uid' => '51',
+                    'language' => 'vi',
+                    'status' => 1,
+                    'comment' => 0,
+                    'promote' => 0,
+                    'title' => 'Học phí năm học ' . taxonomy_term_load($namhocdongtien)->name . ' '
+                );
+                $create = entity_create('node', $new_hocphi);
+                $truyvan = entity_metadata_wrapper('node', $create);
+                $truyvan->field_nam_hoc->set($namhocdongtien);
+                $truyvan->field_gia_tri->set($giatri_hocphi);
+                $truyvan->field_lop->set($lophocdongtien);
+                $truyvan->field_thang->set($danhsachthangdongthem);
+                $truyvan->save();
+                drupal_set_message('Thêm thành công');
+            } else {
+                drupal_set_message('Đã tồn tại ' . node_load($thongbao)->title . ' ', 'error');
+            }
+        }
+    }
+}
+
+function timkiemhocphitheonamlopthang($nam, $lop, $thang)
+{
+    $danhsachhocphi = node_type_arr('hoc_phi');
+    $giatri = 0;
+    foreach ($danhsachhocphi as $item) {
+        if ($item->field_nam_hoc['und'][0]['tid'] == $nam) {
+            foreach ($item->field_lop['und'] as $item1) {
+                foreach ($lop as $id_lop) {
+                    if ($item1['tid'] == $id_lop) {
+                        foreach ($item->field_thang['und'] as $item2) {
+                            foreach ($thang as $id_thang) {
+                                if ($id_thang == $item2['value']) {
+                                    $giatri = $item->nid;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return $giatri;
+}
+
+function thao_tac_hoc_sinh_dong_hoc_phi()
+{
+    if (isset($_POST['luu_hoc_phi_chi_tiet'])) {
+        if ($_POST['hoc_phi'] && $_POST['id_hoc_phi'] != '' && $_POST['lop_hoc_sinh'] != '') {
+            $hoc_phi_dong_hoc = $_POST['id_hoc_phi'];
+            $lop_hoc_sinh_hoc_phi_chi_tiet = $_POST['lop_hoc_sinh'];
+            $thang_dong = $_POST['chon_thang_hoc'];
+            $new_hoc_phi_chi_tiet = array(
+                'type' => 'dong_tien_hoc_phi',
+                'uid' => '51',
+                'language' => 'vi',
+                'status' => 1,
+                'comment' => 0,
+                'promote' => 0,
+                'title' => node_load($lop_hoc_sinh_hoc_phi_chi_tiet)->title . ' đóng học phí tháng ' . $thang_dong
+            );
+            $khoitao = entity_create('node', $new_hoc_phi_chi_tiet);
+            $truyvan = entity_metadata_wrapper('node', $khoitao);
+            $truyvan->field_hoc_phi->set($hoc_phi_dong_hoc);
+            $truyvan->field_thang_dong->set($thang_dong);
+            $truyvan->field_lop_hoc_chi_tiet_hoc_phi->set($lop_hoc_sinh_hoc_phi_chi_tiet);
+            $arr = $_POST['hoc_phi'];
+            $chuoidulieuhsdonghoc = "";
+            foreach ($arr as $idhs => $tunghocsinhdonghoc) {
+                if ($chuoidulieuhsdonghoc == "") {
+                    $chuoidulieuhsdonghoc = $idhs . '-' . $tunghocsinhdonghoc[0];
+                } else {
+                    $chuoidulieuhsdonghoc = $chuoidulieuhsdonghoc . '/' . $idhs . '-' . $tunghocsinhdonghoc[0];
+                }
+            }
+            $truyvan->field_du_lieu_dong_hoc_phi->set($chuoidulieuhsdonghoc);
+            $ktra = $truyvan->save();
+            if ($ktra) {
+                drupal_set_message('Thêm học phí của lớp ' . node_load($lop_hoc_sinh_hoc_phi_chi_tiet)->title . ' thành công');
+            } else {
+                drupal_set_message('Lỗi không thể thêm vào', 'error');
+            }
+        }
+    }
+    if (isset($_POST['sua_hoc_phi_chi_tiet'])) {
+        if ($_POST['id_hoc_phi_chi_tiet'] != '') {
+            $node_hoc_phi_chi_tiet = node_load($_POST['id_hoc_phi_chi_tiet']);
+            $truyvan = entity_metadata_wrapper('node', $node_hoc_phi_chi_tiet);
+            $arr = $_POST['hoc_phi'];
+            $chuoidulieuhsdonghoc = "";
+            foreach ($arr as $idhs => $tunghocsinhdonghoc) {
+                if ($chuoidulieuhsdonghoc == "") {
+                    $chuoidulieuhsdonghoc = $idhs . '-' . $tunghocsinhdonghoc[0];
+                } else {
+                    $chuoidulieuhsdonghoc = $chuoidulieuhsdonghoc . '/' . $idhs . '-' . $tunghocsinhdonghoc[0];
+                }
+            }
+            $truyvan->field_du_lieu_dong_hoc_phi->set($chuoidulieuhsdonghoc);
+            $ktra = $truyvan->save();
+            if ($ktra) {
+                drupal_set_message('Sửa lớp học thành công');
+            } else {
+                drupal_set_message('Lỗi không thể thêm vào', 'error');
+            }
+        }
+    }
+}
+
+function idloptheohocsinhdonghocphi($nid, $idhocphi)
+{
+    $danhsachlop = node_type_arr('lop_hoc');
+    $hocphi = node_load($idhocphi);
+    foreach ($danhsachlop as $lophocchualoc) {
+        foreach ($hocphi->field_lop['und'] as $tunglopcuahocphi) {
+            if ($lophocchualoc->field_lop['und'][0]['tid'] == $tunglopcuahocphi['tid'] && $lophocchualoc->field_nam_hoc['und'][0]['tid'] == $hocphi->field_nam_hoc['und'][0]['tid']) {
+                return $lophocchualoc->title;
+            }
+        }
+    }
+    return 'không tìm được lớp';
+}
+
+function idlop_theo_nam_va_lop_khoi($nam, $lop)
+{
+    $danhsachlop = node_type_arr('lop_hoc');
+    foreach ($danhsachlop as $tunglopmot) {
+        if ($tunglopmot->field_nam_hoc['und'][0]['tid'] == $nam && $tunglopmot->field_lop['und'][0]['tid'] == $lop) {
+            return $tunglopmot->nid;
+        }
+    }
+    return 0;
+}
+
+function danhsachlophoc()
+{
+    $data = taxonomy_get_tree(4);
+    $arraylophoc = array();
+    $arraylophoc[''] = 'Chọn lớp';
+    foreach ($data as $item) {
+        $arraylophoc[$item->tid] = $item->name;
+    }
+    return $arraylophoc;
+}
+
+function danhsachthanghoc()
+{
+    $danhsachthangdong[''] = '-- chọn tháng --';
+    for ($ichaythu = 0; $ichaythu < 12; $ichaythu++) {
+        $danhsachthangdong[$ichaythu + 1] = $ichaythu + 1;
+    }
+    return $danhsachthangdong;
+}
+
+function danhsachnamhoc()
+{
+    $data1 = taxonomy_get_tree(5);
+    $arraynamhoc = array();
+    $arraynamhoc[''] = 'Chọn năm';
+    foreach ($data1 as $item) {
+        $arraynamhoc[$item->tid] = $item->name;
+    }
+    return $arraynamhoc;
+}
+
+function danhsachhocsinh()
+{
+    $data = entity_load('node');
+    $chay = 0;
+    $datahocsinh = array();
+    foreach ($data as $item) {
+        if ($item->type == 'hoc_sinh') {
+            $datahocsinh[$chay] = $item;
+            $chay++;
+        }
+    }
+    return $data;
+}
+
+function danhsachgiaovien()
+{
+    $datagiaovien = entity_load('user');
+    $chay = 0;
+    $arraygiaovien = array();
+    foreach ($datagiaovien as $item) {
+        if (isset($item->roles[7])) {
+            $arraygiaovien[$item->uid] = $item->field_ten_giao_vien['und'][0]['value'];
+            $chay++;
+        }
+    }
+    return $arraygiaovien;
+}
+
+function giao_vien($name_selected)
+{
+    $str = '';
+    $danhsachgiaovien = danhsachgiaovien();
+    foreach ($danhsachgiaovien as $id => $giao_vien) {
+        $str = $str . '<option value="' . $id . '">' . $giao_vien . '</option>';
+    }
+    $str = '<select name="giao_vien_' . $name_selected . '" class="giao_vien_' . $name_selected . ' form-control"><option>Giáo viên ' . $name_selected . '</option>' . $str . '
+                    </select>';
+    return $str;
+}
+
+function danhsachphuhuynh($id)
+{
+    $datagiaovien = entity_load('user');
+    foreach ($datagiaovien as $item) {
+        if (isset($item->roles[8])) {
+            if ($item->uid == $id) {
+                return $item->field_phu_huynh['und'][0]['value'];
+            }
+        }
+    }
+    return 'không có tên phụ huynh';
+}
+
+function sua_hoc_sinh()
+{
+    if ($_POST['idhocsinh']) {
+        $hocsinh = node_load($_POST['idhocsinh']);
+        $danhsachlophocmang = '';
+        $danhsachlophoc = danhsachlophoc();
+        $diachi = '';
+        foreach ($danhsachlophoc as $id => $item) {
+            $selected = '';
+            if ($id == node_load($_POST['idlophoc'])->field_lop['und'][0]['tid']) {
+                $selected = 'selected="selected"';
+            }
+            $danhsachlophocmang = $danhsachlophocmang . '<option value="' . $id . '" ' . $selected . '>' . $item . '</option>';
+        }
+        $danhsachnamhocmang = '';
+        $danhsachnamhoc = danhsachnamhoc();
+        foreach ($danhsachnamhoc as $id => $item111) {
+            $selected = '';
+            if ($id == node_load($_POST['idlophoc'])->field_nam_hoc['und'][0]['tid']) {
+                $selected = 'selected="selected"';
+            }
+            $danhsachnamhocmang = $danhsachnamhocmang . '<option value="' . $id . '" ' . $selected . '>' . $item111 . '</option>';
+        }
+        $danhsachphuhuynhmang = '';
+        $sodienthoai = "";
+        $tenbo = '';
+        if (isset(user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_dia_chi['und'][0]['value'])) {
+            $diachi = user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_dia_chi['und'][0]['value'];
+        }
+        if (isset(user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_so_dien_thoai['und'][0]['value'])) {
+            $sodienthoai = user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_so_dien_thoai['und'][0]['value'];
+        }
+        $tenme = '';
+        if (isset(user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_phu_huynh['und'][0]['value'])) {
+            $tenbo = user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_phu_huynh['und'][0]['value'];
+        }
+        if (isset(user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_ten_me['und'][0]['value'])) {
+            $tenme = user_load($hocsinh->field_ten_phu_huynh['und'][0]['target_id'])->field_ten_me['und'][0]['value'];
+        }
+        $ngaysinh = $hocsinh->field_ngay_sinh_cua_ban['und'][0]['value'];
+        $ngaysinh = explode("T", $ngaysinh);
+        $strchuoihoatdong = '
+        <td><input type="text" name="id_node" value="' . $_POST['idhocsinh'] . '" class="form-control d-none" ><input type="text" name="lop_hoc_cu" value="' . $_POST['idlophoc'] . '" class="form-control d-none lop_hoc_cu" ></td>
+        <td>
+                    <select name="lop_hoc" class="lop_hoc_sua form-control">
+                      ' . $danhsachlophocmang . '
+                    </select></td></td>
+        <td>
+                    <select name="nam_hoc" class="nam_hoc_sua form-control">
+                      ' . $danhsachnamhocmang . '
+                    </select></td></td>
+        <td><input type="text" name="name_hoc_sinh" value="' . $hocsinh->title . '" class="name_hoc_sinh_sua form-control"></td>
+        <td><input type="date" name="ngay_sinh" class="ngay_sinh_sua form-control" value="' . $ngaysinh[0] . '"></td>
+        <td>
+          Tên bố : <input type="text" name="ten_bo" ten_bo_cu="' . $tenbo . '" class="ten_bo_sua form-control thay_doi_ten_bo" value="' . $tenbo . '"><br>
+          Tên mẹ : <input type="text" name="ten_me" ten_me_cu="' . $tenme . '" class="ten_me_sua form-control thay_doi_ten_me" value="' . $tenme . '"><br>
+        </td>
+        <td><input type="text" name="so_dien_thoai" value_cu="' . $sodienthoai . '" class="so_dien_thoai_sua form-control thay_doi_so_dien_thoai" id_huy_huynh_moi="' . $hocsinh->field_ten_phu_huynh['und'][0]['target_id'] . '"  id_phu_huynh="' . $hocsinh->field_ten_phu_huynh['und'][0]['target_id'] . '" value="' . $sodienthoai . '" class="form-control" disabled>
+            <p><a href="#" class="thay_so_phu_huynh btn btn-primary" id_phu_huynh="' . $hocsinh->field_ten_phu_huynh['und'][0]['target_id'] . '">Thay đổi</a></p>
+        </td>
+        <td><input type="text" name="dia_chi" class="dia_chi_sua form-control" value="' . $diachi . '"></td>
+        <td><a class="btn btn-success luu-hoc-sinh-danh-sach-lop" href="#" data-value="' . $_POST['idhocsinh'] . '" lop_cu="' . $_POST['idlophoc'] . '" data-toggle="modal" data-target="#form_tiem_kiem_pop_up_4"><i class=""></i>Lưu lại</a><br><a class="btn btn-primary huy_bo_sua_doi mt-20" href="#" data-value=""><i class="luu-hoc-phi"></i>Hủy bỏ</a></td>';
+    } else {
+        $strchuoihoatdong = '';
+    }
+    echo drupal_json_encode(array(
+        'strchuoihoatdong' => $strchuoihoatdong
+    ));
+}
+
+function form_them_sua_lop_hoc($form, &$form_state)
+{
+    $form['lop_hoc'] = array(
+        '#type' => 'select',
+        '#title' => t('Lớp'),
+        '#options' => danhsachlophoc(),
+        '#prefix' => '<div class="row mt-50"><div class="col-md-3 col-6">',
+        '#suffix' => '</div>',
+        '#attributes' => array(
+            'class' => array(
+                'form-control'
+            )
+        )
+    );
+    $form['nam_hoc'] = array(
+        '#type' => 'select',
+        '#title' => t('Năm học'),
+        '#options' => danhsachnamhoc(),
+        '#prefix' => '<div class="col-md-3 col-6">',
+        '#suffix' => '</div>',
+        '#defaul_value' => 0,
+        '#attributes' => array(
+            'class' => array(
+                'form-control'
+            )
+        )
+
+    );
+    $form['giao_vien_1'] = array(
+        '#type' => 'select',
+        '#title' => t('Giáo viên 1'),
+        '#options' => danhsachgiaovien()
+    ,
+        '#prefix' => '<div class="col-md-3 col-6">',
+        '#suffix' => '</div>',
+        '#defaul_value' => '',
+        '#attributes' => array(
+            'class' => array(
+                'form-control'
+            )
+        )
+    );
+    $form['giao_vien_2'] = array(
+        '#type' => 'select',
+        '#title' => t('Giáo viên 2'),
+        '#options' => danhsachgiaovien(),
+        '#prefix' => '<div class="col-md-3 col-6">',
+        '#suffix' => '</div></div>',
+        '#defaul_value' => 0,
+        '#attributes' => array(
+            'class' => array(
+                'form-control'
+            )
+        )
+    );
+    $form['submit_themlophoc'] = array(
+        '#type' => 'submit',
+        '#value' => t('Tạo lớp học'),
+        '#prefix' => '<div class="d-flex"><div>',
+        '#suffix' => '</div></div><hr/>',
+        '#attributes' => array(
+            'class' => array(
+                'btn-success', 'form-control', 'btn-save-new-class'
+            )
+        ),
+        '#submit' => array('save_lop_hoc')
+    );
+    $header = array(
+        array(
+            'data' => 'Họ và tên',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Ngày sinh',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Tên phụ huynh',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Số điện thoại 1',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Số điện thoại 2',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Địa chỉ',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Email',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Xóa',
+            'width' => '10%',
+        ),
+    );
+    $header_lop_hoc = array(
+        array(
+            'data' => 'Tên lớp',
+            'width' => '20%',
+        ),
+        array(
+            'data' => 'Năm học',
+            'width' => '10%',
+        ),
+        array(
+            'data' => 'Số lượng',
+            'width' => '10%',
+        ),
+        array(
+            'data' => 'Tên giáo viên 1',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Tên giáo viên 2',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Trạng thái',
+            'width' => '10%',
+        ),
+        array(
+            'data' => 'Xem chi tiết / Lên lớp',
+            'width' => '15%',
+        ),
+    );
+    $rows = array();
+    $rows_lop_hoc = array();
+    $danhsachtoanbolophoc = node_type_arr('lop_hoc');
+    foreach ($danhsachtoanbolophoc as $idlophoc => $itemlophoc) {
+        if ($itemlophoc->field_trang_thai_lop['und'][0]['value'] == "Đang học") {
+            if (isset($itemlophoc->field_giao_vien_1['und'][0]['target_id'])) {
+                $tengiaovien1 = user_load($itemlophoc->field_giao_vien_1['und'][0]['target_id'])->name;
+                $tengiaovien2 = user_load($itemlophoc->field_giao_vien_1['und'][1]['target_id'])->name;
+            } else {
+                $tengiaovien1 = '';
+                $tengiaovien2 = '';
+            }
+            $icon = '';
+            if ($itemlophoc->field_trang_thai_lop['und'][0]['value'] == "Đang học") {
+                if (count(taxonomy_term_load($itemlophoc->field_lop['und'][0]['tid'])->field_nam_cuoi) > 0) {
+                    $icon = "fa fa-check";
+                } else {
+                    $icon = "fa fa-level-up";
+                }
+            } else {
+                $icon = "";
+            }
+            $cachngan = '';
+            if (strlen($icon) > 5) {
+                $cachngan = '/';
+            }
+            $sluong = 0;
+            if (isset($itemlophoc->field_danh_sach_hoc_sinh['und']) && count($itemlophoc->field_danh_sach_hoc_sinh['und']) > 0) {
+                $sluong = demsoluong1mangnode($itemlophoc->field_danh_sach_hoc_sinh['und']);
+            } else $sluong = 0;
+            $rows_lop_hoc[$idlophoc] = array(
+                array(
+                    'data' => $itemlophoc->title,
+                ),
+                array(
+                    'data' => taxonomy_term_load($itemlophoc->field_nam_hoc['und'][0]['tid'])->name,
+                ),
+                array(
+                    'data' => $sluong . ' học sinh',
+                ),
+                array(
+                    'data' => $tengiaovien1,
+                ),
+                array(
+                    'data' => $tengiaovien2,
+                ),
+                array(
+                    'data' => $itemlophoc->field_trang_thai_lop['und'][0]['value'],
+                ),
+                array(
+                    'data' => '<a href="/danh-sach-hoc-sinh?title=&title_1=' . $itemlophoc->title . '"><i class="fas fa-caret-circle-down"></i></a> ' . $cachngan . ' <i class=" ' . $icon . ' len-lop"  data-toggle="modal" data-target="#myModal" data-value="' . $itemlophoc->field_trang_thai_lop['und'][0]['value'] . '" id-value="' . $itemlophoc->nid . '" aria-hidden="true"></i>',
+                    'class' => 'text-center'
+                )
+            );
+        }
+    }
+    foreach ($danhsachtoanbolophoc as $idlophoc => $itemlophoc) {
+        if ($itemlophoc->field_trang_thai_lop['und'][0]['value'] != "Đang học") {
+            $tengiaovien1 = user_load($itemlophoc->field_giao_vien_1['und'][0]['target_id'])->name;
+            $tengiaovien2 = user_load($itemlophoc->field_giao_vien_1['und'][1]['target_id'])->name;
+            $icon = '';
+            if ($itemlophoc->field_trang_thai_lop['und'][0]['value'] == "Đang học") {
+                if (count(taxonomy_term_load($itemlophoc->field_lop['und'][0]['tid'])->field_nam_cuoi) > 0) {
+                    $icon = "fa fa-check";
+                } else {
+                    $icon = "fa fa-level-up";
+                }
+            } else {
+                $icon = "";
+            }
+            $cachngan = '';
+            if (strlen($icon) > 5) {
+                $cachngan = '/';
+            }
+            $sluong = 0;
+            if (isset($itemlophoc->field_danh_sach_hoc_sinh['und'])) {
+                $sluong = demsoluong1mangnode($itemlophoc->field_danh_sach_hoc_sinh['und']);
+            }
+            $rows_lop_hoc[$idlophoc] = array(
+                array(
+                    'data' => $itemlophoc->title,
+                ),
+                array(
+                    'data' => taxonomy_term_load($itemlophoc->field_nam_hoc['und'][0]['tid'])->name,
+                ),
+                array(
+                    'data' => $sluong . ' học sinh',
+                ),
+                array(
+                    'data' => $tengiaovien1,
+                ),
+                array(
+                    'data' => $tengiaovien2,
+                ),
+                array(
+                    'data' => $itemlophoc->field_trang_thai_lop['und'][0]['value'],
+                ),
+                array(
+                    'data' => '<a href="/danh-sach-hoc-sinh?title=&title_1=' . $itemlophoc->title . '"><i class="fas fa-caret-circle-down"></i></a> ' . $cachngan . ' <i class=" ' . $icon . ' len-lop"  data-toggle="modal" data-target="#myModal" data-value="' . $itemlophoc->field_trang_thai_lop['und'][0]['value'] . '" id-value="' . $itemlophoc->nid . '" aria-hidden="true"></i>',
+                    'class' => 'text-center'
+                ),
+            );
+        }
+    }
+
+    $form['hoc_sinh_list'] = array(
+        '#prefix' => '
+    <div class="row">
+      <div class="col-md-3 col-3">
+        <div class="action-add-new-student">
+          <a href="#" class="btn-add-new-student-row btn btn-success"><i
+              class="fa fa-plus"></i> Thêm dòng nhập học sinh
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-6">
+        <h4 class="text-center mt-20 pt-10">
+          NHẬP HỌC SINH MỚI
+        </h4>
+      </div>
+      <div class="col-md-3 col-3"></div>
+    </div>
+      <div class="table-responsive" id="table-block-student">
+    ',
+        '#suffix' => '</div>
+    ',
+        '#theme' => 'table',
+        '#header' => $header,
+        '#rows' => $rows,
+        '#attributes' => array('class' => array('table', 'table-bordered', 'table-striped', 'text-nowarp')),
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Thêm học sinh vào lớp học'),
+        '#prefix' => '<div class="hien-an d-none"><div class="mt-10 d-flex"><div>',
+        '#suffix' => '</div></div></div><hr>',
+        '#attributes' => array(
+            'class' => array(
+                'form-control', 'btn-primary', 'btn-save-new-class'
+            )
+        ),
+        '#submit' => array('content_type_lop_hoc')
+    );
+    $form['lop_hoc_list'] = array(
+        '#prefix' => '
+    <div class="row">
+      <div class="col-md-12 col-6">
+        <h4 class="text-center mt-20 pt-10">
+          DANH SÁCH LỚP HỌC
+        </h4>
+      </div>
+    </div>
+      <div class="table-responsive" id="table-block-class-student">
+    ',
+        '#suffix' => '</div>
+    <div id="myModal" class="modal fade " role="dialog" style="padding-right: 17px; display: none;" aria-modal="true">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="xuat-thong-tin"></div>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="myModal1" class="modal fade" role="dialog" style="padding-right: 17px; display: none;" aria-modal="true">
+      <div class="hienthiload">
+          <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+          </div>
+      </div>
+    </div>
+    <div class="luu-y"><p><i class=" fa fa-check"></i> : Lớp cuối của khóa, click vào để thai đổi trạng thái từ đang học thành đã qua</p>
+    <p><i class="fa fa-level-up"></i> : Lên lớp</p>
+    <p><i class="fas fa-caret-circle-down"></i> : Xem danh sách học sinh của lớp đó</p>
+    </div>',
+        '#theme' => 'table',
+        '#header' => $header_lop_hoc,
+        '#rows' => $rows_lop_hoc,
+        '#attributes' => array('class' => array('table', 'table-bordered', 'table-striped', 'text-nowarp')),
+    );
+    return $form;
+}
+
+function form_them_lop_hoc_0($form , &$form_state){
+
+}
+
+
+function demsoluong1mangnode($arrayid)
+{
+    $demsl = 0;
+    foreach ($arrayid as $item) {
+        if (isset(node_load($item['target_id'])->title)) {
+            $demsl++;
+        }
+    }
+    return $demsl;
+}
+
+function content_type_lop_hoc($form, &$form_state)
+{
+    if (isset($form_state['input']['hoTen'])) {
+        $dem = 0;
+        foreach ($form_state['input']['hoTen'] as $id => $item) { // thêm phụ huynh mới
+            require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+            $new_user = array();
+            $new_user = array(
+                'name' => $form_state['input']['phuHuynh'][$dem],
+                'pass' => user_hash_password($form_state['input']['dienThoai1'][$dem]),
+                'mail' => $form_state['input']['Email'][$dem],
+                'status' => 1,
+                'init' => $form_state['input']['Email'][$dem],
+                'access' => REQUEST_TIME,
+            );
+            $entity = entity_create('user', $new_user);
+            $data_feild = entity_metadata_wrapper('user', $entity);
+            $data_feild->field_phu_huynh->set($form_state['input']['phuHuynh'][$dem]);
+            $data_feild->field_dia_chi->set($form_state['input']['diaChi'][$dem]);
+            $data_feild->field_so_dien_thoai->set($form_state['input']['dienThoai1'][$dem]);
+            $data_feild->roles->set(array(8));
+            $ktra = $data_feild->save();
+
+            if ($ktra) {
+                drupal_set_message(t('- Thêm phụ huynh ' . $form_state['input']['phuHuynh'][$dem] . ' thành công'));
+                $new_hocsinh = array();// thêm học sinh mới có khóa ngoại phụ huynh
+                $new_hocsinh = array(
+                    'type' => 'hoc_sinh',
+                    'uid' => '51',
+                    'language' => 'vi',
+                    'status' => 1,
+                    'comment' => 0,
+                    'promote' => 0,
+                    'title' => $form_state['input']['hoTen'][$dem]
+                );
+                $entity_hs = entity_create('node', $new_hocsinh);
+                $data_feild_hs = entity_metadata_wrapper('node', $entity_hs);
+                $data_feild_hs->field_ngay_sinh_cua_ban->set(strtotime($form_state['input']['ngaySinh'][$dem]));
+                //        dsm(uid_user($form_state['input']['phuHuynh'][$dem]));
+                $data_feild_hs->field_ten_phu_huynh->set(uid_user($form_state['input']['phuHuynh'][$dem]));
+                $data_feild_hs->field_ten_hoc_sinh->set($form_state['input']['hoTen'][$dem]);
+                $ktra1 = $data_feild_hs->save();
+                if ($ktra1) {
+                    drupal_set_message(t('Thêm học sinh ' . $form_state['input']['hoTen'][$dem] . ' thành công'));
+                    // thêm học sinh thành công
+                    them_vao_lop_hoc($form, $form_state);// thêm học sinh vào lớp học
+                } else {
+                    drupal_set_message(t('Thêm học sinh ' . $form_state['input']['phuHuynh'][$dem] . ' không thành công'), 'error');
+                }
+            } else {
+                drupal_set_message(t('Thêm phụ huynh ' . $form_state['input']['phuHuynh'][$dem] . ' không thành công'), 'error');
+            }
+        }
+    }
+
+}
+
+function uid_user($name)
+{
+    foreach (entity_load('user') as $item) {
+        if ($item->name == $name) {
+            return $item->uid;
+        }
+    }
+    return -1;
+}
+
+function them_vao_lop_hoc($form, $form_state)
+{
+    if (tim_kiem_id_lop_hoc($form_state) != -1)// nếu tồn tại lớp học này
+    {
+        $node = node_load(tim_kiem_id_lop_hoc($form_state));
+        $wrapper = entity_metadata_wrapper('node', $node);
+        $danhsachhocsinh = array();
+        if (isset($wrapper->value()->field_danh_sach_hoc_sinh['und'])) {
+            $dem_hoc_sinh = $wrapper->value()->field_danh_sach_hoc_sinh['und'];
+            $biendem = 0;
+            foreach ($dem_hoc_sinh as $id => $hocsinh) {
+                $danhsachhocsinh[$id] = $hocsinh['target_id'];
+                $biendem++;
+            }
+        }
+        $dshocsinh = id_hoc_sinh_moi_nhap($form_state);
+        foreach ($dshocsinh as $demchay => $id_hoc_sinh) {
+            array_push($danhsachhocsinh, $dshocsinh[$demchay]);
+        }
+        $wrapper->field_danh_sach_hoc_sinh->set($danhsachhocsinh);
+        $ktra = $wrapper->save();
+        if ($ktra) {
+            drupal_set_message(t('Thêm học sinh thành công'));
+        } else {
+            drupal_set_message(t('Thêm học sinh không thành công'), 'error');
+        }
+    } else {
+        drupal_set_message(t('Không có lớp học này nên hệ thống sẽ tạo ra lớp học mới và đưa học sinh mới nhập vào'), 'error');
+        save_lop_hoc($form, $form_state);// Tạo lớp học mới
+        them_vao_lop_hoc($form, $form_state);// Thêm học sinh mới nhập vào lớp
+    }
+}
+
+function id_hoc_sinh_moi_nhap($form_state)
+{
+    $abc = array();
+    foreach (entity_load('node') as $item) {
+        if ($item->type == 'hoc_sinh') {
+            foreach ($form_state['input']['hoTen'] as $id => $tunghocsinh) {
+                if ($tunghocsinh == $item->title && $form_state['input']['phuHuynh'][$id] == user_load($item->field_ten_phu_huynh['und'][0]['target_id'])->name) {
+                    $abc[$id] = $item->nid;
+                }
+            }
+        }
+    }
+    return $abc;
+}
+
+function tim_kiem_id_lop_hoc($form_state)
+{
+    foreach (entity_load('node') as $item) {
+        if ($item->type == 'lop_hoc') {
+            if ($form_state['input']['nam_hoc'] == $item->field_nam_hoc['und'][0]['tid']) {
+                if ($form_state['input']['lop_hoc'] == $item->field_lop['und'][0]['tid']) {
+                    return $item->nid;
+                }
+            }
+        }
+    }
+    return -1;
+}
+
+function save_lop_hoc($form, $form_state)
+{
+//  header('Access-Control-Allow-Origin: *');
+//  header('Content-type: application/json');
+    $lop = taxonomy_term_load($form_state['input']['lop_hoc']);
+    $nam_hoc = taxonomy_term_load($form_state['input']['nam_hoc']);
+    $title = 'Lớp ' . $lop->name . ' Khóa (' . $nam_hoc->name . ')';
+    $value = array(
+        'type' => 'lop_hoc',
+        'language' => 'vi',
+        'status' => 1,
+        'comment' => 0,
+        'uid' => 1,
+        'promote' => 0,
+        'title' => $title
+    );
+    if (ktratontailophoc($title) == 1) {
+        if ($form_state['input']['giao_vien_1'] != $form_state['input']['giao_vien_2']) {
+            $entity = entity_create('node', $value);
+            $ewrapper = entity_metadata_wrapper('node', $entity);
+            $ewrapper->field_nam_hoc->set($form_state['input']['nam_hoc']);
+            $ewrapper->field_lop->set(array($form_state['input']['lop_hoc']));
+            $ewrapper->field_giao_vien_1->set(array($form_state['input']['giao_vien_1'], $form_state['input']['giao_vien_2']));
+            $ewrapper->save();
+            drupal_set_message(t('Thêm thành công'));
+        } else {
+            drupal_set_message(t('Giáo viên trùng nhau'), 'error');
+        }
+    } else drupal_set_message(t('Lớp này đã tồn tại'), 'error');
+}
+
+function form_them_hoc_phi($form, $form_state)
+{
+    $header = array(
+        array(
+            'data' => 'Tên học phí',
+            'width' => '24%',
+        ),
+        array(
+            'data' => 'Giá thành',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Năm học',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Lớp (Khối)',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'tháng',
+            'width' => '10%',
+        ),
+        array(
+            'data' => 'Tác vụ',
+            'width' => '15%',
+            'class' => 'text-center',
+        )
+    );
+    $output = array();
+    $bienchay = 0;
+    $abc = node_type_arr('hoc_phi');
+    $ten_lop = '';
+    foreach ($abc as $item1) {
+        $thangdong = array();
+        $bienchay++;
+        $biendem = 0;
+        $ten_lop = '';
+        foreach ($item1->field_lop['und'] as $lom) {
+            $ten_lop = $ten_lop . '' . taxonomy_term_load($lom['tid'])->name;
+            $biendem++;
+            if (count($item1->field_lop['und']) > $biendem) {
+                $ten_lop = $ten_lop . ', ';
+            }
+        }
+        $mangthangdonghocphi = $item1->field_thang['und'];
+        foreach ($mangthangdonghocphi as $item2) {
+            array_push($thangdong, $item2['value']);
+        }
+        $thangdonghoc = implode(',', $thangdong);
+//    $str='<a class="btn-xoa-hoc-sinh" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+        $output[$item1->nid] = array(
+            array(
+                'data' => $item1->title,
+                'width' => '24%',
+            ),
+            array(
+                'data' => number_format(intval($item1->field_gia_tri['und'][0]['value']), 0, '', ','),
+                'width' => '15%',
+            ),
+            array(
+                'data' => taxonomy_term_load($item1->field_nam_hoc['und'][0]['tid'])->name,
+                'width' => '15%',
+            ),
+            array(
+                'data' => $ten_lop,
+                'width' => '15%',
+            ),
+            array(
+                'data' => $thangdonghoc,
+                'width' => '15%',
+            ),
+            array(
+                'data' => '<div class="tacdong text-center"><a href="#"><i class="fas fa-edit"  data-value="' . $item1->nid . '"></i></a>/<a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></div>',
+                'width' => '15%',
+            ),
+        );
+    }
+    $form['list_hoc_phi'] = array(
+        '#prefix' => '
+    <div class="row">
+    <div class="col-md-3 col-3">
+    <div class="action-add-new-student">
+          <a href="#" class="mt-20 mb-10 btn-add-new-price-row btn btn-success"><i
+              class="fa fa-plus"></i> Thêm dòng nhập học phí
+          </a>
+        </div>
+</div>
+      <div class="col-md-6 col-6">
+        <h4 class="text-center mt-20 pt-10">
+          DANH SÁCH HỌC PHÍ
+        </h4>
+      </div>
+    </div>
+    <div class="thongbao"></div>
+  <div class="table-responsive table-danh-sach-hoc-sinh d-none-td-first">
+  ',
+        '#suffix' => '</div>',
+        '#type' => 'tableselect',
+        '#header' => $header,
+        '#options' => $output,
+        '#empty' => t('No users found'),
+        '#attributes' => array('class' => array('table', 'table-bordered', 'table-striped', 'text-nowarp')),
+    );
+
+    $header1 = array(
+        array(
+            'data' => 'Tên học sinh',
+            'width' => '20%',
+        ),
+        array(
+            'data' => 'Số tiền đã đóng',
+            'width' => '15%',
+        ),
+        array(
+            'data' => 'Chi phí',
+            'width' => '14%',
+        ),
+        array(
+            'data' => 'Tên lớp học sinh',
+            'width' => '25%',
+        ),
+        array(
+            'data' => 'Tháng',
+            'width' => '10%',
+        ),
+        array(
+            'data' => 'Tác vụ',
+            'width' => '16%',
+        ),
+    );
+
+    $rows = array();
+    $lop = null;
+    $nam = null;
+    $thangdong = null;
+    $thoigian_thuc = date('d-m-Y');
+    $thoigian_thuc = explode('-', $thoigian_thuc);
+    $thangcan = $thoigian_thuc[1];
+    $namcan = $thoigian_thuc[2];
+    $namnhap = 0;
+    $thangnhap = intval($thangcan);
+    $danhsacnamcan = danhsachnamhoc();
+    foreach ($danhsacnamcan as $id => $tungnam) {
+        $tungnam = explode('-', $tungnam);
+        $tennam1 = $tungnam[0];
+        $tennam2 = $tungnam[1];
+        if (intval($thangcan) > 6) {
+            if (trim($tennam1) == trim($namcan)) {
+                $namnhap = $id;
+            }
+        } else {
+            if (trim($tennam2) == trim($namcan)) {
+                $namnhap = $id;
+            }
+        }
+    }
+    $form['chon_nam_hoc'] = array(
+        '#type' => 'select',
+        '#title' => t('Năm học'),
+        '#options' => danhsachnamhoc()
+    ,
+        '#prefix' => '
+    <div class="load_xong"><div class="row">
+      <div class="col-md-12">
+        <h4 class="text-center mt-20 pt-10">
+          DANH SÁCH HỌC SINH ĐÓNG HỌC PHÍ
+        </h4>
+      </div>
+      <div class="col-md-3 col-3"></div>
+    </div>
+<div class="row"><div class="col-md-3 col-6">',
+        '#suffix' => '</div>',
+        '#defaul_value' => 0,
+        '#value' => $namnhap,
+        '#attributes' => array(
+            'class' => array(
+                'form-control', 'nam_hoc_hoc_phi', 'change_nam_dong_hoc'
+            )
+        )
+    );
+    $form['chon_thang_hoc'] = array(
+        '#type' => 'select',
+        '#title' => t('Tháng học'),
+        '#options' => danhsachthanghoc()
+    ,
+        '#prefix' => '
+    <div class="col-md-3 col-6">',
+        '#suffix' => '</div>',
+        '#defaul_value' => 0,
+        '#value' => $thangnhap,
+        '#attributes' => array(
+            'class' => array(
+                'form-control', 'nam_hoc_hoc_phi', 'change_thang_dong_hoc'
+            )
+        )
+    );
+
+    $form['chon_lop_hoc'] = array(
+        '#type' => 'select',
+        '#title' => t('Lớp'),
+        '#options' => danhsachlophoc(),
+        '#prefix' => '<div class="col-md-3 col-6">
+',
+        '#suffix' => '</div></div>',
+        '#value' => $lop,
+        '#attributes' => array(
+            'class' => array(
+                'form-control', 'lop_hoc_hoc_phi', 'change_dong_lop_hoc'
+            )
+        )
+    );
+
+    $form['list_hoc_phi_dong_hoc_phi'] = array(
+        '#prefix' => '<p class="thongbao_hoc_phi"></p>
+  <div class="table-responsive list-hoc-sinh-dong-hoc mt-15">
+  ',
+        '#suffix' => '</div><div id="abcss"></div><a class="btn btn-primary d-none nut-thao-tac-hoc-phi">Lưu</a></div>
+<div class="tong-tien d-none"><hr><a href="#" class="btn-primary btn tong_ket_tien_hoc_phi">Tổng kết tiền</a></div>',
+        '#theme' => 'table',
+        '#header' => $header1,
+        '#rows' => $rows,
+        '#empty' => t('Chọn đủ thông tin'),
+        '#attributes' => array('class' => array('table', 'table-bordered', 'table-striped', 'text-nowarp')),
+    );
+    return $form;
+}
+
+function ktratontailophoc($str)
+{
+    foreach (entity_load('node') as $item) {
+        if (trim($item->title) == trim($str)) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+function node_type_arr($type)
+{
+    $arr = array();
+    foreach (entity_load('node') as $item) {
+        if ($item->type == $type) {
+            $arr[$item->nid] = $item;
+        }
+    }
+    return $arr;
+}
+
+function mam_non_quan_ly_permission()
+{
+    return array(
+        'them_lop_hoc' => array(
+            'title' => 'Phân quyền xem chi tiết lớp học',
+        ),
+        'them_lop_hoc_0' => array(
+            'title' => 'Phân quyền thêm lớp học',
+        ),
+        'them_hoc_phi' => array(
+            'title' => 'Phân quyền xem học phí',
+        ),
+        'load_lop_hoc' => array(
+            'title' => 'load lớp học',
+        ),
+        'luu_hoc_phi' => array(
+            'title' => 'Lưu học phí đã sửa',
+        ),
+        'sua_hoc_sinh' => array(
+            'title' => 'Sửa học sinh',
+        ),
+        'luu_hoc_sinh_trong_danh_sach' => array(
+            'title' => 'Lưu học sinh sau khi sửa tư danh sách',
+        ),
+        'len_lop' => array(
+            'title' => 'Lưu học sinh sau khi sửa tư danh sách',
+        ),
+        'thao_tac_hoc_sinh_dong_hoc_phi' => array(
+            'title' => 'Thao tác với danh sách học sinh đã đóng học phí',
+        ),
+        'thay_doi_thong_tin_lop' => array(
+            'title' => 'Thao tác thay đổi',
+        ),
+    );
+}
+
+function createCode($str)
+{
+    $str = trim($str);
+    $coDau = array("à", "á", "ạ", "ả", "ã", "â", "ầ", "ấ", "ậ", "ẩ", "ẫ", "ă", "ằ", "ắ"
+    , "ặ", "ẳ", "ẵ", "è", "é", "ẹ", "ẻ", "ẽ", "ê", "ề", "ế", "ệ", "ể", "ễ", "ì", "í", "ị", "ỉ", "ĩ",
+        "ò", "ó", "ọ", "ỏ", "õ", "ô", "ồ", "ố", "ộ", "ổ", "ỗ", "ơ"
+    , "ờ", "ớ", "ợ", "ở", "ỡ",
+        "ù", "ú", "ụ", "ủ", "ũ", "ư", "ừ", "ứ", "ự", "ử", "ữ",
+        "ỳ", "ý", "ỵ", "ỷ", "ỹ",
+        "đ",
+        "À", "Á", "Ạ", "Ả", "Ã", "Â", "Ầ", "Ấ", "Ậ", "Ẩ", "Ẫ", "Ă"
+    , "Ằ", "Ắ", "Ặ", "Ẳ", "Ẵ",
+        "È", "É", "Ẹ", "Ẻ", "Ẽ", "Ê", "Ề", "Ế", "Ệ", "Ể", "Ễ",
+        "Ì", "Í", "Ị", "Ỉ", "Ĩ",
+        "Ò", "Ó", "Ọ", "Ỏ", "Õ", "Ô", "Ồ", "Ố", "Ộ", "Ổ", "Ỗ", "Ơ"
+    , "Ờ", "Ớ", "Ợ", "Ở", "Ỡ",
+        "Ù", "Ú", "Ụ", "Ủ", "Ũ", "Ư", "Ừ", "Ứ", "Ự", "Ử", "Ữ",
+        "Ỳ", "Ý", "Ỵ", "Ỷ", "Ỹ",
+        "Đ", "ê", "ù", "à");
+    $khongDau = array("a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"
+    , "a", "a", "a", "a", "a", "a",
+        "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e",
+        "i", "i", "i", "i", "i",
+        "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o"
+    , "o", "o", "o", "o", "o",
+        "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u",
+        "y", "y", "y", "y", "y",
+        "d",
+        "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A"
+    , "A", "A", "A", "A", "A",
+        "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E",
+        "I", "I", "I", "I", "I",
+        "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O"
+    , "O", "O", "O", "O", "O",
+        "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U",
+        "Y", "Y", "Y", "Y", "Y",
+        "D", "e", "u", "a");
+    $str = str_replace($coDau, $khongDau, $str);
+    $str = trim(preg_replace("/\\s+/", " ", $str));
+    $str = preg_replace("/[^a-zA-Z0-9 \-\.]/", "", $str);
+    $str = strtolower($str);
+    return str_replace(" ", '_', $str);;
+}
+
+

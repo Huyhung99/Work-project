@@ -1,0 +1,56 @@
+name = Vinfast - Imperia
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/animate.min.css
+stylesheets[all][] =  assets/css/meanmenu.css
+stylesheets[all][] =  assets/css/boxicons.min.css
+stylesheets[all][] =  assets/css/flaticon.css
+stylesheets[all][] =  assets/css/owl.carousel.min.css
+stylesheets[all][] =  assets/css/owl.theme.default.min.css
+stylesheets[all][] =  assets/css/odometer.min.css
+stylesheets[all][] =  assets/css/nice-select.min.css
+stylesheets[all][] =  assets/css/magnific-popup.min.css
+stylesheets[all][] =  assets/css/imagelightbox.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/responsive.css
+stylesheets[all][] =  assets/css/custom.css
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery.meanmenu.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/imagelightbox.min.js
+scripts[] = assets/js/odometer.min.js
+scripts[] = assets/js/jquery.nice-select.min.js
+scripts[] = assets/js/jquery.appear.min.js
+scripts[] = assets/js/jquery.ajaxchimp.min.js
+scripts[] = assets/js/form-validator.min.js
+scripts[] = assets/js/contact-form-script.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/main.js
+
+regions[hotline_address] = Hotline Address
+regions[content] = Content
+regions[main-content-front] = Main Content Front
+regions[contact_info] = Thông tin liên hệ
+regions[contact_map] = Bản đồ liên hệ
+regions[service_front] = Service front
+regions[html-main-content-front] = Html Main Content Front
+regions[bottom-main-content-front] = Bottom Main Content Front
+regions[bottom-html-main-content-front] = Bottom Html Main Content Front
+regions[form-contact] = Form Contact
+regions[popup_form]= Form Popup
+regions[form_page_contact] = Form Page Contact
+regions[col_1_footer] = Footer 1
+regions[col_2_footer] = Footer 2
+regions[col_3_footer] = Footer 3
+regions[col_4_footer] = Footer 4
+regions[bottom-footer] = Bottom Footer
+regions[sidebar_first] = Sidebar First

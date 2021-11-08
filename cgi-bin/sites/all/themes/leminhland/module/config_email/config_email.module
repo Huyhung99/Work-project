@@ -1,0 +1,147 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function config_email_menu()
+{
+    $items['quan-ly-cau-hinh-email'] = array(
+        'title' => 'Quản lý duyệt bài viết',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('quan_ly_cau_hinh_email'),
+        'access callback' => 'user_access',//phân quyền
+        'access arguments' => array('quan_ly_cau_hinh_email'),//phân quyền
+        'type' => MENU_CALLBACK
+    );
+    $items['email-api'] = array(
+        'title' => '',
+        'delivery callback' => 'config_email_api',
+        'access callback' => 'TRUE',
+        'access arguments' => array('config_email_api'),
+        'type' => MENU_CALLBACK
+    );
+    return $items;
+}
+
+/**
+ * @param $token string
+ * @param $content  string
+ * @param $to array
+ * @param $subject string
+ * @param $hoTenNguoiGui string
+ */
+function sendEmail($token = 'fhsdahfsadfksdahfsdahfs', $content, $to, $subject, $hoTenNguoiGui)
+{
+    $toStr = [];
+    foreach ($to as $item) {
+        $toStr[] = $item;
+    }
+    $str_to = '"'.implode("|",$toStr).'"';
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://minhhien.com.vn/khu-vuc-api/api/send-email",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => '
+            {
+                "token": "' . $token . '",
+                "content": "'.$content.'",
+                "from": "hungddvimaru@gmail.com",
+                "to": ' . $str_to . ',
+                "hoTenNguoiGui": "' . $hoTenNguoiGui . '",
+                "subject": "' . $subject . '"
+            }',
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            "postman-token: d746b099-9edb-c903-27c3-e288a6ad4da7"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        echo json_encode($response);
+    }
+}
+
+function quan_ly_cau_hinh_email($form, $form_state)
+{
+    return $form;
+}
+
+function config_email_api()
+{
+    $token = md5(md5(date("YmdHi")));
+    $email = node_load(176);
+
+    $content_guess = trim($email->body['und'][0]['value']);
+
+    // xu ly chuoi text-area
+    $text_area = preg_split('/\r\n|\r|\n/', $_POST['noi_dung']);
+    $text_area = array_filter($text_area, function($value) { return !is_null($value) && $value !== ''; });
+    foreach ($text_area as $item){
+        $str_text_area = '<p>'.$str_text_area.'</p>'.'<p>'.$item.'</p>';
+    }
+//    dpm($str_text_area);
+    $content_manager = '<p><strong>Họ tên: </strong>'.trim($_POST['ho_ten']).'</p>'. '<p><strong>Số điện thoại: </strong>'.trim($_POST['so_dien_thoai']).'</p>'. '<p><strong>Email: </strong>'.trim($_POST['email']).'</p>'. '<p><strong>Nội dung: </strong>'.$str_text_area.'</p>';
+    // xu ly dia chi email
+    $arr_email = preg_split('/\r\n|\r|\n/', $email->field_email['und'][0]['value']);
+    $arr_email_not_empty = array_filter($arr_email, function($value) { return !is_null($value) && $value !== ''; });
+    $arr_email_not_empty = array_unique($arr_email_not_empty);
+//    dpm($_POST);
+//    dpm($email);
+//    exit();
+    $author = trim($email->field_ten_nguoi_gui['und'][0]['value']);
+    if ($_POST['email'] !=''){
+        sendEmail($token,$content_guess,array($_POST['email']),$author,$_POST['ho_ten']);
+    }
+    sendEmail($token,$content_manager,$arr_email_not_empty,$author,$_POST['ho_ten']);
+    $new_node = array(
+        'type' => 'webform_new',
+        'language' => 'vi',
+        'status' => 1,
+        'comment' => 0,
+        'uid'=>1,
+        'promote' => 0,
+        'title' => $_POST['ho_ten']
+    );
+    $khoitaonode = entity_create('node',$new_node);
+    $truyva = entity_metadata_wrapper('node',$khoitaonode);
+    $truyva->field_ho_ten->set($_POST['ho_ten']);
+    $truyva->field_so_dien_thoai->set($_POST['so_dien_thoai']);
+    $truyva->field_email->set($_POST['email']);
+    $truyva->field_noi_dung->set($_POST['noi_dung']);
+    $ktra=$truyva->save();
+    if ($ktra){
+        dpm('Thêm thành công');
+    }else{
+        drupal_set_message('Lỗi không thêm được','error');
+    }
+    echo drupal_json_encode(array(
+        'noidung' => 'Thành công'
+    ));
+
+}
+
+/**
+ * Implements hook_permission().
+ */
+function config_email_permission()
+{
+    return array('quan_ly_cau_hinh_email' => array(
+        'title' => 'Cấu hình email'));
+
+}
+
+?>

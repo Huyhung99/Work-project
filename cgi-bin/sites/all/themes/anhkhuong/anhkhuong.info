@@ -1,0 +1,43 @@
+name = ANH KHƯƠNG THIẾT BỊ VỆ SINH
+description = Giao diện website được thiết kế bởi MinhHien Solutions
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] = assets/vendor/bootstrap/css/bootstrap.min.css
+stylesheets[all][] = assets/vendor/owl-carousel/assets/owl.carousel.min.css
+stylesheets[all][] = assets/vendor/photoswipe/photoswipe.css
+stylesheets[all][] = assets/vendor/photoswipe/default-skin/default-skin.css
+stylesheets[all][] = assets/vendor/select2/css/select2.min.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/custom.css
+stylesheets[all][] = assets/vendor/fontawesome/css/all.min.css
+stylesheets[all][] = assets/fonts/stroyka/stroyka.css
+
+scripts[] = assets/vendor/jquery/jquery.min.js
+scripts[] = assets/vendor/bootstrap/js/bootstrap.bundle.min.js
+scripts[] = assets/vendor/owl-carousel/owl.carousel.min.js
+scripts[] = assets/vendor/nouislider/nouislider.min.js
+scripts[] = assets/vendor/photoswipe/photoswipe.min.js
+scripts[] = assets/vendor/photoswipe/photoswipe-ui-default.min.js
+scripts[] = assets/vendor/select2/js/select2.min.js
+scripts[] = assets/js/number.js
+scripts[] = assets/js/main.js
+scripts[] = assets/js/header.js
+scripts[] = assets/vendor/svg4everybody/svg4everybody.min.js
+scripts[] = assets/js/custom.js
+
+regions[search__body] = Search Block
+regions[customer_service] = Customer Service
+regions[main_content_frontend] = Main content Frontend
+regions[content] = Content
+regions[left-topbar] = Left Topbar
+regions[right-topbar] = Right Topbar
+regions[main-content] = Main Content
+regions[bt-main-content] = Bottom main Content
+regions[sidebar-right] = Sidebar right
+regions[footer-col-1] = Footer col 1
+regions[footer-col-2] = Footer col 2
+regions[footer-col-3] = Footer col 3
+regions[footer-col-4] = Footer col 4
+regions[coppyright] = Coppyright

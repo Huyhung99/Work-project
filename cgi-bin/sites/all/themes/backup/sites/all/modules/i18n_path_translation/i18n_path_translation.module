@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+function i18n_path_translation_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'i18n_path_admin_form') {
+    drupal_set_message(t('It\'s now possible to use wildcards patters.
+      I.e.: If you have a panel custom page with a path <strong>my/path/!arg1/!arg2</strong>,
+      you can now create a translation path like <strong>my/path/*/*</strong>.'), 'status');
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function i18n_path_translation_wildcard_init() {
+  global $language;
+  $default_language = language_default();
+  $language_list = language_list();
+
+  $query = db_select('i18n_translation_set', 't');
+  $query->condition('t.type', 'path');
+  $tsids = $query
+    ->fields('t', array('tsid'))
+    ->execute()
+    ->fetchCol();
+
+  $translations = entity_load('i18n_translation', $tsids);
+
+  foreach ($translations as $set) {
+    $translation_set = $set->get_links();
+    foreach ($translation_set as $path_language => $translation_language) {
+      // Finding the wildcard.
+      if (strpos($translation_language['href'], '*') !== FALSE
+        && count(explode('/', $_GET['q'])) == count(explode('/', $translation_language['href']))) {
+        // Find the positions of the wildcards.
+        $path = explode('/', $translation_language['href']);
+        $wildcard_positions = array();
+
+        foreach ($path as $path_key => $path_string) {
+          if ($path_string == '*') {
+            $wildcard_positions[] = $path_key;
+          }
+        }
+
+        // Redirect to the right path.
+        $current_path = explode('/', $_GET['q']);
+        $languages_paths = array();
+        $default_language_path = explode('/', $translation_set[$default_language->language]['href']);
+
+        foreach ($language_list as $language_name) {
+          $languages_paths[$language_name->language] = explode('/', $translation_set[$language_name->language]['href']);
+        }
+
+        foreach ($wildcard_positions as $key_position) {
+          // Compare the paths to see if it's right.
+          if (isset($current_path[$key_position])) {
+            $path[$key_position] = $current_path[$key_position];
+            $default_language_path[$key_position] = $current_path[$key_position];
+
+            foreach ($languages_paths as $language_key_path => $language_path) {
+              $languages_paths[$language_key_path][$key_position] = $current_path[$key_position];
+            }
+          }
+        }
+
+        $all_languages_paths = array();
+
+        foreach ($languages_paths as $all_languages_key => $all_languages_path) {
+          $all_languages_paths[$all_languages_key] = implode('/', $all_languages_path);
+        }
+
+        if ($path_language == $language->language
+          && implode('/', $path) != drupal_get_path_alias($_GET['q'])
+          && implode('/', $default_language_path) == $_GET['q']) {
+          drupal_goto(implode('/', $path));
+        }
+        else if ($path_language == $language->language
+          && implode('/', $default_language_path) != $_GET['q']
+          && $language->language == $default_language->language) {
+          $possible_sets = 0;
+
+          foreach ($all_languages_paths as $possible_set) {
+            if (drupal_get_path_alias($_GET['q']) == $possible_set) {
+              drupal_goto(implode('/', $path));
+            }
+          }
+        }
+      }
+    }
+  }
+}

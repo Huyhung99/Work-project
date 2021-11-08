@@ -1,0 +1,193 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+/**
+ * Implements hook_node_delete().
+ */
+/**
+ * Implements hook_menu().
+ */
+function menu_con_menu() {
+  $items['menu-con'] = array(
+    'title'=>'Quản lý menu',
+    'page callback'=>'drupal_get_form',
+    'page arguments' => array('menu_con'),
+    'access callback'=>'user_access',//phân quyền
+    'access arguments'=>array('menu_con'),//phân quyền
+    'type'=> MENU_CALLBACK
+  );
+  $items['edit-sp'] = array(
+    'title'=>'Chỉnh',
+    'page callback'=>'drupal_get_form',
+    'page arguments' => array('chinh_sua'),
+    'access callback'=>'user_access',//phân quyền
+    'access arguments'=>array('chinh_sua'),//phân quyền
+    'type'=> MENU_CALLBACK
+  );
+  $items['edit-excel'] = array(
+    'title' => 'Sửa thông tin học phí',
+    'delivery callback' => 'chinh_excel',
+    'access callback' => 'TRUE',
+    'access arguments' => array('chinh_excel'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+function chinh_excel()
+{
+  echo drupal_json_encode(array(
+    'thongbao'=>$_POST
+  ));
+}
+function chinh_sua($form, &$form_state){
+  $form['submit_suavtri'] = array (
+    '#type' => 'submit',
+    '#value' => t('Sửa vtri'),
+    '#attributes'=>array(
+      'class'=>array(
+        'btn-success','form-control','btn-save-new-class'
+      )
+    ),
+    '#submit' => array('save_update_new')
+  );
+  return $form;
+}
+function save_update_new($form, &$form_state)
+{
+  $danhsachnode=node_type_arr('product_display');
+  $ktra=0;
+  foreach ($danhsachnode as $tungnode)
+  {
+    $truyvan=entity_metadata_wrapper('node',$tungnode);
+    $truyvan->field_code_product->set(createCode($tungnode->title));
+    $abc_thu=$truyvan->save();
+    if(!$abc_thu)
+    {
+      $ktra=1;
+    }
+  }
+  if($ktra==1)
+  {
+    dsm('Lỗi không thêm hết được');
+  }
+  else{
+    dsm('Thêm xong hết');
+  }
+}
+function node_type_arr($type){
+  $arr=array();
+  foreach (entity_load('node') as $item)
+  {
+    if($item->type==$type)
+    {
+      $arr[$item->nid]=$item;
+    }
+  }
+  return $arr;
+}
+function menu_con()
+{
+  $danhmucsanpham = menu_tree_all_data('main-menu');
+  $array=array();
+  $string='';
+  foreach ($danhmucsanpham as $itemmenu)
+  {
+    if($itemmenu['link']['link_title']=='Tủ bếp nhựa')
+    {
+        $string=$string.l('Mẫu tủ bếp đẹp',
+                $itemmenu['link']['link_path'],
+                array(
+                    'attributes' => array(
+                        'class'=>'megatitle dau_tien'
+                    ),
+                    'fragment' => '',
+                    'html' => true
+                )
+            );
+        if(count($itemmenu['below'])>=1)
+        {
+            foreach ($itemmenu['below'] as $item_menu)
+            {
+                if($item_menu['link']['hidden']!=1)
+                {
+                    $string=$string.'<li>';
+                    $string=$string.l('<i class="fa fa-angle-double-right" aria-hidden="true"></i>'.$item_menu['link']['link_title'],
+                            $item_menu['link']['link_path'],
+                            array(
+                                'attributes' => array(
+                                    'title' => $item_menu['link']['link_title'],
+                                    'class'=>'megatitle'
+                                ),
+                                'fragment' => '',
+                                'html' => true
+                            )
+                        );
+                    $string=$string.'</li>';
+                }
+            }
+        }
+        array_push($array,'<li>'.$string.'</li>');
+        $string='';
+      if($itemmenu['link']['hidden']!=1)
+      {
+
+      }
+    }
+  }
+  $string=implode('',$array);
+  $string='<ul class="top_tab text-center">'.$string.'<li><a href="/bo-suu-tap-tu-bep-dep.html" title="Tủ bếp chữ U" class="megatitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Xem thêm</a></li></ul>';
+  return $string;
+}
+function menu_con_permission() {
+  return array(
+    'menu_con'=>array(
+      'title'=>'Phân quyền xem danh sách phụ thu',
+    ),
+//    'chinh_sua'=>array(
+//      'title'=>'Chỉnh sửa',
+//    ),
+  );
+}
+function createCode($str){
+  $str = trim($str);
+  $coDau=array("à","á","ạ","ả","ã","â","ầ","ấ","ậ","ẩ","ẫ","ă","ằ","ắ"
+  ,"ặ","ẳ","ẵ","è","é","ẹ","ẻ","ẽ","ê","ề","ế","ệ","ể","ễ","ì","í","ị","ỉ","ĩ",
+    "ò","ó","ọ","ỏ","õ","ô","ồ","ố","ộ","ổ","ỗ","ơ"
+  ,"ờ","ớ","ợ","ở","ỡ",
+    "ù","ú","ụ","ủ","ũ","ư","ừ","ứ","ự","ử","ữ",
+    "ỳ","ý","ỵ","ỷ","ỹ",
+    "đ",
+    "À","Á","Ạ","Ả","Ã","Â","Ầ","Ấ","Ậ","Ẩ","Ẫ","Ă"
+  ,"Ằ","Ắ","Ặ","Ẳ","Ẵ",
+    "È","É","Ẹ","Ẻ","Ẽ","Ê","Ề","Ế","Ệ","Ể","Ễ",
+    "Ì","Í","Ị","Ỉ","Ĩ",
+    "Ò","Ó","Ọ","Ỏ","Õ","Ô","Ồ","Ố","Ộ","Ổ","Ỗ","Ơ"
+  ,"Ờ","Ớ","Ợ","Ở","Ỡ",
+    "Ù","Ú","Ụ","Ủ","Ũ","Ư","Ừ","Ứ","Ự","Ử","Ữ",
+    "Ỳ","Ý","Ỵ","Ỷ","Ỹ",
+    "Đ","ê","ù","à");
+  $khongDau=array("a","a","a","a","a","a","a","a","a","a","a"
+  ,"a","a","a","a","a","a",
+    "e","e","e","e","e","e","e","e","e","e","e",
+    "i","i","i","i","i",
+    "o","o","o","o","o","o","o","o","o","o","o","o"
+  ,"o","o","o","o","o",
+    "u","u","u","u","u","u","u","u","u","u","u",
+    "y","y","y","y","y",
+    "d",
+    "A","A","A","A","A","A","A","A","A","A","A","A"
+  ,"A","A","A","A","A",
+    "E","E","E","E","E","E","E","E","E","E","E",
+    "I","I","I","I","I",
+    "O","O","O","O","O","O","O","O","O","O","O","O"
+  ,"O","O","O","O","O",
+    "U","U","U","U","U","U","U","U","U","U","U",
+    "Y","Y","Y","Y","Y",
+    "D","e","u","a");
+  $str = str_replace($coDau,$khongDau,$str);
+  $str = trim(preg_replace("/\\s+/", " ", $str));
+  $str = preg_replace("/[^a-zA-Z0-9 \-\.]/", "", $str);
+  $str = strtolower($str);
+  return str_replace(" ", '_', $str);;
+}

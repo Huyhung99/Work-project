@@ -1,0 +1,63 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function quan_ly_lop_hoc_menu()
+{
+    $items['them-lop-hoc-new'] = array(
+        'title'=>'Thêm lớp học',
+        'page callback'=>'drupal_get_form',
+        'page arguments' => array('form_them_lop_hoc_new'),
+        'access callback'=>'user_access',//phân quyền
+        'access arguments'=>array('form_them_lop_hoc_new'),//phân quyền
+        'type'=> MENU_CALLBACK
+    );
+  $items['thao-tao-them-lop-hoc-new'] = array(
+    'title' => 'Sửa thông tin học phí',
+    'delivery callback' => 'thao_tac_phu_huynh_form_them_lop_hoc_new',
+    'access callback' => 'TRUE',
+    'access arguments' => array('thao_tac_phu_huynh_form_them_lop_hoc_new'),
+    'type' => MENU_CALLBACK
+  );
+    return $items;
+}
+
+function form_them_lop_hoc_new($form, &$form_state){
+
+    return $form;
+}
+function thao_tac_phu_huynh_form_them_lop_hoc_new()
+{
+  $str='';
+  if(isset($_POST['A']) && $_POST['A']!='')
+  {
+    $tensp=$_POST['A'];
+    $str='<tr><td>'.$tensp.'</td><td>'.createCode($tensp).'</td></tr>';
+  }
+  $chss=explode('{{}}',$_POST['ten']);
+  foreach ($chss as $thutu => $tungcasi)
+  {
+    $str=$str.'<tr><td>'.$thutu.'</td><td>'.$tungcasi.'</td><td>'.createCode($tungcasi).'</td></tr>';
+  }
+  $str='<h4 class="height-full align-items-center d-flex mt-30 mb-0"><strong>Xuất excel table</strong></h4>
+<div class="du_lieu_sau_khi_them">
+    <table class="table table-bordered table-striped text-nowrap table_bep">
+        <tbody>
+        '.$str.'
+        </tbody>
+    </table>
+</div>
+<a href="#" class="btn btn-success xuat_ex">Xuất excel</a>';
+  echo drupal_json_encode(array(
+    'thongbao' => $str
+  ));
+}
+/**
+ * Implements hook_permission().
+ */
+function quan_ly_lop_hoc_permission()
+{
+    return array('form_them_lop_hoc_new' =>array(
+        'title'=>'Phân quyền thêm lớp học'));
+
+}

@@ -1,0 +1,183 @@
+<?php
+//   <li><em class="placeholder">PDOException</em>: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn&#039;t match value count at row 1: INSERT INTO
+// {chi_tiet_don_hang} (don_hang_id, rate, name, pro_link, image, price, don_gia_viet, price_arr, size, sizetxt, color, colortxt, pro_properties,
+// amount, tong_tien, beginAmount, domain, site, count, method, pro_note)
+// VALUES (:db_insert_placeholder_0, :db_insert_placeholder_1, :db_insert_placeholder_2,
+// :db_insert_placeholder_3, :db_insert_placeholder_4, :db_insert_placeholder_5,
+// :db_insert_placeholder_6, :db_insert_placeholder_7_0, :db_insert_placeholder_7_1,
+// :db_insert_placeholder_7_2, :db_insert_placeholder_8, :db_insert_placeholder_9, :db_insert_placeholder_10, :db_insert_placeholder_11, :db_insert_placeholder_12,
+// :db_insert_placeholder_13, :db_insert_placeholder_14, :db_insert_placeholder_15, :db_insert_placeholder_16, :db_insert_placeholder_17, :db_insert_placeholder_18,
+// :db_insert_placeholder_19,
+// :db_insert_placeholder_20); Array
+
+/**
+ * Implements hook_menu().
+ */
+function lien_ket_website_menu()
+{
+    $items['cau-hinh-lien-ket-website'] = array(
+        'title' => 'Cây liên kết website',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('form_lien_ket_website'),
+        'file' => 'form_lien_ket_website.inc',
+        'access callback' => 'user_access',
+        'access arguments' => array('get lien_ket_website'),
+//        'type' => MENU_CALLBACK
+    );
+    $items['luu-form-lien-ket'] = array(
+        'title' => 'Lưu thông tin cây liên kết website',
+        'delivery callback' => 'luu_form_lien_ket',
+        'access callback' => 'TRUE',
+        'access arguments' => array('get save_lien_ket_website'),
+        'type' => MENU_CALLBACK
+    );
+    $items['get-data-tree-lien-ket-website'] = array(
+        'title' => 'Tải dữ liệu liên kết website',
+        'delivery callback' => 'tai_data_lien_ket',
+        'access callback' => 'TRUE',
+        'access arguments' => array('get tai_data_lien_ket'),
+        'type' => MENU_CALLBACK
+    );
+    $items['get-data-doanh-nghiep'] = array(
+        'title' => 'Tải dữ liệu doanh nghiệp',
+        'delivery callback' => 'tai_data_doanh_nghiep_from_tid',
+        'access callback' => 'TRUE',
+        'access arguments' => array('get tai_data_doanh_nghiep_from_tid'),
+        'type' => MENU_CALLBACK
+    );
+
+    return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function lien_ket_website_permission()
+{
+    return array(
+        'get lien_ket_website' => array(
+            'title' => 'Cấu hình liên kết website',
+        ),
+        'get save_lien_ket_website' => array(
+            'title' => 'Lưu Cấu hình liên kết website',
+        ),
+        'get tai_data_lien_ket' => array(
+            'title' => 'Tải dữ liệu liên kết website',
+        ),
+        'get tai_data_doanh_nghiep_from_tid' => array(
+            'title' => 'Tải dữ liệu doanh nghiệp từ term ID',
+        ),
+    );
+
+}
+
+function getArrLienKet($source_arr, &$arr){
+  $i = 0;
+  dsm($source_arr);
+  foreach ($source_arr as $index => $item) {
+    dsm($index);
+    if($index !== 'parent'){
+      $arr[$i] = [
+        'description' => $source_arr[$index]['parent'],
+        'children' => []
+      ];
+      if(isset($source_arr[$index][0])){
+//        $arr[$i]['children'] = [
+//          'description' => $source_arr[$index]['parent'],
+//          'children' => []
+//        ];
+        getArrLienKet($source_arr[$index], $arr[$i]['children']);
+      }
+      $i++;
+    }
+  }
+}
+
+function luu_form_lien_ket()
+{
+  header('Access-Control-Allow-Origin: *');
+  header('Content-type: application/json');
+  $arr = [
+    'description' => 'CHÍNH PHỦ',
+    'children' => []
+  ];
+  $i = 0;
+  foreach ($_POST['LienKet'] as $index => $item) {
+    $arr['children'][$i] = [
+//      'tooltip' => $_POST['LienKet'][$index],
+      'description' =>  $item['parent'],
+      'children' => []
+    ];
+
+    if(isset($_POST['LienKet'][$index][0])){
+      getArrLienKet($_POST['LienKet'][$index], $arr['children'][$i]['children']);
+    }else
+      $arr['children'][$i]['children'] = [];
+    $i++;
+  }
+  dsm($arr);
+
+  variable_set('htmlTable', $_POST['htmlTable']);
+  variable_set('lien_ket', $arr);
+
+  drupal_json_output([
+    'data' => variable_get('htmlTable', ''),
+    'lien_ket' => variable_get('lien_ket'),
+    'content' => 'Đã lưu thông tin cấu hình cây website'
+  ]);
+}
+
+function tai_data_lien_ket()
+{
+  header('Access-Control-Allow-Origin: *');
+  header('Content-type: application/json');
+  $data = variable_get('lien_ket');
+
+  drupal_json_output([
+    'jsonData' => $data,
+    'content' => 'Đã lưu thông tin cấu hình cây website',
+  ]);
+}
+
+function tai_data_doanh_nghiep_from_tid()
+{
+    $data = node_load_multiple(taxonomy_select_nodes($_POST['tid']));
+    $itemSlider = [];
+
+    foreach ($data as $index => $item) {
+        $variables = $item->field_image['und'];
+        $variables['path'] = $variables[0]['uri'];
+        $variables['alt'] = $item->title;
+        $variables['title'] = $item->title;
+        $variables['attributes'] = array(
+            'class' => array(
+                'img-responsive img-fluid'
+            )
+        );
+
+        $imageTag = theme_image($variables) .'<h4 class="name-doanh-nghiep">'.$item->title.'</h4>';
+//        $title = $item->title;
+
+        $itemSlider[] = <<<HTML
+            <div id="carousel-slide-logo-doanh-nghiep-{$index}" class="carousel-slide-logo-doanh-nghiep">
+                {$imageTag}
+            </div>
+HTML;
+    }
+    $itemSlider = implode('', $itemSlider);
+
+    $html = <<<HTML
+<!-- SLIDER CONTENT -->
+    <div class="item-doanh-nghiep">
+      {$itemSlider}
+    </div>	<!-- END SLIDER CONTENT -->
+    <!-- SLIDER NAVIGATION -->
+HTML;
+
+    drupal_json_output(
+        [
+            'slider' => $html
+        ]
+    );
+    exit;
+}

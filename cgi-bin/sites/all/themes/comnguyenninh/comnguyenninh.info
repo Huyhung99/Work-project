@@ -1,0 +1,43 @@
+name = CỐM NGUYÊN NINH 2020 - MINHHIEN SOLUTIONS
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/theme-color.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/jquery-1.12.4.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/bootsnav.js
+scripts[] = assets/js/parallax.js
+scripts[] = assets/js/scrollto.js
+scripts[] = assets/js/jquery-scrolltofixed-min.js
+scripts[] = assets/js/jquery.counterup.js
+scripts[] = assets/js/gallery.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/slider.js
+scripts[] = assets/js/video-player.js
+scripts[] = assets/js/jquery.barfiller.js
+scripts[] = assets/js/timepicker.js
+;scripts[] = assets/js/jflickrfeed.min.js
+scripts[] = assets/js/tweetie.js
+scripts[] = assets/js/script.js
+
+regions[left_top_header] = Left Top Header
+regions[col_1_header] = Col 1 Header
+regions[col_2_header] = Col 2 Header
+regions[search_block] = Search Block
+regions[content] = Nội dung chính
+regions[mini_cart] = Mini Cart
+regions[sidebar_right] = Sidebar Right
+regions[main_content_front] = Nội dung chính trang chủ
+regions[left_about] = Khối giới thiệu trái
+regions[main_about_front] = Nội dung giới thiệu trang chủ
+regions[slider_about] = Hình ảnh slider giới thiệu
+regions[bottom_main_content_front] = Nội dung dưới phần chính trang chủ
+regions[col_1_footer] = Col 1 Footer
+regions[col_2_footer] = Col 2 Footer
+regions[col_3_footer] = Col 3 Footer
+regions[copyright_footer] = Copyright Footer

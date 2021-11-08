@@ -1,0 +1,6 @@
+name = Quản lý suất ăn, Điểm danh suất ăn
+description = Quản lý suất ăn, Điểm danh suất ăn
+core = 7.x
+files[]=quan_ly_suat_an_diem_danh_xuat_an.module
+package = "K58"
+php = 5.2

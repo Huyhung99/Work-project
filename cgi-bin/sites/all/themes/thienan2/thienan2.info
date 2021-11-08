@@ -1,0 +1,45 @@
+name = THIÊN AN 2020
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+preload
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/fontawesome/css/font-awesome.min.css
+stylesheets[all][] =  assets/css/owl.carousel.min.css
+stylesheets[all][] =  assets/css/magnific-popup.min.css
+stylesheets[all][] =  assets/css/loader.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/rev-slider-4.css
+stylesheets[all][] =  assets/plugins/revolution/revolution/css/settings.css
+stylesheets[all][] =  assets/plugins/revolution/revolution/css/navigation.css
+
+scripts[] = assets/js/jquery-1.12.4.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/magnific-popup.min.js
+scripts[] = assets/js/waypoints.min.js
+scripts[] = assets/js/counterup.min.js
+scripts[] = assets/js/waypoints-sticky.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/jquery.owl-filter.js
+scripts[] = assets/js/stellar.min.js
+scripts[] = assets/js/scrolla.min.js
+scripts[] = assets/js/custom.js
+scripts[] = assets/js/shortcode.js
+scripts[] = assets/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js
+scripts[] = assets/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution-plugin.js
+scripts[] = assets/js/rev-script-1.js
+
+regions[top_header] = Top Header
+regions[searchBlock] = Search Block
+regions[main_content_front] = Main content Front
+regions[content] = Content
+regions[sidebar_first] = Side Bar First
+regions[page_hinh_anh] = Page Hinh Anh
+regions[col_1_footer] = Col 1 Footer
+regions[col_2_footer] = Col 2 Footer
+regions[col_3_footer] = Col 3 Footer
+regions[lower_footer] = Lower Footer

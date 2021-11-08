@@ -1,0 +1,51 @@
+name = NƯỚC MẮM LƯƠNG HẢI
+description = Giao diện được thiết kế bởi Công ty TNHH Công nghệ và Dịch vụ Minh Hiền
+core = 7.x
+package = Core
+
+stylesheets[all][] = assets/css/normalize.css
+stylesheets[all][] = assets/css/main.css
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/animate.min.css
+stylesheets[all][] = assets/css/font-awesome.min.css
+stylesheets[all][] = assets/css/owl.carousel.min.css
+stylesheets[all][] = assets/css/owl.theme.default.min.css
+stylesheets[all][] = assets/css/meanmenu.min.css
+
+stylesheets[all][] = assets/lib/custom-slider/css/nivo-slider.css
+stylesheets[all][] = assets/lib/custom-slider/css/preview.css
+stylesheets[all][] = assets/style.css
+stylesheets[all][] = assets/responsive-1.css
+
+scripts[] =assets/js/vendor/modernizr-2.8.3.min.js
+scripts[] =assets/js/vendor/jquery-2.2.4.min.js
+scripts[] =assets/js/bootstrap.min.js
+scripts[] =assets/js/owl.carousel.min.js
+scripts[] =assets/lib/custom-slider/js/jquery.nivo.slider.js
+scripts[] =assets/lib/custom-slider/home.js
+scripts[] =assets/js/jquery.meanmenu.min.js
+scripts[] =assets/js/wow.min.js
+scripts[] =assets/js/plugins.js
+scripts[] =assets/js/jquery.scrollUp.min.js
+scripts[] =assets/js/isotope.pkgd.min.js
+scripts[] =assets/js/jquery.counterup.min.js
+scripts[] =assets/js/waypoints.min.js
+scripts[] =assets/js/main.js
+
+regions[top_header] = Top Header
+regions[tim_kiem_block] = Block Tìm kiếm
+regions[content] = Content
+regions[main_frontend] = Main Frontend
+regions[html_main_frontend] = HTML Main Frontend
+regions[main_frontend2] = Main Frontend 2
+regions[html_main_frontend2] = HTML Main Frontend 2
+regions[sidebar_first] = Sidebar First
+regions[customer_list] = Customer List
+regions[contact] = Contact
+regions[contact_list] = Contact List
+regions[logo_footer] = Logo Footer
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer
+regions[footer_bottom] = Bottom Footer

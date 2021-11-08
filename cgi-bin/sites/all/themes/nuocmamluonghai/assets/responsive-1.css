@@ -1,0 +1,20 @@
+@media only screen and (max-width: 479px){
+    h1.title-bar50 {
+        font-size: 20pt;
+    }
+    .footer-area-top h3 {
+        font-size: 12pt;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .footer-area-top h3 {
+        font-size: 10pt;
+    }
+    .product-box1 .product-content-holder h3{
+        font-size: 12pt;
+    }
+    .inner-page-banner-area .pagination-area h2,
+    .inner-page-banner-area .pagination-area h1{
+        font-size: 20pt;
+    }
+}

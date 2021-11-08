@@ -1,0 +1,687 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+/**
+ * Implements hook_node_delete().
+ */
+/**
+ * Implements hook_menu().
+ */
+function quan_ly_suat_an_diem_danh_xuat_an_menu() {
+  $items['danh-sach-suat-an'] = array(
+    'title'=>'Danh sách suất ăn',
+    'page callback'=>'drupal_get_form',
+    'page arguments' => array('form_danh_sach_suat_an'),
+    'access callback'=>'user_access',//phân quyền
+    'access arguments'=>array('form_danh_sach_suat_an'),//phân quyền
+    'type'=> MENU_CALLBACK
+  );
+  $items['bang-dien-danh-suat-an'] = array(
+    'title'=>'Danh sách học sinh con mình',
+    'page callback'=>'drupal_get_form',
+    'page arguments' => array('bang_diem_danh_suat_an'),
+    'access callback'=>'user_access',//phân quyền
+    'access arguments'=>array('bang_diem_danh_suat_an'),//phân quyền
+    'type'=> MENU_CALLBACK
+  );
+
+  $items['thao-tac-suat-an'] = array(
+    'title' => 'Sửa thông tin suất ăn',
+    'delivery callback' => 'thao_tac_suat_an',
+    'access callback' => 'TRUE',
+    'access arguments' => array('thao_tac_suat_an'),
+    'type' => MENU_CALLBACK
+  );
+  $items['thao-tac-diem-danh-suat-an'] = array(
+    'title' => 'Sửa thông tin suất ăn',
+    'delivery callback' => 'thao_tac_diem_danh_suat_an',
+    'access callback' => 'TRUE',
+    'access arguments' => array('thao_tac_diem_danh_suat_an'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+
+function form_danh_sach_suat_an($form, &$form_state)
+{
+  $form['ten-suat-an'] = array(
+    '#type'=>'textfield',
+    '#title' => t('Tên suât ăn'),
+    '#prefix'=>'<h4 class="text-center mt-50 pt-10">
+THÊM SUẤT ĂN
+</h4><div class="row"><div class="col-md-4 col-6">',
+    '#suffix'=>'</div>',
+    '#required' => TRUE,
+    '#attributes'=> array(
+      'class'=> array(
+        'form-control'
+      )
+    )
+  );
+  $form['gia-thanh'] = array(
+    '#type'=>'textfield',
+    '#title' => t('Giá thành'),
+    '#prefix'=>'<div class="col-md-4 col-6">',
+    '#suffix'=>'</div>',
+    '#required' => TRUE,
+    '#attributes'=> array(
+      'class'=> array(
+        'form-control'
+      )
+    )
+  );
+  $form['noi-dung-mon-an'] = array(
+    '#type'=>'textarea',
+    '#title' => t('Nội dung món ăn'),
+    '#required' => TRUE,
+    '#prefix'=>'<div class="col-md-12">',
+    '#suffix'=>'<p>VD: Cá,rau,củ,quả</p></div></div>',
+    '#attributes'=> array(
+      'class'=> array(
+        'form-control'
+      )
+    )
+  );
+  $form['submit_themsuatan'] = array (
+    '#type' => 'submit',
+    '#value' => t('Thêm suất ăn'),
+    '#attributes'=>array(
+      'class'=>array(
+        'btn-success','form-control','btn-save-new-class'
+      )
+    ),
+    '#submit' => array('save_suat_an')
+  );
+
+  $header=array(
+    array(
+      'data'=>'STT',
+      'Width'=>'1%'
+    ),
+    array(
+      'data'=>'Tên',
+      'Width'=>'20%'
+    ),
+    array(
+      'data'=>'Giá thành',
+      'Width'=>'20%'
+    ),
+    array(
+      'data'=>'Nội dung món',
+      'Width'=>'50%'
+    ),
+    array(
+      'data'=>'Thao tác',
+      'Width'=>'10%'
+    )
+  );
+  $rows=array();
+  $danhsach=node_type_arr('suat_an');
+  $bien=0;
+  foreach ($danhsach as $id=>$item)
+  {
+    $bien++;
+    $rows[$id]=array(
+      array(
+        'data'=>$bien,
+        'Width'=>'1%'
+      ),
+      array(
+        'data'=>$item->title,
+        'Width'=>'20%'
+      ),
+      array(
+        'data'=>$item->field_don_gia['und'][0]['value'],
+        'Width'=>'20%'
+      ),
+      array(
+        'data'=>$item->body['und'][0]['value'],
+        'Width'=>'50%'
+      ),
+      array(
+        'data'=>'<div class="chinh_sua_suat_an text-center">
+<a href="#">
+<i class="fas fa-edit edit-suat-an" data-value="'.$id.'"></i>
+</a>/
+<i class="fa fa-trash xoa_popup_suat_an"  aria-hidden="true" data-toggle="modal" data-target="#myModal11" data-value="'.$id.'"></i>
+</div>',
+        'Width'=>'10%'
+      )
+    );
+  }
+  $form['suat-an']=array(
+    '#prefix'=>'<div class="modal" id="myModal11">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Bạn có chắc xóa suất ăn này không, vì sẽ ảnh hưởng tới các bảng điểm danh xuất ăn.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <span class="nut_xoa_pop_up_suatan_hehe"></span>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div><p style="
+    border-bottom: 1px solid #ccc;
+    margin: 30px 0px;"></p>
+    <h4 class="text-center mt-20 pt-10">
+DANH SÁCH SUẤT ĂN
+</h4>',
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#attributes' => array('class' => array('table', 'table-bordered', 'table-striped', 'text-nowarp')),
+  );
+
+  return $form;
+}
+function thao_tac_suat_an(){
+  if(isset($_POST['id_suatan_chinhsua']))
+  {
+    if($_POST['id_suatan_chinhsua']!='')
+    {
+      $bienstring='';
+      $suatansu=node_load($_POST['id_suatan_chinhsua']);
+      $monan=explode('<ol>',$suatansu->body['und'][0]['value']);
+      $monan1=explode('<li>',$monan[1]);
+      $cacmonan='';
+      foreach ($monan1 as $id=>$danhsach)
+      {
+        if($id==1)
+        {
+          $cacmonan=trim(strip_tags($danhsach));
+        }
+        else
+        {
+          if($id>1)
+          {
+            $cacmonan=$cacmonan.','.trim(strip_tags($danhsach));
+          }
+        }
+      }
+      $bienstring='<td></td>
+        <td><input value="'.$suatansu->title.'" class="tensuatan form-control"></td>
+        <td><input value="'.$suatansu->field_don_gia['und'][0]['value'].'" name="sodienthoai" class="dongia form-control"></td>
+        <td><textarea rows="4" cols="50" class="noidungmonan form-control">'.$cacmonan.'</textarea></td>
+        <td class="text-center"><a href="#" class="btn btn-primary luu_sua_suat_an" id_value="'.$_POST['id_suatan_chinhsua'].'">Lưu</a></td>
+        ';
+      echo drupal_json_encode(array(
+        'bientring'=>$bienstring
+      ));
+    }
+  }
+  if(isset($_POST['id_luu_sua'])){
+    if($_POST['id_luu_sua'] !='' && $_POST['ten_suat_an'] !='' && $_POST['don_gia'] !='' && $_POST['mon_an'] !='')
+    {
+      $danhsachmonan=explode(',',$_POST['mon_an']);
+      $chuoihtml='';
+      foreach ($danhsachmonan as $item2)
+      {
+        $chuoihtml=$chuoihtml.'<li><strong>'.$item2.'</strong></li>';
+      }
+      $chuoihtml='<p><strong>Thông tin suất ăn :</strong></p>
+                        <ol>'.$chuoihtml.'</ol>';
+      $suatancansua=node_load($_POST['id_luu_sua']);
+      $suatancansua->title=$_POST['ten_suat_an'];
+      $truyvan1=entity_metadata_wrapper('node',$suatancansua);
+      $truyvan1->field_don_gia->set($_POST['don_gia']);
+      $truyvan1->body->value=$chuoihtml;
+      $truyvan1->save();
+    }
+    else{
+      dsm('Thêm không thành công, nhập đầy đủ thông tin','error');
+    }
+  }
+  if(isset($_POST['idsuatan_xoa'])){
+    if($_POST['idsuatan_xoa']!='')
+    {
+      node_delete($_POST['idsuatan_xoa']);
+    }
+  }
+}
+function save_suat_an($form, &$form_state){
+  $ten=$form_state['input']['ten-suat-an'];
+  $giathanh=$form_state['input']['gia-thanh'];
+  $noidungmon=$form_state['input']['noi-dung-mon-an']['value'];
+  $newnode = array(
+    'type' => 'suat_an',
+    'language' => 'vi',
+    'status' => 1,
+    'comment' => 0,
+    'uid'=>1,
+    'promote' => 0,
+    'title' => $ten
+  );
+  $khoitaonode=entity_create('node',$newnode);
+  $truyva=entity_metadata_wrapper('node',$khoitaonode);
+  $truyva->body->value=$noidungmon;
+  $truyva->field_don_gia->set($giathanh);
+  $ktra=$truyva->save();
+  if($ktra){
+    dsm('Thêm suất ăn thành công');
+  }
+  else{
+    drupal_set_message('Lỗi không thêm được','error');
+  }
+}
+
+function bang_diem_danh_suat_an($form, &$form_state){
+  $lophoc=null;
+  $nam=null;
+  $thang=null;
+  if(isset($_GET['lophoc']) && isset($_GET['nam']) && isset($_GET['thang']))
+  {
+    if($_GET['lophoc']&&$_GET['nam']&&$_GET['thang'])
+    {
+      $lophoc=$_GET['lophoc'];
+      $nam=$_GET['nam'];
+      $thang=$_GET['thang'];
+    }
+  }
+  else{
+    $thoigian_thuc=date('d-m-Y');
+    $thoigian_thuc=explode('-',$thoigian_thuc);
+    $thangcan=$thoigian_thuc[1];
+    $namcan=$thoigian_thuc[2];
+    $nam=0;
+    if(intval($thangcan)>=10)
+    {
+      $thang=intval($thangcan);
+    }
+    else
+    {
+      $thang='0'.intval($thangcan);
+    }
+    $danhsacnamcan=danhsachnamhoc();
+    foreach ($danhsacnamcan as $id => $tungnam)
+    {
+      $tungnam=explode('-',$tungnam);
+      $tennam1=$tungnam[0];
+      $tennam2=$tungnam[1];
+      if(intval($thangcan)>6)
+      {
+        if(trim($tennam1)==trim($namcan))
+        {
+          $nam=$id;
+        }
+      }
+      else{
+        if(trim($tennam2)==trim($namcan))
+        {
+          $nam=$id;
+        }
+      }
+    }
+  }
+  $form['chon_nam_hoc_diem_danh_suat_an'] = array(
+    '#type'=>'select',
+    '#title' => t('Năm học'),
+    '#options' => danhsachnamhoc(),
+    '#prefix'=>'<div class="row">
+            <div class="col-md-12">
+              <h4 class="text-center mt-20 pt-10">
+                Bảng điểm danh suất ăn
+              </h4>
+            </div>
+            <div class="col-md-3 col-3"></div>
+          </div>
+      <div class="row"><div class="col-md-3 col-6">',
+    '#suffix'=>'</div>',
+    '#value'=>$nam,
+    '#defaul_value'=> 0,
+    '#attributes'=> array(
+      'class'=> array(
+        'form-control','nam_hoc_hoc_phi','change_nam_diem_danh_suat_an'
+      )
+    )
+  );
+  $form['chon_thang_hoc'] = array(
+    '#type'=>'select',
+    '#title' => t('Tháng học'),
+    '#options' => danhsachthanghocsuatan(),
+    '#value'=>$thang,
+    '#prefix'=>'
+    <div class="col-md-3 col-6">',
+    '#suffix'=>'</div>',
+    '#defaul_value'=> 0,
+    '#attributes'=> array(
+      'class'=> array(
+        'form-control','nam_hoc_hoc_phi','change_thang_diem_danh_suat_an'
+      )
+    )
+  );
+  $form['chon_lop_diem_danh_suat_an'] = array(
+    '#type'=>'select',
+    '#title' => t('Lớp'),
+    '#options' => danhsachlophoc(),
+    '#prefix'=>'<div class="col-md-3 col-6">',
+    '#suffix'=>'
+</div><div class="col-md-12 col-6"><span class="thongbaobanghi"></span></div></div>
+<div class="row">
+<div class="col-md-12">
+<div class="table-diem-danh-suat-an">
+<table class="table table-bordered table-striped text-nowarp sticky-enabled">
+<tbody>
+<tr class="odd"><td colspan="6" class="empty message">Chọn đủ thông tin</td> </tr>
+</tbody>
+</table>
+<a href="#" class="luu_table_diem_danh_suat_an d-none btn btn-primary">Lưu</a>
+</div>
+</div>
+</div>
+<div class="tong_ket_diem_danh_suat_an d-none">
+<hr>
+<a href="#" class="btn btn-darkgreen nut_tong_diem_danh_suat_an_chinh">Tổng kết tháng và tính tiền đóng tháng sau</a>
+<table class="table_tong_ket_diem_danh_suat_an table-bordered table-striped">
+</table>
+</div>
+
+',
+    '#value'=>$lophoc,
+    '#attributes'=> array(
+      'class'=> array(
+        'form-control','lop_hoc_hoc_phi','change_lop_diem_danh_suat_an'
+      )
+    )
+  );
+  return $form;
+}
+function thao_tac_diem_danh_suat_an(){
+  if(isset($_POST['lophoc'])&& isset($_POST['nam'])&& isset($_POST['thang']))
+  {
+    if($_POST['lophoc'] !='' && $_POST['nam'] !='' && $_POST['thang'] !='')
+    {
+      $bienstring='';
+      $lop=$_POST['lophoc'];
+      $nam=$_POST['nam'];
+      $thang=$_POST['thang'];
+      $tennamhoc=taxonomy_term_load($nam)->name;
+      $tennamhoc=explode(' - ',$tennamhoc);
+      $nam2=$tennamhoc[1];
+      $kiemchung='';
+      $iddiemdanhsuatan=timidbangdiemdanhsuatan($nam,$lop,$thang);
+      if(timidbangdiemdanhsuatan($nam,$lop,$thang)==0)
+      {
+        $kiemchung='khong';
+        $songay=songay($nam,$thang);
+        if(timidlophocsinh($nam,$lop)!=0)
+        {
+          $idlophocsinh=timidlophocsinh($nam,$lop);
+          $danhsanhhocsinh=node_load($idlophocsinh)->field_danh_sach_hoc_sinh['und'];
+          $header='<td>Tên hs \ Ngày</td>';
+          $cacngay='';
+          for($i=0;$i<$songay; $i++)
+          {
+            if(getdate(strtotime(($i+1).'-'.$thang.'-'.$nam2))['wday']!=0)// bỏ chủ nhật
+            {
+              $header=$header.'<td>'.($i+1).'</td>';
+              if($cacngay!='')
+              {
+                $cacngay=$cacngay.'-'.($i+1);
+              }
+              else{
+                $cacngay=($i+1);
+              }
+            }
+          }
+          $thu=0;
+          foreach ($danhsanhhocsinh as $hsinh)
+          {
+            $td='';
+            if(isset(node_load($hsinh['target_id'])->title) && node_load($hsinh['target_id'])->title!='')
+            {
+              for($i=0;$i<$songay; $i++)
+              {
+                $theminput='';
+                if($thu==0)
+                {
+                  $theminput='<input class="d-none" type="text" name="cac_ngay" value="'.$cacngay.'"><input class="d-none" type="text" id="" name="luu_moi" value="co">';
+                  $thu=1;
+                }
+                if(getdate(strtotime(($i+1).'-'.$thang.'-'.$nam2))['wday']!=0)
+                {
+                  $td=$td.'<td>'.$theminput.'<input type="checkbox" id="" name="bua_an[]" value="'.$hsinh['target_id'].'-bua1-'.($i+1).'"><input type="checkbox" id="" name="bua_an[]" value="'.$hsinh['target_id'].'-bua2-'.($i+1).'"></td>';
+                }
+              }
+              $bienstring=$bienstring.'<tr><td>'.node_load($hsinh['target_id'])->title.'</td>'.$td.'
+            </tr>';
+            }
+          }
+          $bienstring='<thead><tr>'.$header.'</tr></thead><tbody>'.$bienstring.'</tbody>';
+        }
+      }
+      else{
+        $kiemchung='co';
+        $nodesuatan=node_load($iddiemdanhsuatan);
+        $chuoidiemdanhsuatan=$nodesuatan->field_diem_danh['und'][0]['value'];
+        $cacngaydiemdanh=explode('/',$chuoidiemdanhsuatan);
+        $allngay=$cacngaydiemdanh[0];
+        $diemdanh=$cacngaydiemdanh[1];
+        $tachngay=explode('-',$allngay);
+        $chuoihtmlngay='';
+        foreach ($tachngay as $item4)
+        {
+          $chuoihtmlngay=$chuoihtmlngay.'<td>'.$item4.'</td>';
+        }
+        $chuoihtmlngay='<thead><tr><td>Tên hs \ Ngày</td>'.$chuoihtmlngay.'</tr></thead>';
+        $dshs=node_load(timidlophocsinh($nam,$lop))->field_danh_sach_hoc_sinh['und'];
+        $chuoihtmltabletbody='';
+        $tachdiemdanhhs=explode('{{}}',$diemdanh);
+        $thu=0;
+        foreach ($dshs as $item5)
+        {
+          if(isset(node_load($item5['target_id'])->title) && node_load($item5['target_id'])->title!='')
+          {
+            $chuoihtmlhocsinh='<td>'.node_load($item5['target_id'])->title.'</td>';
+            foreach ($tachngay as $item6)// ngày : 1-2-3-4-5-6...31;
+            {
+              $buaan1input='';
+              $buaan2input='';
+              foreach ($tachdiemdanhhs as $item7)
+              {
+                $item7=explode('-',$item7);
+                $ngayinput=$item7[2];
+                $buaaninput=$item7[1];
+                $idhsinput=$item7[0];
+                if($idhsinput==$item5['target_id'] && $ngayinput==$item6)
+                {
+                  if($buaaninput=='bua1')
+                  {
+                    $buaan1input='checked="checked"';
+                  }
+                  else if($buaaninput=='bua2')
+                  {
+                    $buaan2input='checked="checked"';
+                  }
+                }
+              }
+              if($thu==0)
+              {
+                $chuoihtmlhocsinh=$chuoihtmlhocsinh.'<td><input type="text" name="cacngay" class="form-control form-group d-none" value="'.$allngay.'"><input class="d-none" type="text" name="luu_sua" value="'.$iddiemdanhsuatan.'"><input type="checkbox" '.$buaan1input.' id="" name="bua_an[]" value="'.$item5['target_id'].'-bua1-'.$item6.'"><input type="checkbox" '.$buaan2input.' id="" name="bua_an[]" value="'.$item5['target_id'].'-bua2-'.$item6.'"></td>';
+                $thu=1;
+              }
+              else{
+                $chuoihtmlhocsinh=$chuoihtmlhocsinh.'<td><input type="checkbox" '.$buaan1input.' id="" name="bua_an[]" value="'.$item5['target_id'].'-bua1-'.$item6.'"><input type="checkbox" '.$buaan2input.' id="" name="bua_an[]" value="'.$item5['target_id'].'-bua2-'.$item6.'"></td>';
+              }
+            }
+            $chuoihtmltabletbody=$chuoihtmltabletbody.'<tr>'.$chuoihtmlhocsinh.'</tr>';
+          }
+        }
+        $chuoihtmltabletbody='<tbody>'.$chuoihtmltabletbody.'</tbody>';
+        $bienstring=$chuoihtmlngay.$chuoihtmltabletbody;
+      }
+      echo drupal_json_encode(array(
+        'bienstring'=>$bienstring,
+        'kiemchung'=>$kiemchung
+      ));
+    }
+  }
+  if(isset($_POST['luu_moi']))
+  {
+    if($_POST['chon_lop_diem_danh_suat_an']!='' && $_POST['chon_nam_hoc_diem_danh_suat_an']!='' && $_POST['chon_thang_hoc']!='')
+    {
+      $lopdd=$_POST['chon_lop_diem_danh_suat_an'];
+      $namdd=$_POST['chon_nam_hoc_diem_danh_suat_an'];
+      $thangdd=$_POST['chon_thang_hoc'];
+      $newnode = array(
+        'type' => 'diem_danh_suat_an',
+        'language' => 'vi',
+        'status' => 1,
+        'comment' => 0,
+        'uid'=>1,
+        'promote' => 0,
+        'title' => 'Điểm danh suất ăn tháng '.$thangdd.' năm '.taxonomy_term_load($namdd)->name.' lớp '.taxonomy_term_load($lopdd)->name
+      );
+      $taonode=entity_create('node',$newnode);
+      $truyvan=entity_metadata_wrapper('node',$taonode);
+      $truyvan->field_lop_hoc_diem_danh_suat_an->set($lopdd);
+      $truyvan->field_nam_hoc->set($namdd);
+      $truyvan->field_thang_an->set($thangdd);
+      $danhsachngay=$_POST['bua_an'];
+      $chuoingay='';
+      foreach ($danhsachngay as $item3)
+      {
+        if($chuoingay!='')
+        {
+          $chuoingay=$chuoingay.'{{}}'.$item3;
+        }
+        else{
+          $chuoingay=$item3;
+        }
+      }
+      $chuoingay=$_POST['cac_ngay'].'/'.$chuoingay;
+      $truyvan->field_diem_danh->set($chuoingay);
+      $ktra=$truyvan->save();
+      if($ktra){
+        dsm('Thêm suất ăn thành công');
+      }
+      else{
+        drupal_set_message('Lỗi không thêm được','error');
+      }
+    }
+  }
+  if(isset($_POST['luu_sua']))
+  {
+    if($_POST['chon_lop_diem_danh_suat_an']!='' && $_POST['chon_nam_hoc_diem_danh_suat_an']!='' && $_POST['chon_thang_hoc']!='')
+    {
+      $lop=$_POST['chon_lop_diem_danh_suat_an'];
+      $nam=$_POST['chon_nam_hoc_diem_danh_suat_an'];
+      $thang=$_POST['chon_thang_hoc'];
+      $nodecu=node_load($_POST['luu_sua']);
+      $truyvan=entity_metadata_wrapper('node',$nodecu);
+      $truyvan->field_lop_hoc_diem_danh_suat_an->set($lop);
+      $truyvan->field_nam_hoc->set($nam);
+      $truyvan->field_thang_an->set($thang);
+      $danhsachngay=$_POST['bua_an'];
+      $chuoingay='';
+      foreach ($danhsachngay as $item3)
+      {
+        if($chuoingay!='')
+        {
+          $chuoingay=$chuoingay.'{{}}'.$item3;
+        }
+        else{
+          $chuoingay=$item3;
+        }
+      }
+      $chuoingay=$_POST['cacngay'].'/'.$chuoingay;
+      $truyvan->field_diem_danh->set($chuoingay);
+      $ktra=$truyvan->save();
+      if($ktra){
+        dsm('Thêm suất ăn thành công');
+      }
+      else{
+        drupal_set_message('Lỗi không thêm được','error');
+      }
+    }
+  }
+}
+
+function timidlophocsinh($nam,$lop){
+  $danhsachlop=node_type_arr('lop_hoc');
+  foreach ($danhsachlop as $item)
+  {
+    if($item->field_nam_hoc['und'][0]['tid']==$nam && $item->field_lop['und'][0]['tid']==$lop)
+    {
+      return $item->nid;
+    }
+  }
+  return 0;
+}
+function songay($nam,$thang){
+  $tennamhoc=taxonomy_term_load($nam)->name;
+  $tennamhoc=explode(' - ',$tennamhoc);
+  $nam1=$tennamhoc[0];
+  $nam2=$tennamhoc[1];
+  if($thang=='01' || $thang=='03' || $thang=='05' || $thang=='07' || $thang=='08' || $thang=='10' || $thang=='12' )
+  {
+    return 31;
+  }else if($thang=='04' || $thang=='06' || $thang=='09' || $thang=='11' )
+  {
+    return 30;
+  } else if ($thang=='02'){
+    if(intval($nam2)%4==0)
+    {
+      return 29;
+    }
+    else{
+      return 28;
+    }
+  }
+  return 0;
+}
+function timidbangdiemdanhsuatan($nam,$lop,$thang){
+  $danhsachlop=node_type_arr('diem_danh_suat_an');
+  foreach ($danhsachlop as $item)
+  {
+    if($item->field_nam_hoc['und'][0]['tid']==$nam && $item->field_lop_hoc_diem_danh_suat_an['und'][0]['tid']==$lop && $item->field_thang_an['und'][0]['value']==$thang)
+    {
+      return $item->nid;
+    }
+  }
+  return 0;
+}
+function danhsachthanghocsuatan(){
+  $danhsachthangdong['']='-- chọn tháng --';
+  for($ichaythu=0;$ichaythu<12;$ichaythu++)
+  {
+    if($ichaythu<9)
+    {
+      $danhsachthangdong['0'.($ichaythu+1)]='0'.($ichaythu+1);
+    }
+    else
+    {
+      $danhsachthangdong[$ichaythu+1]=$ichaythu+1;
+    }
+  }
+  return $danhsachthangdong;
+}
+
+function quan_ly_suat_an_diem_danh_xuat_an_permission() {
+  return array(
+    'form_danh_sach_suat_an'=>array(
+      'title'=>'Phân quyền xem danh sách suất ăn',
+    ),
+    'thao_tac_suat_an'=>array(
+      'title'=>'Phân quyền sửa suất ăn',
+    ),
+    'bang_diem_danh_suat_an'=>array(
+      'title'=>'Phân quyền xem form điểm danh suất ăn',
+    ),
+    'thao_tac_diem_danh_suat_an'=>array(
+      'title'=>'Phân quyền sửa form điểm danh suất ăn',
+    ),
+  );
+}

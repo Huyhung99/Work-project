@@ -1,0 +1,5 @@
+name = Quản lý lớp học
+description = quản lý lớp học
+core = 7.x
+files[]= quan_ly_lop_hoc_1.module
+php = 5.2

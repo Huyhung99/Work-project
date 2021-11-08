@@ -1,0 +1,37 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function duyet_bai_viet_menu()
+{
+    $items['quan-ly-duyet-bai-viet'] = array(
+        'title'=>'Quản lý duyệt bài viết',
+        'page callback'=>'drupal_get_form',
+        'page arguments' => array('quan_ly_duyet_bai_viet'),
+        'access callback'=>'user_access',//phân quyền
+        'access arguments'=>array('quan_ly_duyet_bai_viet'),//phân quyền
+        'type'=> MENU_CALLBACK
+    );
+    $items['duyet-bai-viet'] = array(
+        'title' => '',
+        'delivery callback' => 'duyet_bai_viet',
+        'access callback' => 'TRUE',
+        'access arguments' => array('duyet_bai_viet'),
+        'type' => MENU_CALLBACK
+    );
+    return $items;
+}
+function quan_ly_duyet_bai_viet($form,&$form_state){
+
+    return $form;
+}
+function duyet_bai_viet(){
+
+}
+function duyet_bai_viet_permission()
+{
+    return array('quan_ly_duyet_bai_viet' =>array(
+        'title'=>'Quản lý duyệt các bài viết'));
+
+}
+?>

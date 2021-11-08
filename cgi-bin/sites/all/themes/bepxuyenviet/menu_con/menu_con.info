@@ -1,0 +1,6 @@
+name = Quản lý menu con
+description = Quản lý menu con
+core = 7.x
+files[]=menu_con.module
+package = "minhhien solutions"
+php = 5.2

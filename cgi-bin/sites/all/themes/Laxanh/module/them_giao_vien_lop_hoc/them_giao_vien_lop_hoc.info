@@ -1,0 +1,5 @@
+name = Thêm giáo viên vào lớp học
+description = Thêm giáo viên vào lớp học
+core = 7.x
+files[]= them_giao_vien_lop_hoc.module
+php = 5.2

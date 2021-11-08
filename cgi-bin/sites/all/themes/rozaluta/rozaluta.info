@@ -1,0 +1,59 @@
+name = Rozaluta 2020
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/normalize.css
+stylesheets[all][] =  assets/css/main.css
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+
+stylesheets[all][] =  assets/css/animate.min.css
+stylesheets[all][] =  assets/css/font-awesome.min.css
+stylesheets[all][] =  assets/vendor/OwlCarousel/owl.carousel.min.css
+stylesheets[all][] =  assets/vendor/OwlCarousel/owl.theme.default.min.css
+stylesheets[all][] =  assets/css/meanmenu.min.css
+stylesheets[all][] =  assets/vendor/slider/css/nivo-slider.css
+stylesheets[all][] =  assets/vendor/slider/css/preview.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/beveled_connect_w208_h30_wc_v1.css
+stylesheets[all][] =  assets/css/custom.css
+
+scripts[] = assets/js/modernizr-2.8.3.min.js
+scripts[] = assets/js/jquery-2.2.4.min.js
+scripts[] = assets/js/plugins.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/vendor/slider/js/jquery.nivo.slider.js
+scripts[] = assets/vendor/slider/home.js
+scripts[] = assets/vendor/OwlCarousel/owl.carousel.min.js
+scripts[] = assets/js/jquery.meanmenu.min.js
+scripts[] = assets/js/jquery.scrollUp.min.js
+scripts[] = assets/js/jquery.counterup.min.js
+scripts[] = assets/js/waypoints.min.js
+scripts[] = assets/js/validator.min.js
+scripts[] = assets/js/main.js
+
+regions[content] = Nội dung chính
+regions[top_header] = Top Header
+regions[header_search] = Header Search
+regions[mini_cart_wrap] = Mini Cart
+regions[slider] = Slider
+regions[banner_right] = Banner_right
+regions[product_left] = Product_left
+regions[product_right] = Product_right
+regions[banner_left] = Banner_left
+regions[main_product_1] = Main Product 1
+regions[mang_xa_hoi] = Mạng xã hội
+regions[main_product_2] = Main Product 2
+regions[main_content_front] = Nội dung chính trang chủ
+regions[testimonials] = Đánh giá của khách hàng
+regions[video-testimonials] = Video Đánh giá
+regions[sidebar_right] = Sidebar Right
+regions[view_horizontal] = View Horizontal
+regions[webform] = Liên hệ
+regions[col_1_footer] = Col 1 Footer
+regions[col_2_footer] = Col 2 Footer
+regions[col_3_footer] = Col 3 Footer
+regions[col_4_footer] = Col 4 Footer
+regions[copyright_footer] = Copyright Footer

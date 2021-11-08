@@ -1,0 +1,6 @@
+name = Quản lý thương hiệu
+description = Quản lý thương hiệu
+core = 7.x
+files[]= brand.module
+package = "Quản lý thương hiệu"
+php = 5.2

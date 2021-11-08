@@ -1,0 +1,6 @@
+name = Liên kết website
+description = Lưu thông tin cây liên kết website
+core = 7.x
+files[] = lien_ket_website.module
+package = "MH-Solutions"
+php = 7.1

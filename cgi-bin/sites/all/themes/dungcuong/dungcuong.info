@@ -1,0 +1,63 @@
+name = Dũng Cường - Vận tải Bắc Trung Nam
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+
+stylesheets[all][] =  assets/css/plugins.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/templete.css
+stylesheets[all][] =  assets/css/skin/skin-7.css
+stylesheets[all][] =  assets/plugins/revolution/revolution/css/settings.css
+stylesheets[all][] =  assets/plugins/revolution/revolution/css/navigation.css
+
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/plugins/bootstrap/js/popper.min.js
+scripts[] = assets/plugins/bootstrap/js/bootstrap.min.js
+scripts[] = assets/plugins/bootstrap-select/bootstrap-select.min.js
+scripts[] = assets/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js
+scripts[] = assets/plugins/magnific-popup/magnific-popup.js
+scripts[] = assets/plugins/counter/waypoints-min.js
+scripts[] = assets/plugins/counter/counterup.min.js
+scripts[] = assets/plugins/imagesloaded/imagesloaded.js
+scripts[] = assets/plugins/masonry/masonry-3.1.4.js
+scripts[] = assets/plugins/masonry/masonry.filter.js
+scripts[] = assets/plugins/owl-carousel/owl.carousel.js
+scripts[] = assets/js/custom.js
+scripts[] = assets/js/dz.carousel.js
+scripts[] = assets/js/dz.ajax.js
+
+
+<!-- REVOLUTION JS FILES -->
+scripts[] = assets/plugins/revolution/revolution/js/jquery.themepunch.tools.min.js
+scripts[] = assets/plugins/revolution/revolution/js/jquery.themepunch.revolution.min.js
+
+
+<!-- Slider revolution 5.0 Extensions  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.actions.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.carousel.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.kenburn.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.layeranimation.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.migration.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.navigation.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.parallax.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.slideanims.min.js
+scripts[] = assets/plugins/revolution/revolution/js/extensions/revolution.extension.video.min.js
+scripts[] = assets/js/rev.slider.js
+
+regions[page_search_front] = Page Search Front
+regions[contact_header] = Contact Header
+regions[content] = Content
+regions[main_frontend] = Main Frontend
+regions[about_us] = About us
+regions[slider_front] = Slider Front
+regions[sidebar_right] = Sidebar right
+regions[contact_info] = Contact info
+regions[contact_form] = Contact form
+regions[contact_location] = Contact location
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer

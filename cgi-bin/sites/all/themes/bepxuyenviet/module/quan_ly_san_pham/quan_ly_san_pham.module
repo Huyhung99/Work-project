@@ -1,0 +1,100 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+/**
+ * Implements hook_node_delete().
+ */
+/**
+ * Implements hook_menu().
+ */
+function quan_ly_san_pham_menu() {
+  $items['quan-ly-san-pham-new'] = array(
+    'title'=>'Quản lý menu',
+    'page callback'=>'drupal_get_form',
+    'page arguments' => array('quan_ly_san_pham'),
+    'access callback'=>'user_access',//phân quyền
+    'access arguments'=>array('quan_ly_san_pham'),//phân quyền
+    'type'=> MENU_CALLBACK
+  );
+  $items['sua-vi-tri-san-pham'] = array(
+    'title' => 'Sửa thông tin',
+    'delivery callback' => 'sua_vi_tri_san_pham',
+    'access callback' => 'TRUE',
+    'access arguments' => array('sua_vi_tri_san_pham'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+function sua_vi_tri_san_pham(){
+    $data_products = explode('{{}}',$_POST['data']);
+    $i =1;
+    foreach($data_products as $id => $item){
+        if ($id >=2){
+            $data_olds[$i] = explode('({})',$item);
+        }
+        $i++;
+    }
+    $data_news = node_load_multiple(array(), array('type' => 'product_display'));
+    $data_count_new = count(node_load_multiple(array(), array('type' => 'product_display')));
+
+//    foreach($data_new as $id => $item){
+//        $query = entity_metadata_wrapper('node',$item);
+//
+//    }
+    $data_products_new = array();
+    $data_storage = array();
+    $i = 0;
+    foreach ($data_news as $id_data_new => $data_new){
+        $query = entity_metadata_wrapper('node',$data_new);
+        foreach ($data_olds as $id => $data_old){
+            if ($data_old[2] == $data_new->field_code_product['und'][0]['value']){
+//                $query->field_vi_tri->set($data_old[0]);
+//                $data_1 = $query->save();
+//                if($data_1)
+//                {
+//                    dsm('Lỗi không thêm hết được');
+//                }
+//                else{
+//                    dsm('Thêm xong hết');
+//                }
+            }
+            $i++;
+        }
+    }
+    $dem = 0;
+    foreach ($data_news as $thutu => $data_new)
+    {
+        if ($data_new->field_vi_tri['und'][0]['value'] == 100000){
+            $str=$str.'<tr><td>'.$dem.'</td><td>'.$data_new->title.'</td></tr>';
+        }
+        $dem++;
+    }
+    $str='<h4 class="height-full align-items-center d-flex mt-30 mb-0"><strong>Xuất excel table</strong></h4>
+<div class="du_lieu_sau_khi_them">
+    <table class="table table-bordered table-striped text-nowrap table_bep">
+        <tbody>
+        '.$str.'
+        </tbody>
+    </table>
+</div>
+<a href="#" class="btn btn-success xuat_ex">Xuất excel</a>';
+    echo drupal_json_encode(array(
+       'code_name_olds' => $data_count_new,
+       'data_storage' => $data_storage,
+       'data_olds' => $data_olds,
+        'data_news' => $data_news,
+        'str' => $str
+    ));
+}
+function quan_ly_san_pham($form, &$form_state){
+ return $form;
+}
+function quan_ly_san_pham_permission() {
+  return array(
+    'quan_ly_san_pham'=>array(
+      'title'=>'Quản lý sản phẩm',
+    ),
+  );
+}
+

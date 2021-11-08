@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * Implements hook_token_info().
+ */
+function add_to_cart_links_token_info()
+{
+    $type = array(
+        'name' => t('Add to Cart form'),
+        'description' => t('Tokens to create an add to cart form.'),
+    );
+
+    return array(
+        'types' => array('addtocartform' => $type),
+    );
+
+    return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function add_to_cart_links_tokens($type, $tokens, array $data = array(), array $options = array())
+{
+    $replacements = array();
+    if ($type == 'addtocartform') {
+        foreach ($tokens as $name => $original) {
+            list($product_id, $quantity) = explode(':', $name);
+            $product = commerce_product_load($product_id);
+            $line_item = commerce_product_line_item_new($product, $quantity);
+            $line_item->data['context']['product_ids'] = array($product_id);
+            $form = drupal_get_form('commerce_cart_add_to_cart_form', $line_item);
+            $replacements[$original] = drupal_render($form);
+        }
+    }
+    return $replacements;
+}
+
+/**
+ * Implements hook_menu().
+ */
+
+function add_to_cart_links_menu()
+{
+    $items = array();
+    $items['commerce/add-to-cart/%'] = array(
+        'title' => 'Add item to cart',
+        'type' => MENU_CALLBACK,
+        'access arguments' => array('access checkout'),
+        'page callback' => 'add_to_cart_links_add_to_cart',
+        'page arguments' => array(2),
+    );
+    return $items;
+}
+
+function add_to_cart_links_get_referencing_node_id($product_id) {
+    // Itterate thhrough fields which refer to products.
+    foreach (commerce_info_fields('commerce_product_reference') as $field['field_name']) {
+        // Build query.
+        $query = new EntityFieldQuery;
+        $query->entityCondition('entity_type', 'node', '=')
+            ->fieldCondition($field['field_name'], 'product_id', $product_id, '=')
+            ->range(0, 1);
+
+        if ($result = $query->execute()) {
+            // Return node id.
+            return array_keys($result['node']);
+        }
+    }
+
+    return false;
+}
+
+function add_to_cart_links_add_to_cart($product_id, $quantity = 1) {
+    // Add the product to the current users cart.
+    commerce_cart_product_add_by_id($product_id, $quantity);
+    $nodeIds = add_to_cart_links_get_referencing_node_id($product_id);
+    $nodes = node_load_multiple($nodeIds);
+    dpm($nodes);
+
+    // Go to the cart page.
+    drupal_goto('tu-bep-ban-san');
+}
+?>

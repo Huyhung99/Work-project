@@ -1,0 +1,52 @@
+name = GIAO DIỆN ĐẠI LÝ THUẾ MIỀN BẮC
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.css
+stylesheets[all][] =  assets/plugins/revolution/css/settings.css
+stylesheets[all][] =  assets/plugins/revolution/css/layers.css
+stylesheets[all][] =  assets/plugins/revolution/css/navigation.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/jquery.js
+
+scripts[] = assets/plugins/revolution/js/jquery.themepunch.revolution.min.js
+scripts[] = assets/plugins/revolution/js/jquery.themepunch.tools.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.actions.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.carousel.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.migration.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.navigation.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.parallax.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js
+scripts[] = assets/plugins/revolution/js/extensions/revolution.extension.video.min.js
+scripts[] = assets/js/main-slider-script.js
+
+scripts[] = assets/js/tether.min.js
+scripts[] = assets/js/bootstrap.min.js
+
+scripts[] = assets/js/plugins.js
+scripts[] = assets/js/validate.js
+scripts[] = assets/js/jquery.fancybox.pack.js
+scripts[] = assets/js/jquery.fancybox-media.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/script.js
+
+
+regions[header_info] = Header Info
+regions[search_block] = Search Block
+regions[main_frontend] = Main Frontend
+regions[content] = Content
+regions[contact] = Contact
+regions[sidebar_first] = Sidebar First
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer
+regions[footer_bottom] = Bottom Footer
+

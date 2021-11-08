@@ -1,0 +1,37 @@
+name = LANDINGPAGE LUUHAIAU - emeet
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/libs/bootstrap/css/bootstrap.min.css
+stylesheets[all][] =  assets/libs/fontawesome/css/font-awesome.min.css
+stylesheets[all][] =  assets/libs/maginificpopup/magnific-popup.css
+stylesheets[all][] =  assets/libs/timer/TimeCircles.css
+stylesheets[all][] =  assets/libs/owlcarousel/owl.carousel.min.css
+stylesheets[all][] =  assets/libs/owlcarousel/owl.theme.default.min.css
+stylesheets[all][] =  assets/css/style-default.min.css
+stylesheets[all][] =  assets/css/style.css
+
+scripts[] = assets/js/vendor/modernizr-2.8.3.min.js
+scripts[] = assets/js/vendor/jquery-1.12.4.min.js
+scripts[] = assets/libs/bootstrap/js/bootstrap.min.js
+scripts[] = assets/libs/jquery.smooth-scroll.js
+scripts[] = assets/libs/jquery.validate.js
+scripts[] = assets/libs/owlcarousel/owl.carousel.min.js
+scripts[] = assets/libs/jquery.smooth-scroll.min.js
+scripts[] = assets/libs/jquery.easing.min.js
+scripts[] = assets/libs/typed/typed.min.js
+scripts[] = assets/libs/header-parallax.js
+scripts[] = assets/js/custom.script.js
+
+regions[top_main_content_frontend] = Top main content Frontend
+regions[main_content_frontend] = Main content Frontend
+regions[right_logo] = Right Logo
+regions[content] = Nội dung chính
+regions[sidebar_second] = Sidebar Second
+regions[col1_footer] = col1_footer
+regions[col2_footer] = col2_footer
+regions[col3_footer] = col3_footer
+regions[col4_footer] = col4_footer
+regions[searchbox] = Search Box
+regions[footer] = Bottom Footer

@@ -1,0 +1,6 @@
+name = Cấu hình email
+description = Cấu hình email
+core = 7.x
+files[]= config_email.module
+package = "Config email"
+php = 5.2

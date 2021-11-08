@@ -1,0 +1,28 @@
+/*===================================== 
+YOU CAN WRIGHT CUSTOME CSS 
+======================================*/
+ul.primary li{
+    display: block;
+
+}
+ul.primary{
+    white-space: unset;
+    line-height: 20px;
+}
+.recent-posts-entry-date .mt-post-info-1{
+    margin-left: 90px;
+}
+.mt-post-info-1 a{
+    color: #97A7C9 ;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.mt-post-info-1 a:hover{
+    color: #ff5e14 ;
+}
+.region-col-1-footer ul li i {
+    color: #fff;
+}
+.region-col-1-footer ul li a {
+    color: #fff;
+}

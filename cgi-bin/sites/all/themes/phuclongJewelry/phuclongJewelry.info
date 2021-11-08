@@ -1,0 +1,61 @@
+Name = Phúc Long Jewelry
+core = 7.x
+package = Core
+version = VERSION
+
+;stylesheets[all][] =  assets/stylesheets/font.css
+stylesheets[all][] =  assets/stylesheets/font-awesome.min.css
+stylesheets[all][] =  assets/stylesheets/jquery.camera.css
+stylesheets[all][] =  assets/stylesheets/jquery.fancybox-buttons.css
+stylesheets[all][] =  assets/stylesheets/cs.animate.css
+stylesheets[all][] =  assets/stylesheets/application.css
+stylesheets[all][] =  assets/stylesheets/swatch.css
+stylesheets[all][] =  assets/stylesheets/jquery.owl.carousel.css
+stylesheets[all][] =  assets/stylesheets/jquery.bxslider.css
+stylesheets[all][] =  assets/stylesheets/bootstrap.min.3x.css
+stylesheets[all][] =  assets/stylesheets/cs.bootstrap.3x.css
+stylesheets[all][] =  assets/stylesheets/cs.global.css
+stylesheets[all][] =  assets/stylesheets/cs.style.css
+stylesheets[all][] =  assets/stylesheets/cs.media.3x.css
+stylesheets[all][] =  assets/stylesheets/custom.css
+stylesheets[all][] =  assets/stylesheets/style.css
+
+scripts[] =  assets/javascripts/jquery-1.9.1.min.js
+scripts[] =  assets/javascripts/jquery.imagesloaded.min.js
+scripts[] =  assets/javascripts/bootstrap.min.3x.js
+scripts[] =  assets/javascripts/jquery.easing.1.3.js
+scripts[] =  assets/javascripts/jquery.camera.min.js
+scripts[] =  assets/javascripts/cookies.js
+scripts[] =  assets/javascripts/modernizr.js
+scripts[] =  assets/javascripts/application.js
+scripts[] =  assets/javascripts/jquery.owl.carousel.min.js
+scripts[] =  assets/javascripts/jquery.bxslider.js
+scripts[] =  assets/javascripts/skrollr.min.js
+scripts[] =  assets/javascripts/jquery.fancybox-buttons.js
+scripts[] =  assets/javascripts/jquery.zoom.js
+scripts[] =  assets/javascripts/cs.script.js
+
+
+
+
+regions[slider_front] = Slider front
+regions[cart] = Giỏ hàng
+regions[hotline_header] = Hotline
+regions[contact_social_media] = Liên hệ header
+regions[search_product_front] = Search product front
+regions[search_product_mobile] = Search product mobile
+regions[main_content_front] = Trang chủ
+regions[banner_front] = Banner front
+regions[after_content_front] = After Content Front
+regions[news_front] = News front
+regions[image_blog] = Image blog
+regions[after_news_content] = After news content
+regions[content] = Nội dung chính
+regions[banner_subpage] = Banner Subpage
+regions[sidebar_right] = Sidebar Right
+
+regions[footer_contact_info] = Footer Contact Info
+regions[footer_product_categories] = Footer product categories
+regions[footer_trademark] = Footer Trademark
+regions[footer_categories] = Footer Categories
+regions[footer_bottom] = Footer Bottom

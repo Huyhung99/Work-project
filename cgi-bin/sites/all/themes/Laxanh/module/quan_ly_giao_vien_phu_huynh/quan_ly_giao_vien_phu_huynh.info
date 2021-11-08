@@ -1,0 +1,6 @@
+name = Quản lý giáo viên, phụ huynh
+description = Quản lý giáo viên, phụ huynh
+core = 7.x
+files[]=Quan_ly_giao_vien_phu_huynh.module
+package = "K58"
+php = 5.2

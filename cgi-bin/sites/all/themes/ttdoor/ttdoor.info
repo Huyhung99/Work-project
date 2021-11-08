@@ -1,0 +1,43 @@
+name = TTdoor
+core = 7.x
+
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/fontawesome.min.css
+stylesheets[all][] = assets/css/animate.css
+stylesheets[all][] = assets/css/owl.carousel.min.css
+stylesheets[all][] = assets/css/owl.theme.default.min.css
+stylesheets[all][] = assets/css/lightbox.min.css
+stylesheets[all][] = assets/css/jquery-ui.min.css
+stylesheets[all][] = assets/css/nice-select.min.css
+stylesheets[all][] = assets/scss/main.css
+stylesheets[all][] = assets/css/responsive.css
+
+scripts[] =assets/js/jquery.min.js
+scripts[] =assets/js/popper.min.js
+scripts[] =assets/js/bootstrap.min.js
+scripts[] =assets/js/owl.carousel.min.js
+scripts[] =assets/js/jquery-ui.min.js
+scripts[] =assets/js/lightbox.min.js
+scripts[] =assets/js/typeahead.jquery.min.js
+scripts[] =assets/js/jquery.zoom.min.js
+scripts[] =assets/js/countdown.jquery.min.js
+scripts[] =assets/js/nice-select.min.js
+scripts[] =assets/js/wow.min.js
+scripts[] =assets/js/custom.js
+
+regions[search_block] = Search Block
+regions[User_Cart_dropdown] = User Cart Dropdown
+regions[User_Cart_icon] = User Cart Icon
+regions[about_us] = About us
+regions[main_content] = Nội dung chính trang chủ
+regions[slider_block] = Slider trang chủ
+regions[content] = Nội dung chính
+regions[contact] = liên hệ
+regions[contact_info] = Thông tin liên hệ
+regions[contact_map] = Thông tin địa chỉ
+regions[sidebar_right] = Sidebar right
+regions[col1_footer] = Footer liên hệ
+regions[col2_footer] = Footer danh mục
+regions[col3_footer] = Footer liên kết
+regions[sidebar-categories] = Sidebar Categories
+regions[alright_footer] = Footer alright

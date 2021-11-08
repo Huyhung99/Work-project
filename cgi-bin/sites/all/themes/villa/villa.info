@@ -1,0 +1,36 @@
+name = Voucher Villa FLC Hạ Long
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/font-awesome.min.css
+stylesheets[all][] =  assets/css/shortcode/shortcodes.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/vendor/modernizr-2.8.3.min.js
+scripts[] = assets/js/vendor/jquery-1.12.4.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/ajax-mail.js
+scripts[] = assets/js/jquery.ajaxchimp.min.js
+scripts[] = assets/js/jquery.meanmenu.js
+scripts[] = assets/js/jquery.counterup.min.js
+scripts[] = assets/js/waypoints.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/js/jquery.magnific-popup.js
+scripts[] = assets/js/plugins.js
+scripts[] = assets/js/main.js
+
+regions[header_top] = Header Top
+regions[booking] = Booking
+regions[main_content_frontend] = Main content Frontend
+regions[content] = Nội dung chính
+regions[col1_footer] = col1_footer
+regions[col2_footer] = col2_footer
+regions[col3_footer] = col3_footer
+regions[col4_footer] = col4_footer
+regions[sidebar_first] = Sidebar First
+regions[footer] = Bottom Footer

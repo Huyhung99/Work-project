@@ -1,0 +1,52 @@
+name = HPLands - Đầu tư Bất động sản, dự án, môi giới nhà đất
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/vendor.css
+stylesheets[all][] =  assets/css/jquery.multiselect.css
+stylesheets[all][] =  assets/js/select2/dist/css/select2.min.css
+stylesheets[all][] =  assets/js/select2-bootstrap-theme-master/dist/select2-bootstrap.min.css
+stylesheets[all][] =  assets/jquery-confirm-master/dist/jquery-confirm.min.css
+stylesheets[all][] =  assets/icomoon/style.css
+stylesheets[all][] =  assets/fontawesome-free-5.15.4-web/css/all.min.css
+stylesheets[all][] =  assets/leaflet/1.7.1/leaflet.css
+stylesheets[all][] =  assets/leaflet/MarkerCluster.css
+stylesheets[all][] =  assets/leaflet/MarkerCluster.Default.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+stylesheets[all][] =  assets/css/custom_responsive.css
+
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/vendor.js
+scripts[] = assets/js/jquery.multiselect.js
+scripts[] = assets/js/lozad.min.js
+scripts[] = assets/js/jquery.blockUI.js
+scripts[] = assets/jquery-confirm-master/dist/jquery-confirm.min.js
+scripts[] = assets/js/select2/dist/js/select2.full.min.js
+scripts[] = assets/js/leaflet.js
+scripts[] = assets/leaflet/leaflet.markercluster.js
+scripts[] = assets/js/main.js
+scripts[] = assets/fontawesome-free-5.15.4-web/js/all.min.js
+scripts[] = assets/js/custom.js
+scripts[] = assets/js/maphplands.js
+
+regions[content] = Content
+regions[slider_front] = Slider front
+regions[main_content_front] = Main Content Front
+regions[three_project_front] = Three project front
+regions[projects_bottom_front] = Project bottom front
+regions[contact_front] = Contact front
+regions[product_front] = Product front
+regions[search_product_front] = Search product front
+regions[bottom_main_content_front] = Bottom main content front
+regions[sidebar_right] = Side Right
+regions[form_lien_he] = Form Liên Hệ
+regions[footer_col_1] = Footer col 1
+regions[footer_col_2] = Footer col 2
+regions[footer_col_3] = Footer col 3
+regions[footer_col_4] = Footer col 4
+regions[bottom_footer] = Bottom Footer
+

@@ -1,0 +1,43 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function quan_ly_lop_hoc_1_menu()
+{
+    $items['them-lop-hoc-new-1'] = array(
+        'title'=>'Thêm lớp học',
+        'page callback'=>'drupal_get_form',
+        'page arguments' => array('form_them_lop_hoc_new_1'),
+        'access callback'=>'user_access',//phân quyền
+        'access arguments'=>array('form_them_lop_hoc_new_1'),//phân quyền
+        'type'=> MENU_CALLBACK
+    );
+    return $items;
+}
+
+function form_them_lop_hoc_new_1($form, &$form_state){
+    // Provide a text field.
+    $form['name'] = array(
+        '#title' => t('Your full name'),
+        '#type' => 'textfield',
+        '#required' => TRUE,
+    );
+
+    // Provide a submit button.
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Update search',
+    );
+
+    return $form;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function quan_ly_lop_hoc_1_permission()
+{
+    return array('form_them_lop_hoc_new' =>array(
+        'title'=>'Phân quyền thêm lớp học'));
+
+}

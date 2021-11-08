@@ -1,0 +1,26 @@
+/* (min-width:361px) (max-width:479px) */
+@media only screen and (max-width:479px){
+    .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+        width: 300px;
+        overflow: auto;
+    }
+}
+@media only screen and (max-width:400px){
+    .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+        width: 300px;
+        overflow: auto;
+    }
+}
+/* (min-width:321px) (max-width:360px) */
+@media only screen and (max-width:360px){
+    .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+        width: 300px;
+        overflow: auto;
+    }
+}
+@media only screen and (max-width:320px){
+    .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+        width: 300px;
+        overflow: auto;
+    }
+}

@@ -1,0 +1,43 @@
+Name = Giao diện công ty TNHH Tư vấn thiết kế và Kiến tạo không gian sống
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+
+
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/bootstrap.menu.css
+stylesheets[all][] = assets/css/animate.min.css
+stylesheets[all][] = assets/css/themify-icons.css
+stylesheets[all][] = assets/css/YouTubePopUp.css
+stylesheets[all][] = assets/css/owl.carousel.min.css
+stylesheets[all][] = assets/css/owl.theme.default.min.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/responsive.css
+
+
+scripts[] = assets/js/jquery-3.0.0.min.js
+scripts[] = assets/js/jquery-migrate-3.0.0.min.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/scrollIt.min.js
+scripts[] = assets/js/jquery.waypoints.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/jquery.stellar.min.js
+scripts[] = assets/js/YouTubePopUp.jquery.js
+scripts[] = assets/js/validator.js
+scripts[] = assets/js/autotype.js
+scripts[] = assets/js/bootstrap.menu.js
+scripts[] = assets/js/scripts.js
+
+regions[content] = Content
+regions[about_us] = About Us
+regions[slider_front] = Slider Front
+regions[main_content] = Main Content
+regions[copy_alright] = Copy Alright
+regions[form_lien_he] = Form liên hệ
+regions[sidebar_first] = Sidebar Right
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[form_contact] = Form Contact
+regions[copyright] = Copyright
+

@@ -1,0 +1,52 @@
+name = Trung tâm Ngoại ngữ Wecan Center - edupoints
+core = 7.x
+php = 5.3.0
+
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/jquery-ui.min.css
+stylesheets[all][] = assets/css/animate.css
+stylesheets[all][] = assets/css/css-plugin-collections.css
+stylesheets[all][] = assets/css/menuzord-megamenu.css
+stylesheets[all][] = assets/css/menuzord-skins/menuzord-boxed.css
+stylesheets[all][] = assets/css/style-main.css
+stylesheets[all][] = assets/css/preloader.css
+stylesheets[all][] = assets/css/custom-bootstrap-margin-padding.css
+stylesheets[all][] = assets/css/responsive.css
+stylesheets[all][] = assets/css/colors/theme-skin-color-set1.css
+stylesheets[all][] = assets/js/revolution-slider/css/settings.css
+stylesheets[all][] = assets/js/revolution-slider/css/layers.css
+stylesheets[all][] = assets/js/revolution-slider/css/navigation.css
+stylesheets[all][] = assets/css/style.css
+
+
+
+scripts[] = assets/js/jquery-2.2.4.min.js
+scripts[] = assets/js/jquery-ui.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery-plugin-collection.js
+scripts[] = assets/js/revolution-slider/js/jquery.themepunch.tools.min.js
+scripts[] = assets/js/revolution-slider/js/jquery.themepunch.revolution.min.js
+scripts[] = assets/js/custom.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.actions.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.migration.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js
+scripts[] = assets/js/revolution-slider/js/extensions/revolution.extension.video.min.js
+
+regions[header_top] = Header Top
+regions[side-panel-widget] = Side Panel Widget
+regions[main_frontend] = Main Frontend
+regions[left_about] = Left About
+regions[new_event] = New Event
+regions[bottom_main_frontend] = Bottom Main Frontend
+regions[tin_moi_nhat] = Tin mới nhất
+regions[form_dang_ky] = Form đăng ký thông tin
+regions[sidebar_second] = Sidebar right
+regions[content] = Content
+regions[footer_1] = Footer 1
+regions[footer_2] = Footer 2
+regions[footer_3] = Footer 3

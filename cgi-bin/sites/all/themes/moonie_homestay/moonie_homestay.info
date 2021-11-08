@@ -1,0 +1,52 @@
+name = Moonie Homestay
+description = Website Moonie Homestay
+core = 7.x
+
+
+stylesheets[all][] = assets/css/bootstrap.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/colors.css
+stylesheets[all][] = assets/css/jquery.countdown.css
+stylesheets[all][] = assets/css/animations.min.css
+stylesheets[all][] = assets/css/datepicker.css
+stylesheets[all][] = assets/css/animate.min.css
+
+stylesheets[all][] = assets/css/bootstrap-dropdownhover.min.css
+
+
+;stylesheets[all][] = assets/https://fonts.googleapis.com/css?family=Lora:400,400italic,700
+;stylesheets[all][] = assets/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700
+
+stylesheets[all][] = assets/css/jquery-ui.css
+
+stylesheets[all][] = assets/css/flexslider.css
+stylesheets[all][] = assets/css/font-awesome.min.css
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery-ui.min.js
+scripts[] = assets/js/range-slider.js
+scripts[] = assets/js/same-height.js
+scripts[] = assets/js/jquery.main.js
+scripts[] = assets/js/animations.min.js
+scripts[] = assets/js/jquery.plugin.js
+scripts[] = assets/js/jquery.countdown.js
+scripts[] = assets/js/timber.master.min.js
+scripts[] = assets/js/bootstrap-dropdownhover.min.js
+scripts[] = assets/js/bootstrap-datepicker.js
+scripts[] = assets/js/jquery.flexslider.js
+scripts[] = assets/js/myscript.js
+
+regions[content_top_header] = Content Top Header
+regions[slider_content_front] = Slider Content Front
+regions[content] = Content
+regions[main_content_front] = Main Content Front
+regions[footer_google_map] = Footer Google Map
+regions[footer_1] = Footer 1
+regions[sidebar_first] = Sidebar First
+regions[left_contact] = Left Contact
+regions[right_contact] = Right Contact
+regions[page_hinh_anh] = Page Hinh Anh
+regions[sub_footer] = Sub Footer
+regions[map_front] = Map Front
+

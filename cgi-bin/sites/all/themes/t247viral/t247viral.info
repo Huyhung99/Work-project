@@ -1,0 +1,35 @@
+name = 247 Viral
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/themify-icons.css
+stylesheets[all][] =  assets/css/flaticon.css
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/animate.css
+stylesheets[all][] =  assets/css/owl.carousel.css
+stylesheets[all][] =  assets/css/owl.theme.css
+stylesheets[all][] =  assets/css/slick.css
+stylesheets[all][] =  assets/css/slick-theme.css
+stylesheets[all][] =  assets/css/swiper.min.css
+stylesheets[all][] =  assets/css/owl.transitions.css
+stylesheets[all][] =  assets/css/odometer-theme-default.css
+stylesheets[all][] =  assets/css/jquery.fancybox.css
+stylesheets[all][] =  assets/css/style.css
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery-plugin-collection.js
+scripts[] = assets/js/script.js
+
+regions[top_header] = Top Header
+regions[searchBlock] = Search Block
+regions[main_content_front] = Main content Front
+regions[content] = Content
+regions[sidebar_first] = Side Bar First
+regions[page_hinh_anh] = Page Hinh Anh
+regions[col_1_footer] = Col 1 Footer
+regions[col_2_footer] = Col 2 Footer
+regions[col_3_footer] = Col 3 Footer
+regions[lower_footer] = Lower Footer

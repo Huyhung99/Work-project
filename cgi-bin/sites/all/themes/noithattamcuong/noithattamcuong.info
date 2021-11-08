@@ -1,0 +1,38 @@
+name = Nội thất Tam Cường
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+
+
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/font-awesome.min.css
+stylesheets[all][] = assets/css/line-awesome.min.css
+stylesheets[all][] = assets/css/animate.css
+stylesheets[all][] = assets/css/barfiller.css
+stylesheets[all][] = assets/css/magnific-popup.css
+stylesheets[all][] = assets/css/flaticon.css
+stylesheets[all][] = assets/css/owl.carousel.min.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/responsive.css
+
+scripts[] = assets/js/jquery-1.12.4.min.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/jquery.waypoints.min.js
+scripts[] = assets/js/jquery.counterup.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/isotope-3.0.6-min.js
+scripts[] = assets/js/magnific-popup.min.js
+scripts[] = assets/js/jquery.sticky.js
+scripts[] = assets/js/jquery.barfiller.js
+scripts[] = assets/js/main.js
+
+regions[content] = Content
+regions[slider_main] = Slider Main
+regions[about_us] = About Us
+regions[main_content_front] = Main content front
+regions[col_footer_1] = Col footer 1
+regions[col_footer_2] = Col footer 2
+regions[col_footer_3] = Col footer 3
+regions[bottom_alright] = Bottom alright
+regions[sidebar_right] = Sidebar alright
+regions[contact-info] = Thông tin liên hệ
+regions[form-contact] = Form liên hệ

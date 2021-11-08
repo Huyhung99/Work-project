@@ -1,0 +1,43 @@
+name = BẤT ĐỘNG SẢN AN PHÁT
+description = Giao diện được thiết kế bởi Công ty TNHH Công nghệ và Dịch vụ Minh Hiền
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/owl.carousel.css
+stylesheets[all][] =  assets/css/owl.transitions.css
+stylesheets[all][] =  assets/css/meanmenu.min.css
+stylesheets[all][] =  assets/css/font-awesome.min.css
+stylesheets[all][] =  assets/css/flaticon.css
+stylesheets[all][] =  assets/css/icon.css
+stylesheets[all][] =  assets/css/magnific.min.css
+stylesheets[all][] =  assets/css/venobox.css
+stylesheets[all][] =  assets/style.css
+stylesheets[all][] =  assets/css/responsive.css
+stylesheets[all][] =  assets/css/custom.css
+
+
+scripts[] = assets/js/vendor/modernizr-2.8.3.min.js
+scripts[] = assets/js/vendor/jquery-1.12.4.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/jquery.counterup.min.js
+scripts[] = assets/js/waypoints.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/jquery.stellar.min.js
+scripts[] = assets/js/magnific.min.js
+scripts[] = assets/js/venobox.min.js
+scripts[] = assets/js/jquery.meanmenu.js
+scripts[] = assets/js/form-validator.min.js
+scripts[] = assets/js/plugins.js
+scripts[] = assets/js/main.js
+
+regions[header_top] = Header Top
+regions[middle_link] = Middle Link
+regions[main_content_frontend] = Main content Frontend
+regions[content] = Nội dung chính
+regions[col1_footer] = col1_footer
+regions[col2_footer] = col2_footer
+regions[col3_footer] = col3_footer
+regions[botttom_footer] = Bottom Footer

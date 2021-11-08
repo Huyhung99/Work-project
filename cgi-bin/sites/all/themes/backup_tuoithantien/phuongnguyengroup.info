@@ -1,0 +1,100 @@
+name = Samnec
+description = THIẾT KẾ BỞI CÔNG TY TNHH CÔNG NGHỆ VÀ DỊCH VỤ MINH HIỀN
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/flaticon.css
+stylesheets[all][] =  assets/css/menu.css
+stylesheets[all][] =  assets/css/dropdown-effects/fade-down.css
+stylesheets[all][] =  assets/css/magnific-popup.css
+stylesheets[all][] =  assets/css/owl.carousel.min.css
+stylesheets[all][] =  assets/css/owl.theme.default.min.css
+stylesheets[all][] =  assets/css/animate.css
+stylesheets[all][] =  assets/css/jquery.datetimepicker.min.css
+stylesheets[all][] =  assets/css/font-style.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/modify.css
+stylesheets[all][] =  assets/css/custom.css
+stylesheets[all][] =  assets/css/responsive.css
+
+scripts[] = assets/js/jquery-3.3.1.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/modernizr.custom.js
+scripts[] = assets/js/jquery.easing.js
+scripts[] = assets/js/jquery.appear.js
+scripts[] = assets/js/jquery.stellar.min.js
+scripts[] = assets/js/menu.js
+scripts[] = assets/js/sticky.js
+scripts[] = assets/js/jquery.scrollto.js
+scripts[] = assets/js/materialize.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/wow.js
+scripts[] = assets/js/custom.js
+scripts[] = assets/js/changer.js
+scripts[] = assets/js/testpn.js
+
+regions[content] = Content
+regions[introduction] = Giới thiệu
+
+regions[headertopleft] = Header Top Left
+regions[headertopright] = Header Top Right
+regions[main-content-front] = Main Content Front
+
+regions[search_block] = Search Block
+
+regions[first_activity] = First Activity
+regions[first_news] = First News
+regions[first_libraries] = First Libraries
+regions[first_action] = First Action
+
+regions[fours_activity] = Fours Activity
+regions[fours_news] = Fours News
+regions[fours_libraries] = Fours Libraries
+regions[fours_action] = Fours Action
+
+regions[bottom_activity] = Bottom Activity
+regions[bottom_news] = Bottom News
+regions[bottom_libraries] = Bottom Libraries
+regions[bottom_action] = Bottom Action
+
+regions[top_why] = Top Why
+regions[left_why] = Left Why
+regions[right_why] = Right Why
+regions[bottom_main_front] = Bottom Main Front
+
+regions[my_stories] = My stories
+regions[left_my_stories] = Left My Stories
+regions[right_my_stories] = Right My Stories
+
+regions[left_form_dang_ky] = Left Form đăng ký
+regions[form_dang_ky] = Form đăng ký
+
+regions[col_1_footer] = Footer 1
+regions[col_2_footer] = Footer 2
+regions[bottom-footer] = Bottom Footer
+regions[sidebar_first] = Sidebar First
+
+regions[thong_tin_lien_he_tab] = Thông tin liên hệ - Tab
+regions[dang_ky_tham_quan_truong]= Đăng ký tham gia quan trường - Tab
+regions[dang_ky_tuyen_sinh] =  Đăng ký tuyển sinh
+regions[broucher] = Broucher Tab
+regions[cau_hoi_thuong_gap] = Câu hỏi thường gặp
+
+regions[tin_tuc_tab]= Tab tin tức
+regions[su_kien_tab] =  Tab sự kiện
+regions[thu_vien_tab] = Tab thư viện
+regions[hoat_dong_tab] = Tab Hoạt động
+regions[hoat_dong_tab_all] = Tab All Hoạt động
+regions[slider_tuyendung] = Slider Tuyển Dụng
+regions[hoi_dap] = Hỏi Đáp
+regions[noi_quy_nha_truong] = Content Nội Quy Nhà Trường
+regions[form_dat_cau_hoi] = Form Đặt Câu Hỏi
+
+regions[left_bottom_content] = Left Bottom Content
+regions[right_bottom_content] = Right Bottom Content
+regions[bottom_content] = Bottom Content

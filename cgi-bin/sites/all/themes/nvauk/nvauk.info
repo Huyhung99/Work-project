@@ -1,0 +1,34 @@
+name = NVAUK
+description = Giao diện được thiết kế bởi Công ty TNHH Công nghệ và Dịch vụ Minh Hiền
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] = css/bootstrap.css
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/responsive.css
+stylesheets[all][] = css/color-switcher-design.css
+stylesheets[all][] = css/color-themes/default-theme.css
+
+scripts[] =js/jquery.js
+scripts[] =js/popper.min.js
+scripts[] =js/bootstrap.min.js
+scripts[] =js/jquery.fancybox.js
+scripts[] =js/owl.js
+scripts[] =js/isotope.js
+scripts[] =js/wow.js
+scripts[] =js/appear.js
+scripts[] =js/script.js
+
+regions[header_top] = Header Top
+regions[mini_cart] = Mini Cart
+regions[main_frontend] = Main Frontend
+regions[sidebar_first] = Sidebar First
+regions[content] = Content
+regions[left_contact] = Left Contact
+regions[right_contact] = Right Contact
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[footer_style_three] = Top Footer
+regions[footer_bottom] = Bottom Footer

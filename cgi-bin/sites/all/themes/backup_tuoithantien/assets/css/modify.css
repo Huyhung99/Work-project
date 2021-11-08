@@ -1,0 +1,283 @@
+
+.bgc-orange{
+    background: linear-gradient(53deg, rgba(249,171,73,1) 0%, rgba(249,195,47,1) 100%);
+}
+input#edit-search-block-form--2::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #737574;
+    opacity: 1; /* Firefox */
+}
+
+input#edit-search-block-form--2:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #737574;
+}
+
+input#edit-search-block-form--2::-ms-input-placeholder { /* Microsoft Edge */
+    color: #737574;
+}
+span.search-mb i{
+    color: #737574;
+}
+ul#pills-tab {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+.block-mam-non-chat-luong-cao h2{
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: #fc6a03;
+}
+.block-mam-non-chat-luong-cao .nav-pills .nav-link{
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    background: #f6f6f6;
+    color: #000;
+    border: 1px solid #f6f6f6;
+}
+.block-mam-non-chat-luong-cao .nav-pills .nav-link:hover{
+    background: #fea500;
+    color: #fff;
+    border-color: #fea500;
+}
+.block-mam-non-chat-luong-cao .nav-pills .nav-link.active{
+    background: #fea500;
+    color: #fff;
+    border-color: #fea500;
+}
+.image-right{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.image-right .item-img {
+    flex: 0 48%;
+}
+.high-quality-preschool {
+    padding: 10px 15px;
+}
+h3.title-preschool {
+    font-weight: bold;
+    font-size: 20pt;
+}
+a.link_chuong_trinh_hoc{
+    line-height: 16pt;
+    font-size: 12pt;
+    margin: 0 10px;
+}
+.item-image-mam-non-chat-luong-cao:nth-child(5),
+.item-image-mam-non-chat-luong-cao:nth-child(6){
+    display: none;
+}
+.block-hinh-anh-truong a.btn-bg-blue{
+    display: inline-block;
+}
+li.inner-img-radius {
+    flex: 0 0 30%;
+}
+ul#tab-cau-chuyen-cua-toi {
+    display: flex;
+    justify-content: space-between;
+}
+.line {
+    width: 100%;
+    margin: 20px 0;
+    border-bottom: 1px solid #e2ded3;
+}
+.line-front{
+    width: 100%;
+    margin: 10px 0;
+    border-bottom: 1px solid #e2ded3;
+}
+p.footer-copyright{
+    padding-bottom: 30px;
+}
+.block-list-detail-chuong-trinh-hoc p {
+    text-align: justify;
+}
+.tags {
+    border: 1px solid #cecece;
+    padding: 10px 20px;
+    color: #666666;
+    font-weight: 400;
+}
+.tags a,
+span.tags-title{
+     color: #666666;
+     font-weight: 400;
+ }
+.tags a:hover{
+    color: #ffa500;
+}
+@media (max-width: 575px) {
+    .flex-row-reverse-mb h2.title-first-new-front, .title-first-new-front h2 a {
+        float: right;
+    }
+    .flex-row-reverse-mb h2.title-first-new-front, .title-first-new-front h2 a {
+        float: right;
+        margin-right: -11px !important;
+    }
+    .wsactive .wsmenu{
+        z-index: 99999;
+    }
+    a.btn-toogle-sidebar{
+        z-index: 99999;
+    }
+    h2.title-fours-new-front {
+        font-size: 14pt;
+        font-weight: 700;
+    }
+    p.footer-copyright{
+        padding-bottom: 10px;
+    }
+    .nav-tabs{
+        border: none;
+    }
+    ul#tab-gia-tri-cot-loi li a.nav-link {
+        color: #ffdfa6;
+        border-radius: 20px;
+        font-size: 12pt;
+        font-weight: 700;
+        padding: 5px 15px;
+    }
+
+    ul#tab-gia-tri-cot-loi li a.nav-link:hover{
+        background: #69666669;
+    }
+    ul#tab-gia-tri-cot-loi li a.nav-link.active{
+        border: none;
+        background: #69666669;
+        color: #fff;
+    }
+    ul#tab-gia-tri-cot-loi li.active a.nav-link.active{
+        border: none;
+        background: #69666669;
+        color: #fff;
+    }
+
+    ul#tab-gia-tri-cot-loi {
+        border-bottom: none;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+    .ban-giao-vien-mobile .owl-prev {
+        top: 35%;
+        left: -8px;
+        position: absolute;
+    }
+    .ban-giao-vien-mobile .owl-next {
+        top: 35%;
+        position: absolute;
+        right: -8px;
+    }
+    .bgc-gray-light{
+        background: #fbfaff;
+    }
+    .owl-theme .owl-nav [class*=owl-] {
+        padding: 8px 15px !important;
+    }
+    .link-social a i {
+        font-size: 15pt;
+        position: relative;
+        top: 45%;
+    }
+    .mam-non-chat-luong-cao-mobile .owl-next {
+        top: 50%;
+        position: absolute;
+        right: 7px;
+        color: #fff;
+        background: #33333369;
+        padding: 10px 19px;
+        border-radius: 50%;
+    }
+    .mam-non-chat-luong-cao-mobile .owl-prev {
+        top: 50%;
+        position: absolute;
+        left: 7px;
+        color: #fff;
+        background: #3333338f;
+        padding: 10px 19px;
+        border-radius: 50%;
+    }
+    .block-form-dang-ky{
+        padding: 0 40px;
+    }
+    div#accordion-question .tab-chuong-trinh-hoc {
+        transition: height .5s;
+    }
+    .btn-green {
+        background: #a5c347;
+        color: #fff;
+    }
+    div#accordion-question .tab-chuong-trinh-hoc p a {
+        font-size: 12pt;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .block-question h2{
+        color: #fea501;
+    }
+    li.inner-img-radius {
+        flex: 0 0 23%;
+    }
+    li.inner-img-radius:nth-child(5),
+    li.inner-img-radius:nth-child(6){
+        display: none;
+    }
+    .mt-10-mb{
+        margin-top: 10px;
+    }
+    .block-image-postdate .block-created{
+        position: absolute;
+        left: 10%;
+        padding: 5px 20px;
+    }
+    .bottom-block-img-postdate{
+        padding: 20px 20px;
+    }
+    .block-image-postdate {
+        position: relative;
+    }
+    h2.title-first-new-front-sm{
+        margin-bottom: 10px;
+    }
+}
+@media only screen and (min-width: 414px) and (max-width: 767px) {
+    .su-kien-mobile .owl-nav .owl-next{
+        right: -11%;
+    }
+    .su-kien-mobile .owl-nav .owl-prev{
+        left: -11%
+    }
+    .flex-row-reverse-mb h2.title-first-new-front, .title-first-new-front h2 a {
+        float: right;
+    }
+    .flex-row-reverse-mb h2.title-first-new-front, .title-first-new-front h2 a {
+        float: right;
+        margin-right: -11px !important;
+    }
+    h2.title-fours-new-front{
+        font-size: 12pt;
+    }
+    .h2-title-ung-tuyen h2{
+        font-size: 12pt;
+    }
+
+
+
+}
+
+@media (max-width: 320px) {
+    .flex-row-reverse-mb h2.title-first-new-front, .title-first-new-front h2 a {
+        float: right;
+    }
+    .flex-row-reverse-mb h2.title-first-new-front, .title-first-new-front h2 a {
+        float: right;
+        margin-right: -11px !important;
+    }
+}
+
+

@@ -1,0 +1,6 @@
+name = Duyệt bài viết
+description = Duyệt bài viết
+core = 7.x
+files[]=menu_con.module
+package = "minhhien solutions"
+php = 5.2

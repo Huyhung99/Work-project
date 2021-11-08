@@ -1,0 +1,5 @@
+name = Webp Drupal 7
+description = "Модуль добавляет возможность дополнения графики на сайте webp+avif-версиями. Также добавляет ленивую загрузку, используя LazySizes/Lozad."
+core = 7.x
+
+configure = admin/config/development/webpdrupal7

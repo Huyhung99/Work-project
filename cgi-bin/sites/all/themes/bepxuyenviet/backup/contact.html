@@ -1,0 +1,21 @@
+<div class="contact-form-area section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="contact-info-wrap">
+                    <div class="contact-title mb-30">
+                        <h3 class="text-uppercase"><?=$title?></h3>
+                    </div>
+                    <?php if ($page['contact_info']) print html_entity_decode(render($page['contact_info']))?>
+                </div>
+            </div>
+            <div class="col-lg-7 offset-lg-1">
+                <div class="contact-info-wrap">
+                    <div class="contact-us-from-wrap">
+                        <?php if ($page['registration_form']) print render($page['registration_form'])?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="product-info-detailed pb-30 pt-30">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="product-info-tab">
+                <!-- Nav tabs -->
+                <ul class="nav product-info-tab-menu" role="tablist">
+                    <li><a class="active" href="#details" data-toggle="tab">Mô tả</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="details">
+                        <div class="product-info-tab-content">
+                            <?php if (!empty($content['body'])):?>
+                                <?php print render($content['body'])?>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
