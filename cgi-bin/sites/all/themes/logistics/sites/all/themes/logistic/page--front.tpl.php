@@ -73,38 +73,47 @@
  */
 ?>
 <?php print render($page['content']['metatags']); ?>
+<?php global $language;
 
+
+?>
 <div class="page-wraper">
-
-    <!-- HEADER START -->
     <header class="site-header header-style-6">
-
         <div class="top-bar top-bar-liner bgc-red">
             <div class="container">
                 <div class="row">
                     <div class=" clearfix">
                         <ul class="list-unstyled pull-left tb-info-liner">
-                            <?php if ($page['left_top_header']) print render($page['left_top_header'])?>
+                            <?php if ($page['left_top_header']) print render($page['left_top_header']) ?>
                         </ul>
                         <ul class="list-inline pull-right tb-social-liner">
-                            <?php if ($page['right_top_header']) print html_entity_decode(render($page['right_top_header']))?>
+                            <?php if ($page['right_top_header']) print html_entity_decode(render($page['right_top_header'])) ?>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Search Link -->
-
         <div class="main-bar header-middle bg-white">
             <div class="container">
-                <div class="logo-header">
-                    <?php if ($logo): ?>
-                        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-                            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-                        </a>
-                    <?php endif; ?>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="logo-header">
+                            <?php if ($logo): ?>
+                                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"
+                                   id="logo">
+                                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <?php if ($page['side_right_logo']) print html_entity_decode(render($page['side_right_logo']))?>
+                    </div>
                 </div>
-                <?php if($page['right-logo-header']) print html_entity_decode(render($page['right-logo-header']))?>
+
+
+                <!--                --><?php //if($page['right-logo-header']) print html_entity_decode(render($page['right-logo-header']))?>
             </div>
         </div>
 
@@ -112,7 +121,8 @@
             <div class="main-bar header-botton nav-bg-primary">
                 <div class="container">
                     <!-- NAV Toggle Button -->
-                    <button data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggle collapsed">
+                    <button data-target=".header-nav" data-toggle="collapse" type="button"
+                            class="navbar-toggle collapsed">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -123,50 +133,108 @@
 
                     <!-- MAIN Vav -->
                     <div class="header-nav navbar-collapse collapse ">
-                        <?php print getMainMenuLogistic()?>
+                        <?php print getMainMenuLogistic() ?>
+                        <div class="social-media">
+                            <a href="#" class="item-social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" class="item-social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" class="item-social"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                            <a href="#" class="item-social"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
+                        </div>
                     </div>
+                    <?php if ($page['social_media']) print html_entity_decode(render($page['social_media'])) ?>
+
                 </div>
             </div>
         </div>
 
     </header>
 
-
-
-
+    <!-- HEADER START -->
     <div class="page-content">
-        <?php if ($page['slider_main']) print render($page['slider_main'])?>
-        <?php if ($page['about_us']) print html_entity_decode(render($page['about_us']))?>
-        <?php if ($page['main_content_front']) print render($page['main_content_front'])?>
-    </div>
-
-    <!--    footer-->
-    <footer class="site-footer footer-dark">
-        <!-- Footer Top Part -->
-        <div class="footer-top overlay-wraper">
-            <div class="overlay-main"></div>
+        <?php if ($page['slider_main']) print render($page['slider_main']) ?>
+        <?php if ($page['html_bottom_main_front']) print html_entity_decode(render($page['html_bottom_main_front'])) ?>
+        <?php if ($page['bottom_main_content_front']) print render($page['bottom_main_content_front']) ?>
+        <div class="images-company--anwsers">
             <div class="container">
                 <div class="row">
-                    <!-- About -->
-                    <div class="col-md-5 col-xs-12">
-                        <?php if ($page['col_1_footer']) print html_entity_decode(render($page['col_1_footer'])) ?>
+                    <div class="col-md-6">
+                        <?php if ($page['image_company']) print render($page['image_company']) ?>
                     </div>
-                    <!-- Useful Links -->
-                    <div class="col-md-3 col-xs-12">
-                        <?php if ($page['col_2_footer']) print html_entity_decode(render($page['col_2_footer']))?>
-                    </div>
-                    <!-- Resent Post -->
-                    <div class="col-md-4 col-xs-12">
-                        <?php if ($page['col_3_footer']) print html_entity_decode(render($page['col_3_footer']))?>
+                    <div class="col-md-6">
+                        <?php if ($page['answer']) print render($page['answer']) ?>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Footer Copyright Part -->
+        <div class="section-full bg-white bg-right-center bg-no-repeat  p-b40"
+             style="background-image:url(/sites/all/themes/logistic/assets/images/background/bg-map.png);">
+            <div class="container">
+                <div class="row conntact-home">
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                        <div class="section-content ">
+                            <?php if ($page['introduction']) print html_entity_decode(render($page['introduction']))?>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <div class="contact-home1-left ">
+                            <div class="section-content p-lr30 p-tb30">
+                                <div class="call-back-form" style="z-index:1; position:relative">
+                                    <h2 class="text-white m-t0">
+                                        <?php
+                                            $language->language == 'vi' ? print 'LIÊN HỆ' :  print 'CONTACT US';
+                                        ?>
+                                    </h2>
+                                    <?php
+                                    $node = node_load(342);
+                                    webform_node_view($node, 'full');
+                                    print theme_webform_view($node->content);
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <?php if ($page['main_content_front']) print render($page['main_content_front']) ?>
+        <!--        --><?php //if ($page['about_us']) print html_entity_decode(render($page['about_us']))?>
+    </div>
+
+    <footer class="site-footer footer-dark">
+        <div class="footer-top overlay-wraper">
+            <div class="overlay-main"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                        <?php if ($page['col_1_footer']) print html_entity_decode(render($page['col_1_footer'])) ?>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="widget widget_services text-white">
+                            <h3 class="widget-title">
+
+                                <?php
+                                $language->language == 'vi' ? print 'LIÊN KẾT NHANH' :  print 'LINK';
+                                ?>
+                            </h3>
+                            <?= getMenuFooter() ?>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <?php if ($page['col_3_footer']) print render($page['col_3_footer']) ?>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <?php if ($page['col_4_footer']) print html_entity_decode(render($page['col_4_footer'])) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="footer-bottom overlay-wraper bg-white">
             <div class="overlay-main"></div>
             <div class="container p-t10">
-                <?php if ($page['lower_footer']) print html_entity_decode(render($page['lower_footer']))?>
+                <!--                --><?php //if ($page['lower_footer']) print html_entity_decode(render($page['lower_footer']))?>
             </div>
         </div>
     </footer>
@@ -174,3 +242,6 @@
     <button class="scroltop"><span class="fa fa-space-shuttle relative" id="btn-vibrate"></span></button>
 
 </div>
+
+
+

@@ -63,10 +63,9 @@
   <?php print $page; ?>
   <?php print $page_bottom; ?>
   <div class="hotlinefix">
-      <span class="phone"><a href="tel:123123123">1234.123.123</a></span>
-
+      <span class="phone"><a href="tel:0915907570">0915.907.570</a></span>
       <div class="circle-hotline">
-          <span><a href="tel:0901855222"><img src="/sites/default/files/hotline.png"></a>
+          <span><a href="tel:0915907570"><img src="/sites/default/files/hotline.png"></a>
           </span>
       </div>
   </div>

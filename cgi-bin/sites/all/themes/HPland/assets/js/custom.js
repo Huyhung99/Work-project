@@ -166,5 +166,9 @@ jQuery(function () {
 
     const observer = lozad();
     observer.observe();
+    if($('#admin-menu').length > 0){
+      $('nav.navbar.navbar-expand-lg.navbar-light.bg-blue').css('margin-top','30px');
+    }
+
   })
 });

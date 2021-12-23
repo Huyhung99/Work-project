@@ -9,7 +9,6 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-xl-6 col-6 align-self-center text-left text-lg-right">
-                  <?php $link=''; $path_edit=explode('/',$_SERVER['PHP_SELF']); if($_SERVER['PHP_SELF']){$link='/'.$path_edit[1];}?>
                   <a href="/chuyen-muc/tin-tuc" class="btn-danger-edit pdr-20 pdl-20 pdt-10 pdb-10 btn-gradient-color btn-md"><i class="fa fa-angle-double-right mrr-10" aria-hidden="true"></i>XEM TẤT CẢ</a>
                 </div>
             </div>

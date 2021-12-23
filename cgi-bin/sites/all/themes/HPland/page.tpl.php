@@ -95,7 +95,7 @@
                 <input class="form-control modified input-search-map" placeholder="Nhập địa chỉ, tọa độ cần tra cứu">
             </div>
             <a id="btn-loc-bds">
-                <i class="fas fa-filter"></i> Lọc tin BĐS
+                <i class="fas fa-filter"></i>  Lọc tin
             </a>
         </form>
         <div class="noi_hien_thi_form"></div>
@@ -105,67 +105,67 @@
     </div>
 </nav>
 <div class="chuyen_vi_tri d-none">
-    <div class="ktra_form" id="TimKiemSPPC">
-        <div class="d-flex">
-            <div class="dropdown mr-3">
-                <a class="dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Phân loại
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                    <a class="dropdown-item" href="#">Mua bán</a>
-                    <a class="dropdown-item" href="#">Cho thuê</a>
-                    <a class="dropdown-item" href="#">Dự án</a>
-                </div>
+  <div class="ktra_form" id="TimKiemSPPC">
+    <div class="d-flex justify-content-between">
+      <div class="dropdown mr-3">
+        <a class="dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Phân loại
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" id="drop-phan-loai">
+          <form class="px-3 py-2">
+            <div class="form-check">
+              <label class="form-check-label" for="mua-ban">
+                <input type="checkbox" class="form-check-input" value="Mua bán" id="mua-ban"> Mua bán
+              </label>
             </div>
-            <div class="dropdown mr-3">
-                <a class="dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Loại hình
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                    <a class="dropdown-item" href="#">Nhà - đất thổ cư</a>
-                    <a class="dropdown-item" href="#">Nhà - đất dự án</a>
-                    <a class="dropdown-item" href="#">Nhà - đất nông nghiệp</a>
-                </div>
-            </div>
-            <div class="dropdown mr-3">
-                <a class="dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Giá tiền
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" id="drop-gia-tien">
-                    <form class="px-3 py-2">
-                        <div class="form-check">
-                            <label class="form-check-label" for="thoa-thuan">
-                                <input type="checkbox" class="form-check-input" value="Thỏa thuận" id="thoa-thuan"> Thỏa thuận
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label" for="tu0den2">
-                                <input type="checkbox" class="form-check-input" value="0 - 2" id="tu0den2">
-                                <= 2 triệu
-                            </label>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="dropdown mr-3">
-                <a class="dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Diện tích
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                    <form class="px-3 py-2">
-                        <div class="form-check">
-                            <label class="form-check-label" for="duoi20">
-                                <input type="checkbox" class="form-check-input" value="0 - 2" id="duoi20">
-                                < 20 m²
-                            </label>
-                        </div>
-                    </form>
-                </div>
-            </div>
+          </form>
         </div>
+      </div>
+      <div class="dropdown mr-3">
+        <a class="dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Giá tiền
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" id="drop-gia-tien">
+          <form class="px-3 py-2">
+            <div class="form-check">
+              <label class="form-check-label" for="thoa-thuan">
+                <input type="checkbox" class="form-check-input" value="Thỏa thuận" id="thoa-thuan"> Thỏa thuận
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="tu0den2">
+                <input type="checkbox" class="form-check-input" value="0 - 2" id="tu0den2">
+                <= 2 triệu
+              </label>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="dropdown mr-3">
+        <a class="dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Diện tích
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset" id="drop-dien-tich">
+          <form class="px-3 py-2">
+            <div class="form-check">
+              <label class="form-check-label" for="duoi20">
+                <input type="checkbox" class="form-check-input" value="0 - 2" id="duoi20">
+                < 20 m²
+              </label>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a class="btn-submit" href="#">
+          Tìm kiếm
+        </a>
+      </div>
     </div>
+  </div>
 </div>
-<input type="hidden" id="san-pham-tim-kiem" value="<?=isset($_SESSION['san_pham']) ? $_SESSION['san_pham'] : []?>">
+
+<!--<input type="hidden" id="san-pham-tim-kiem" value="--><?//=implode(',', isset($_SESSION['san_pham']) ? $_SESSION['san_pham'] : [])?><!--">-->
 <?php $type = arg(0)?>
 <?php if ($type == 'node'){
     $bg = node_load(arg(1));
@@ -208,71 +208,61 @@
                 $anhlienquan=$node->field_anh_lien_quan['und'];
                 foreach ($anhlienquan as $cacanh)
                 {
-//          array_push($array_path,image_style_url('900_x_500', $cacanh['uri']));
-                    //    array_push($array_path_img_sm,image_style_url('900 x 800', $cacanh['uri']));
+                  array_push($array_path,image_style_url('900_x_500', $cacanh['uri']));
+//                  array_push($array_path_img_sm,image_style_url('900 x 800', $cacanh['uri']));
                 }
             }
             ?>
-            <div class="contact-form-wrap-1 mb-30">
+            <div class="contact-form-wrap-1 main-summary-project mb-30">
                 <div class="row">
-                    <div class="col-md-7">
-                        <?php if(count($array_path)<=1):?>
-                            <img class="img-responsive img-fluid" alt="<?php print $node->title;?>" src="/sites/default/files/<?php print str_replace('public://','',$node->field_image['und'][0]['uri'])?>" title="<?php print $node->title;?>">
-                        <?php else:?>
-                            <div id="demo" class="carousel slide" data-ride="carousel">
-
-                                <!-- Indicators -->
-                                <ul class="carousel-indicators">
-                                    <?php foreach ($array_path as $id => $tintunganh):?>
-                                        <li data-target="#demo" data-slide-to="<?=$id?>" class="<?php if($id==0) print 'active'?>"></li>
-                                    <?php endforeach;?>
-                                </ul>
-
-                                <!-- The slideshow -->
-                                <div class="carousel-inner">
-                                    <?php foreach ($array_path as $id => $tintunganh):?>
-                                        <div class="carousel-item <?php if($id==0) print 'active'?>">
-                                            <img alt="ảnh bất động sản" title="ảnh bất động sản" class="mySlides" src="<?=$tintunganh?>" style="width:100%">
-                                        </div>
-                                    <?php endforeach;?>
-                                </div>
-
-                                <!-- Left and right controls -->
-                                <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                                    <span class="carousel-control-prev-icon"></span>
-                                </a>
-                                <a class="carousel-control-next" href="#demo" data-slide="next">
-                                    <span class="carousel-control-next-icon"></span>
-                                </a>
-
+                  <div class="col-md-7">
+                    <?php if(count($array_path)<=1):?>
+                      <img class="img-responsive img-fluid" alt="<?php print $node->title;?>" src="/sites/default/files/<?php print str_replace('public://','',$node->field_image['und'][0]['uri'])?>" title="<?php print $node->title;?>">
+                    <?php else:?>
+                      <div id="demo" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <?php foreach ($array_path as $id => $tintunganh):?>
+                            <div class="carousel-item <?php if($id==0) print 'active'?>">
+                              <img alt="ảnh bất động sản" title="<?= $node->title ;?>" class="mySlides" src="<?=$tintunganh?>" style="width:100%">
                             </div>
+                          <?php endforeach;?>
+                        </div>
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                          <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                          <span class="carousel-control-next-icon"></span>
+                        </a>
+                      </div>
 
-                        <?php endif;?>
-                    </div>
+                    <?php endif;?>
+                  </div>
                     <div class="col-md-5 border_left">
                         <div class="summary-project">
-                            <h2 class="title_du_an">
+                            <div class="can-giua">
+                              <h2 class="title_du_an">
                                 <?=$node->title?>
-                            </h2>
-                            <div class="content-summary">
+                              </h2>
+                              <div class="content-summary">
                                 <?php if (!empty($node->field_dia_chi_du_an)):?>
-                                    <p><i class="fas fa-map-marker-alt"></i> <?=$node->field_dia_chi_du_an['und'][0]['value']?></p>
+                                  <p><i class="fas fa-map-marker-alt"></i> <?=$node->field_dia_chi_du_an['und'][0]['value']?></p>
                                 <?php endif;?>
                                 <?php if (!empty($node->field_chu_dau_tu)):?>
-                                    <p>Chủ đầu tư: <span class="font-weight-600"><?php print $node->field_chu_dau_tu['und'][0]['value'];?></span></p>
+                                  <p>Chủ đầu tư: <span class="font-weight-600"><?php print $node->field_chu_dau_tu['und'][0]['value'];?></span></p>
                                 <?php endif;?>
                                 <p>Tổng diện tích: <span class="font-weight-600"><?php print $node->field_tong_dien_tich_khu_dat['und'][0]['value'].'m<sup>2</sup>'?> </span></p>
                                 <p class="price">
-                                    <?php if ($node->field_gia_bang_chu['und'][0]['value']  != ''):?>
-                                        Giá: <span class="pri"><?=$node->field_gia_bang_chu['und'][0]['value']?></span>
-                                    <?php else:?>
-                                        <?php isset($node->field_gia_san_pham_tu['und'][0]['value']) ? print 'Giá : <span class="pri">'.number_format($node->field_gia_san_pham_tu['und'][0]['value'],'0','.','.').' đ</span>': print '';
-                                        isset($node->field_gia_san_pham_den['und'][0]['value']) ? print ' - <span class="pri">'.number_format($node->field_gia_san_pham_den['und'][0]['value'],'0','.','.').' đ</span>': print '';
-                                        ?>
-                                    <?php endif;?>
+                                  <?php if ($node->field_gia_bang_chu['und'][0]['value']  != ''):?>
+                                <h6 class="price"><i class="fa fa-money-bill"></i><span class="pri"><?=$node->field_gia_bang_chu['und'][0]['value']?></span> </h6>
+                              <?php else:?>
+                                <?php isset($node->field_gia_san_pham_tu['und'][0]['value']) ? print 'Giá : <span class="pri">'.number_format($node->field_gia_san_pham_tu['und'][0]['value'],'0','.','.').' đ</span>': print '';
+                                isset($node->field_gia_san_pham_den['und'][0]['value']) ? print ' - <span class="pri">'.number_format($node->field_gia_san_pham_den['und'][0]['value'],'0','.','.').' đ</span>': print '';
+                                ?>
+                              <?php endif;?>
                                 </p>
+                              </div>
+                              <a class="btn btn-primary" href="tel:0966867186">Quan tâm</a>
                             </div>
-                            <a class="btn btn-primary" href="tel:0966867186">Quan tâm</a>
                         </div>
                     </div>
                 </div>
@@ -299,4 +289,3 @@
     </div>
 </div>
 <?php print getFooterHPLand($page)?>
-

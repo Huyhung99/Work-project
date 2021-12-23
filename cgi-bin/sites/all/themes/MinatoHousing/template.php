@@ -7,10 +7,10 @@ function getMenuLeMinhLand(){
     foreach ($danh_sach_chung_cu_cao_cap as $id_node => $item_node_need)
     {
       $ds_chung_cu_cao_cap=$ds_chung_cu_cao_cap.'
-<li>
-<a href="'.check_plain(url('node/'.$id_node,array())).'">
-'.$item_node_need->title.'</a>
-</li>';
+      <li>
+      <a href="'.check_plain(url('node/'.$id_node,array())).'">
+      '.$item_node_need->title.'</a>
+      </li>';
     }
     $ds_chung_cu_cao_cap=$ds_chung_cu_cao_cap.'</ul>';
     foreach ($mainMenu as $item) {
@@ -54,20 +54,20 @@ function getMenuLeMinhLand(){
             if(trim($item['link']['link_title'])=='Căn hộ dịch vụ')
             {
               $link_can=check_plain(url($item['link']['link_path'],array()));
-              $str=$str.menu_con($link_can,'Căn hộ tại');
+              $str=$str.menu_con('Căn hộ tại');
             }
             else{
               if(trim($item['link']['link_title'])=='Nhà và biệt thự')
               {
                 $link_can=check_plain(url($item['link']['link_path'],array()));
-                $str=$str.menu_con($link_can,'Nhà/Biệt thự tại');
+                $str=$str.menu_con('Nhà/Biệt thự tại');
               }
               else
               {
                 if(trim($item['link']['link_title'])=='Văn phòng cho thuê')
                 {
                   $link_can=check_plain(url($item['link']['link_path'],array()));
-                  $str=$str.menu_con($link_can,'Văn phòng tại');
+                  $str=$str.menu_con('Văn phòng tại');
                 }
                 else
                 {
@@ -104,16 +104,15 @@ function getMenuLeMinhLand(){
           }
         }
     }
-    return '<ul class="navbar-nav menu-open">' . str_replace('href="tat-ca-can-ho"','href="/tat-ca-can-ho"',$str) . '</ul><div class="div_header_contact notranslate"><i class="fa fa-mobile"></i><div class="mini_contact_now">MR. DUNG<a href="tel:0866529033">0866.529.033</a></div></div>';
+    return '<ul class="navbar-nav menu-open">' . str_replace('href="tat-ca-can-ho"','href="/tat-ca-can-ho"',$str) . '</ul>';
 }
-function menu_con($link,$ten_edit_name)
+function menu_con($ten_edit_name)
 {
-  $str='';
-  $taxonomy=taxonomy_term_load_multiple(array(),array('vid'=>5));
+  $ds=node_load_multiple(array(),array('type'=>'du_an'));
   $str='<ul class="sub-menu">';
-  foreach ($taxonomy as $id => $item_edit)
+  foreach ($ds as $id => $item_edit)
   {
-    $str=$str.'<li><a href="'.check_plain(url($link,array())).'?field_khu_vuc_tid='.$id.'">'.$ten_edit_name.' '.$item_edit->name.'</a></li>';
+    $str=$str.'<li><a href="'.check_plain(url('node/'.$id,array())).'">'.$ten_edit_name.' '.$item_edit->title.'</a></li>';
   }
   $str=$str.'</ul>';
   return $str;

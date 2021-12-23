@@ -1,5 +1,5 @@
 <?php $danhsachcanho=node_type_arr('can_ho');?>
-<div class="contact-form-wrap-1 mt-30 mb-30">
+<div class=" mt-30 mb-30">
   <div class="thong-tin_chi_tiet-body">
     <div class="row">
       <div class="col-md-12">
@@ -33,7 +33,7 @@
   </div>
 </div>
 <h3 class="title_can_ho text-center">DANH SÁCH CĂN HỘ</h3>
-<div class="contact-form-wrap-1">
+<div class="contact-form-wrap-1 main-summary-project">
   <div class="row">
     <?php foreach ($danhsachcanho as $canho):?>
       <?php if($canho->field_du_an['und'][0]['nid']==$node->nid):?>

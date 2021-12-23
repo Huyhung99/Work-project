@@ -181,6 +181,7 @@
             </div>
             <div class="collapse navbar-collapse" id="realdeal_main_menu">
                 <?php print getMenuLeMinhLand() ?>
+                <?php print node_load(422)->field_mo_ta_slider['und'][0]['value']; ?>
             </div>
         </div>
     </nav>

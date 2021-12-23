@@ -1,0 +1,87 @@
+body{
+    font-weight: 400;
+}
+.header__cell{
+    height: auto;
+}
+.header__inner {
+    background-color: #000814;
+}
+.hmenu li > a {
+    height: 60px !important;
+    line-height: 60px !important;
+}
+.block-title--large {
+    font-size: 65px;
+    line-height: 1;
+}
+.section--footer .section__bg{
+    background: url(/sites/default/files/background-14.jpg) center top no-repeat;
+}
+.block-title.instagram__title {
+    font-size: 32px;
+}
+.wrap{
+    background: #000814;
+}
+.anatomy__tip-title:before{
+    border-bottom: 2px solid #d9d9d9;
+}
+.hmenu li > a:before{
+    transition: all 0.5s ease-out;
+}
+.hmenu li > a:before {
+    width: 0;
+}
+.hmenu li > a:hover:before {
+    background-color: #ffffff;
+    width: 100%;
+}
+.section--lighter {
+    background-color: #000814;
+}
+.anatomy__tip-title-inner span {
+    font-size: 30px;
+}
+.hmenu li > a.active {
+    color: #fff;
+}
+.tns-controls {
+    display: none;
+}
+
+#webform-client-form-798 #edit-submitted-email {
+    background: rgba(143, 168, 168, 0.2);
+    height: 60px;
+    width: 25%;
+    color: #fff;
+    padding: 10px;
+    border: none;
+}
+.d-none{
+    display: none;
+}
+.submit-email {
+    position: absolute;
+    top: 34%;
+    background: transparent;
+    border: none;
+    right: 38%;
+}
+.box-email {
+    position: relative;
+}
+.submit-email svg {
+    color: #fff;
+}
+.instagram__image img {
+    width: 100%;
+    height: auto;
+}
+
+.form-footer #webform-client-form-798 #edit-submitted-email {
+    width: 100%;
+}
+.form-footer .submit-email {
+    right: 3%;
+}

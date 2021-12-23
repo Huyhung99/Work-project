@@ -1,0 +1,55 @@
+name = Partners Law
+description = Giao diện được thiết kế bởi Công ty TNHH Công nghệ và Dịch vụ Minh Hiền
+core = 7.x
+package = Core
+
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/font-awesome.min.css
+stylesheets[all][] = assets/css/icofont.min.css
+stylesheets[all][] = assets/css/themify-icons.css
+stylesheets[all][] = assets/css/flaticon-set.css
+stylesheets[all][] = assets/css/magnific-popup.css
+stylesheets[all][] = assets/css/owl.carousel.min.css
+stylesheets[all][] = assets/css/owl.theme.default.min.css
+stylesheets[all][] = assets/css/animate.css
+stylesheets[all][] = assets/css/bootsnav.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/responsive.css
+
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/jquery.appear.js
+scripts[] = assets/js/jquery.easing.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/modernizr.custom.13711.js
+scripts[] = assets/js/owl.carousel.min.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/progress-bar.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/js/jquery.simpleLoadMore.js
+scripts[] = assets/js/gsap.min.js
+scripts[] = assets/js/jquery.MouseMove.js
+scripts[] = assets/js/count-to.js
+scripts[] = assets/js/bootsnav.js
+scripts[] = assets/js/main.js
+
+regions[lang] = Lang
+regions[right-header] = Right Header
+regions[tim_kiem_block] = Block Tìm kiếm
+regions[content] = Content
+regions[main_frontend] = Main Frontend
+regions[about-us] = About Us
+regions[main_frontend2] = Main Frontend 2
+regions[html_main_frontend2] = HTML Main Frontend 2
+regions[sidebar_first] = Sidebar First
+regions[contact] = Contact
+regions[form_contact] = Form Contact
+regions[logo_footer] = Logo Footer
+regions[col1_footer] = Col 1 Footer
+regions[col2_footer] = Col 2 Footer
+regions[col3_footer] = Col 3 Footer
+regions[col4_footer] = Col 4 Footer
+regions[footer_bottom] = Bottom Footer

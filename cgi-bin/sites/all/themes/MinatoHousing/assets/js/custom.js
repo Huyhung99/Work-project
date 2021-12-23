@@ -69,12 +69,12 @@ jQuery(function () {
 
       let bedRoom = '';
       if (bedRooms){
-        bedRoom = bedRoom.join('+');
+        bedRoom = bedRooms.join('+');
       }
 
       let bathRoom = '';
       if (bathRooms){
-        bathRoom = bathRoom.join('+');
+        bathRoom = bathRooms.join('+');
       }
 
       let typeProperty = '';

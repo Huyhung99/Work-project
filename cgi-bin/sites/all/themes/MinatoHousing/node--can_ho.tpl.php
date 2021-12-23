@@ -55,7 +55,7 @@
                         <?php $relatedImage = $node->field_anh_lien_quan['und'];?>
                         <?php foreach ($relatedImage as $item): ?>
                             <?php
-                            $pathImageSlider = image_style_url('940_x_720', $item['uri']);
+                            $pathImageSlider = image_style_url('1083_x_756', $item['uri']);
                             $titleImage = $item['title'];
                             $altImage = $item['alt'];
                             ?>
@@ -68,7 +68,7 @@
                 </div>
                 <?php else:?>
                     <?php
-                    $pathImageSlider = image_style_url('940_x_720', $node->field_image['und'][0]['uri']);
+                    $pathImageSlider = image_style_url('1083_x_756', $node->field_image['und'][0]['uri']);
                     $titleImage = $node->field_image['und'][0]['title'];
                     $altImage = $node->field_image['und'][0]['alt']
                     ?>

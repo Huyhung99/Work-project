@@ -1,45 +1,47 @@
 <?php
+    global $language;
+    if ($language->language == 'vi'){
+        $head_title = "TIN TỨC";
+        $path_news = '/vi/chuyen-muc/tin-tuc';
+        $title_path = 'XEM THÊM';
+    }else{
+        $head_title = "NEWS";
+        $path_news = '/en/categories/news';
+        $title_path = 'READ MORE';
+    }
 ?>
-<div class="section-full p-b0  bg-white" >
+<div class="news bg-gray">
     <div class="container">
-        <!-- TITLE START-->
-        <div class="section-head text-center">
-            <h2 data-title="<?=t('NEWS')?>" class="color-red"><?php print t('NEWS')?></h2>
+        <div class="section-head text-center ">
+            <h2 data-title="<?=$head_title?>"><?=$head_title?></h2>
             <div class="mt-separator-outer">
                 <div class="mt-separator bg-primary"></div>
             </div>
         </div>
-        <!-- TITLE END-->
-        <div class="section-content ">
-            <div class="row">
-                <!-- Block 1 -->
-<!--                [title]{{}}[field_image]{{}}[path]{{}}[body]-->
-                <?php foreach ($rows as $id => $row): ?>
-                    <div class="col-md-4 col-xs-12">
-                        <?php $arr = explode('{{}}',$row);
-                        $title = trim($arr[0]);
-                        $field_image = trim($arr[1]);
-                        $path = trim($arr[2]);
-                        ?>
-                        <div class="blog-post latest-blog-1 date-style-2 overflow-hide  bg-white bdr-1 bdr-solid bdr-gray-light ">
-                            <div class="mt-post-media">
-                                <?=$field_image?>
-                            </div>
-                            <div class="mt-post-info  p-a30 services">
-                                <div class="mt-post-title ">
-                                    <h4 class="post-title"><?=$title?></h4>
-                                </div>
-
-                                <a href="<?=$path?>" class="site-button-link"><?= t('READ MORE')?></a>
-                            </div>
+        <div class="row">
+            <?php $i = 0;?>
+            <?php foreach ($rows as $id => $row): ?>
+                <?php $arr = explode('{{}}',$row);
+                $title = trim($arr[0]);
+                $field_image = trim($arr[1]);
+                $path = trim($arr[2]);
+                $created = trim($arr[4]);
+                $author = trim($arr[5]);
+                ?>
+                <div class="col-md-4">
+                    <div class="item-news">
+                        <?=$field_image?>
+                        <div class="content-news">
+                            <h3 class="title"><?=$title?></h3>
+                            <span><?=$created?> | <?=$author?></span>
                         </div>
                     </div>
-                <?php endforeach; ?>
-
-            </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-
+        <div class="text-center p-t30">
+            <a href="<?=$path_news?>" class="site-button"><?=$title_path?></a>
+        </div>
     </div>
 </div>
-
 

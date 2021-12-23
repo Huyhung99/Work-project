@@ -1,0 +1,68 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function tu_bep_ban_san_menu()
+{
+  $items['load-info-product'] = array(
+    'title' => '',
+    'delivery callback' => 'load_info_product',
+    'access callback' => 'TRUE',
+    'access arguments' => array('load_info_product'),
+    'type' => MENU_CALLBACK
+  );
+  $items['page-load-info-product'] = array(
+    'title' => '',
+    'delivery callback' => 'page_load_info_product',
+    'access callback' => 'TRUE',
+    'access arguments' => array('page_load_info_product'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+
+function load_info_product(){
+  $reponse = '';
+  $mo_ta = '';
+  if (isset($_POST['productID'])){
+
+    $product_id = $_POST['productID'];
+    $product = commerce_product_load($product_id);
+    if (!empty($product->field_images)){
+      $path_img = image_style_url('400_x_500',$product->field_images['und'][0]['uri']);
+      $img = '<img class="img-fluid img-product" src="'.$path_img.'">';
+    }
+    !empty($product->field_mo_ta_1) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_1['und'][0]['value'].'</p>' : "";
+    !empty($product->field_mo_ta_2) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_2['und'][0]['value'].'</p>' : "";
+    !empty($product->field_mo_ta_3) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_3['und'][0]['value'].'</p>' : "";
+    !empty($product->field_mo_ta_4) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_4['und'][0]['value'].'</p>' : "";
+    !empty($product->field_mo_ta_5) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_5['und'][0]['value'].'</p>' : "";
+    !empty($product->field_mo_ta_6) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_6['und'][0]['value'].'</p>' : "";
+    !empty($product->field_mo_ta_7) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_7['und'][0]['value'].'</p>' : "";
+    !empty($product->field_mo_ta_8) ? $mo_ta .= '<p><i class="fas fa-chevron-right"></i> '.$product->field_mo_ta_8['und'][0]['value'].'</p>' : "";
+    return drupal_json_output(array(
+      'img' => $path_img,
+      'mo_ta' => $mo_ta,
+    ));
+  }else{
+    $reponse = 'Không tìm thấy product id';
+  }
+}
+function page_load_info_product(){
+
+}
+/**
+ * Implements hook_permission().
+ */
+function tu_bep_ban_san_permission()
+{
+  return array(
+    'load_info_product' => array(
+      'title' => 'Lấy thông tin sản phẩm',
+    ),
+    'page-load-info-product' => array(
+      'title' => 'Trang lấy thông tin sản phẩm',
+    ),
+  );
+}
+?>

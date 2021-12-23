@@ -713,6 +713,12 @@ h2.text-uppercase {
 .d-none-menu-pc{
   display:none
 }
+.owl-controls .owl-next:hover {
+  border-color: #ff8400;
+  -webkit-box-shadow: 0 2px 12px rgb(255 233 209 / 75%);
+  box-shadow: 0 2px 12px rgb(255 233 209 / 75%);
+  color: #ff8400;
+}
 @media (max-width: 991px)
 {
   .search-box .rld-single-input input {

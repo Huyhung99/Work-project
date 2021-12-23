@@ -8,4 +8,3 @@
         <?php endforeach; ?>
     </ul>
 </div>
-<div class="mt-divider bg-gray-dark"><i class="icon-dot c-square"></i></div>

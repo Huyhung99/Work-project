@@ -286,6 +286,7 @@
 
 
 
+
 //________BLOG POST CAROUSEL FUNCTION BY= owl.carousel.js________//
 
 				function service_detail_carousel(){

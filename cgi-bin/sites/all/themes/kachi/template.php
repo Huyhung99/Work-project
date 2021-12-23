@@ -63,7 +63,7 @@ function getMenuFooterKachi(){
             if (count($item['below']) == 0) {
                 $str .= "<li>";
                 $str .= l(
-                    '<i class="fa fa-angle-right" aria-hidden="true"></i> '.$item['link']['link_title'],
+                    $item['link']['link_title'],
                     $item['link']['link_path'],
                     array(
                         'attributes' => array(

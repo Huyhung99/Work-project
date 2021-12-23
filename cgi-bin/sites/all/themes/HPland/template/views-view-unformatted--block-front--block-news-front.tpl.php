@@ -1,7 +1,7 @@
 <div class="property-news-area pt-30 pb-30">
     <div class="container">
         <div class="section-title">
-            <h2 class="title text-uppercase text-center"><?php print $view->get_title()?></h2>
+            <h1 class="title text-uppercase text-center"><?php print $view->get_title()?></h1>
         </div>
         <div class="row">
             <?php foreach ($rows as $row):?>

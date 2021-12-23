@@ -89,7 +89,7 @@ function getThanhVien($nid){
   global $user;
 //"{\n\t\"uid\": 170,\n\t\"type\": \"Thành phố\",\n\t\"token\": \"02934029432409240zvzxcv\"\n}"
   curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://app.hpmap.vn/service/get-list-user",
+    CURLOPT_URL => "https://app.hpmap.vn/service/get-info-relation",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

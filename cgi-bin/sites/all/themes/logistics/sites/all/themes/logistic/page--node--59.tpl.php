@@ -73,71 +73,88 @@
  */
 ?>
 <?php print render($page['content']['metatags']); ?>
+<?php
+global $language;
+
+?>
 <div class="page-wraper">
-  <header class="site-header header-style-6">
-
-    <div class="top-bar top-bar-liner bgc-red">
-      <div class="container">
-        <div class="row">
-          <div class=" clearfix">
-            <ul class="list-unstyled pull-left tb-info-liner">
-              <?php if ($page['left_top_header']) print render($page['left_top_header'])?>
-            </ul>
-            <ul class="list-inline pull-right tb-social-liner">
-              <?php if ($page['right_top_header']) print html_entity_decode(render($page['right_top_header']))?>
-            </ul>
-          </div>
+    <header class="site-header header-style-6">
+        <div class="top-bar top-bar-liner bgc-red">
+            <div class="container">
+                <div class="row">
+                    <div class=" clearfix">
+                        <ul class="list-unstyled pull-left tb-info-liner">
+                            <?php if ($page['left_top_header']) print render($page['left_top_header']) ?>
+                        </ul>
+                        <ul class="list-inline pull-right tb-social-liner">
+                            <?php if ($page['right_top_header']) print html_entity_decode(render($page['right_top_header'])) ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!-- Search Link -->
+        <!-- Search Link -->
+        <div class="main-bar header-middle bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="logo-header">
+                            <?php if ($logo): ?>
+                                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"
+                                   id="logo">
+                                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <?php if ($page['side_right_logo']) print html_entity_decode(render($page['side_right_logo']))?>
+                    </div>
+                </div>
 
-    <div class="main-bar header-middle bg-white">
-      <div class="container">
-        <div class="logo-header">
-          <?php if ($logo): ?>
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-              <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-            </a>
-          <?php endif; ?>
+
+                <!--                --><?php //if($page['right-logo-header']) print html_entity_decode(render($page['right-logo-header']))?>
+            </div>
         </div>
-        <?php if($page['right-logo-header']) print html_entity_decode(render($page['right-logo-header']))?>
-      </div>
-    </div>
 
-    <div class="sticky-header main-bar-wraper">
-      <div class="main-bar header-botton nav-bg-primary">
-        <div class="container">
-          <!-- NAV Toggle Button -->
-          <button data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggle collapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <!-- ETRA Nav -->
+        <div class="sticky-header main-bar-wraper">
+            <div class="main-bar header-botton nav-bg-primary">
+                <div class="container">
+                    <!-- NAV Toggle Button -->
+                    <button data-target=".header-nav" data-toggle="collapse" type="button"
+                            class="navbar-toggle collapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- ETRA Nav -->
 
 
-          <!-- MAIN Vav -->
-          <div class="header-nav navbar-collapse collapse ">
-            <?php print getMainMenuLogistic()?>
-          </div>
+                    <!-- MAIN Vav -->
+                    <div class="header-nav navbar-collapse collapse ">
+                        <?php print getMainMenuLogistic() ?>
+                        <div class="social-media">
+                            <a href="#" class="item-social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" class="item-social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" class="item-social"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                            <a href="#" class="item-social"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
+                        </div>
+                    </div>
+                    <?php if ($page['social_media']) print html_entity_decode(render($page['social_media'])) ?>
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </header>
+    </header>
 
-
-
-
-  <div class="page-content">
+    <div class="page-content">
     <!-- Inner Banner -->
-    <div class="mt-bnr-inr overlay-wraper" style="background-image:url(/sites/default/files/about-banner.jpg);">
-      <div class="overlay-main bg-black opacity-07"></div>
+    <div class="mt-bnr-inr overlay-wraper">
       <div class="container">
         <div class="mt-bnr-inr-entry">
-          <?php if ($title): ?><h1 class="title text-white" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+          <?php if ($title): ?><h1 class="title text-white" id="page-title"><?php $language->language == "vi" ? print 'Liên hệ' : print 'Contact Us'?></h1><?php endif; ?>
           <!-- Breadcrumb -->
           <ul class="mt-breadcrumb breadcrumb-style-1">
             <?php if ($breadcrumb): ?>
@@ -149,14 +166,14 @@
       </div>
     </div>
   <?php print $messages?>
-    <div class="section-full ">
+    <div class="section-full p-tb50">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <?php if ($page['contact_information']) print html_entity_decode(render($page['contact_information']))?>
           </div>
           <div class="col-md-6">
-            <h2>Để lại thông tin</h2>
+            <h2><?php $language->language == "vi" ? print 'Để lại thông tin' : print 'Contact Us'?></h2>
             <?php webform_node_view(node_load(1),'full');
             print theme_webform_view(node_load(1)->content); ?>
           </div>
@@ -164,34 +181,39 @@
       </div>
 
     </div>
-    <footer class="site-footer footer-dark">
-      <!-- Footer Top Part -->
-      <div class="footer-top overlay-wraper">
-        <div class="overlay-main"></div>
-        <div class="container">
-          <div class="row">
-            <!-- About -->
-            <div class="col-md-5 col-xs-12">
-              <?php if ($page['col_1_footer']) print html_entity_decode(render($page['col_1_footer'])) ?>
-            </div>
-            <!-- Useful Links -->
-            <div class="col-md-3 col-xs-12">
-              <?php if ($page['col_2_footer']) print html_entity_decode(render($page['col_2_footer']))?>
-            </div>
-            <!-- Resent Post -->
-            <div class="col-md-4 col-xs-12">
-              <?php if ($page['col_3_footer']) print html_entity_decode(render($page['col_3_footer']))?>
-            </div>
+      <footer class="site-footer footer-dark">
+          <div class="footer-top overlay-wraper">
+              <div class="overlay-main"></div>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-3 col-xs-12">
+                          <?php if ($page['col_1_footer']) print html_entity_decode(render($page['col_1_footer'])) ?>
+                      </div>
+                      <div class="col-md-3 col-xs-12">
+                          <div class="widget widget_services text-white">
+                              <h3 class="widget-title"><?php
+                                  $language->language == 'vi' ? print 'LIÊN KẾT NHANH' :  print 'LINK';
+                                  ?></h3>
+                              <?= getMenuFooter() ?>
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-xs-12">
+                          <?php if ($page['col_3_footer']) print render($page['col_3_footer']) ?>
+                      </div>
+                      <div class="col-md-3 col-xs-12">
+                          <?php if ($page['col_4_footer']) print html_entity_decode(render($page['col_4_footer'])) ?>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-      <!-- Footer Copyright Part -->
-      <div class="footer-bottom overlay-wraper bg-white">
-        <div class="overlay-main"></div>
-        <div class="container p-t10">
-          <?php if ($page['lower_footer']) print html_entity_decode(render($page['lower_footer']))?>
-        </div>
-      </div>
-    </footer>
-    <button class="scroltop"><span class="fa fa-space-shuttle relative" id="btn-vibrate"></span></button>
+          <div class="footer-bottom overlay-wraper bg-white">
+              <div class="overlay-main"></div>
+              <div class="container p-t10">
+                  <!--                --><?php //if ($page['lower_footer']) print html_entity_decode(render($page['lower_footer']))?>
+              </div>
+          </div>
+      </footer>
+
+      <button class="scroltop"><span class="fa fa-space-shuttle relative" id="btn-vibrate"></span></button>
   </div>
+</div>

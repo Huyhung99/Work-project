@@ -122,68 +122,70 @@
   </div>
 </header>
 <div class="navbar-area">
-  <nav class="navbar navbar-area navbar-expand-lg navbar-area-3">
-    <div class="container nav-container">
-      <div class="responsive-mobile-menu">
-        <button class="menu toggle-btn d-block d-lg-none" data-toggle="collapse"
-                data-target="#realdeal_main_menu"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="icon-left"></span>
-          <span class="icon-right"></span>
-        </button>
-      </div>
-      <div class="language-mobile d-none-menu-pc">
-        <div class="thong-tin-lien-he-hearder">
-          <?php print node_load(245)->field_mo_ta_slider['und'][0]['value']; ?>
-        </div>
-        <div class="text-right float-right notranslate">
-          <div class="d-inline">
-            <a href="#"
-               onclick="doGTranslate('vi|ja');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
-               title="Japanese" class="nturl "><span class="anh_co_edit"><img
-                  alt="Japanese" title="Japanese"
-                  src="/sites/default/files/jp.jpg"></span>Jp</a>
-          </div>
-          <div class="d-inline">
+    <nav class="navbar navbar-area navbar-expand-lg navbar-area-3">
+        <div class="container nav-container">
+            <div class="responsive-mobile-menu">
+                <button class="menu toggle-btn d-block d-lg-none" data-toggle="collapse"
+                        data-target="#realdeal_main_menu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-left"></span>
+                    <span class="icon-right"></span>
+                </button>
+            </div>
+            <div class="language-mobile d-none-menu-pc">
+                <div class="thong-tin-lien-he-hearder">
+                    <?php print node_load(245)->field_mo_ta_slider['und'][0]['value']; ?>
+                </div>
+                <div class="text-right float-right notranslate">
+                    <div class="d-inline">
+                        <a href="#"
+                           onclick="doGTranslate('vi|ja');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
+                           title="Japanese" class="nturl "><span class="anh_co_edit"><img
+                                        alt="Japanese" title="Japanese"
+                                        src="/sites/default/files/jp.jpg"></span>Jp</a>
+                    </div>
+                    <div class="d-inline">
 
-            <a
-              href="#"
-              onclick="doGTranslate('vi|en');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
-              title="English" class="nturl "><span class="anh_co_edit"><img
-                  alt="English" title="English"
-                  src="/sites/default/files/en.jpg"></span>En</a>
-          </div>
-          <div class="d-inline">
-            <a href="#"
-               onclick="doGTranslate('vi|vi');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
-               title="Vietnamese"
-               class="nturl  selected"><span class="anh_co_edit"><img
-                  alt="Tiếng Việt" title="Tiếng Việt"
-                  src="/sites/default/files/vi.jpg"></span>Vi</a>
-          </div>
-          <div class="d-inline">
+                        <a
+                                href="#"
+                                onclick="doGTranslate('vi|en');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
+                                title="English" class="nturl "><span class="anh_co_edit"><img
+                                        alt="English" title="English"
+                                        src="/sites/default/files/en.jpg"></span>En</a>
+                    </div>
+                    <div class="d-inline">
+                        <a href="#"
+                           onclick="doGTranslate('vi|vi');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
+                           title="Vietnamese"
+                           class="nturl  selected"><span class="anh_co_edit"><img
+                                        alt="Tiếng Việt" title="Tiếng Việt"
+                                        src="/sites/default/files/vi.jpg"></span>Vi</a>
+                    </div>
+                    <div class="d-inline">
 
-            <a href="#"
-               onclick="doGTranslate('vi|ko');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
-               title="Korean" class="nturl ">
+                        <a href="#"
+                           onclick="doGTranslate('vi|ko');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;"
+                           title="Korean" class="nturl ">
                 <span class="anh_co_edit"><img alt="Korea" title="Korea"
                                                src="/sites/default/files/kr.jpg"></span>Kr</a>
-          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="logo">
+                <?php if ($logo): ?>
+                    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+                        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/>
+                    </a>
+                <?php endif; ?>
+            </div>
+            <div class="collapse navbar-collapse" id="realdeal_main_menu">
+                <?php print getMenuLeMinhLand() ?>
+                <?php print node_load(422)->field_mo_ta_slider['und'][0]['value']; ?>
+            </div>
         </div>
-      </div>
-      <div class="logo">
-        <?php if ($logo): ?>
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/>
-          </a>
-        <?php endif; ?>
-      </div>
-      <div class="collapse navbar-collapse" id="realdeal_main_menu">
-        <?php print getMenuLeMinhLand() ?>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </div>
+
 
 
 <div class="breadcrumb-area jarallax" style="background-image:url('/sites/default/files/banner-minato-2.jpg');">

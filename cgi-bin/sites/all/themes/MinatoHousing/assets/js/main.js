@@ -16,8 +16,7 @@
                 $('.menu').click (function(){
                     $(this).toggleClass('open');
                 });
-
-                // mobile menu
+              // mobile menu
                 if ($(window).width() < 992) {
                     $(".in-mobile").clone().appendTo(".sidebar-inner");
                     $(".in-mobile ul li.menu-item-has-children").append('<i class="fas fa-chevron-right"></i>');
@@ -588,11 +587,6 @@
                     $('.tim_kiem_pop_up').removeClass('dong_tab_hien_thi');
                   }
                 });
-                // $(document).on('load','body',function (e) {
-                // e.preventDefault();
-                //   alert('1');
-                //   doGTranslate('vi|en');jQuery(this).parent().parent().find('div.selected a').html(jQuery(this).html());return false;
-                // });
             });
 
             $(window).on("scroll", function() {
@@ -680,3 +674,7 @@
         }
     };
 })(jQuery);
+window.addEventListener('DOMContentLoaded', (event) => {
+  doGTranslate('vi|en');
+  jQuery($('header.header_need .d-none-menu-mb .d-inline:nth-child(2) > a')).parent().parent().find('div.selected a').html(jQuery(this).html());return false;
+});

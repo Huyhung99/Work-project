@@ -13,7 +13,8 @@ function getMenuLeMinhLand(){
                     array(
                         'attributes' => array(
                             'title' => $item['link']['link_title'],
-                        )
+                        ),
+                        'html'=>true,
                     )
                 );
             } else {
@@ -58,36 +59,93 @@ function getMenuLeMinhLand(){
 }
 function getMenu2LeMinhLand(){
   global  $user;
-
-  $mainMenu = menu_tree_all_data('main-menu');
   $str = "";
+  $str1='<li><a href="https://hpmap.vn/node/add/san-pham" class="btn-dang-tin-mien-phi"><i class="fas fa-plus-circle"></i> Đăng tin miễn phí</a></li>';
+  $mainMenu = menu_tree_all_data('main-menu');
   foreach ($mainMenu as $item) {
     if ($item['link']['hidden'] == 0) {
       // Nếu không có menu con
-      if($item['link']['link_title']=='Sản phẩm'
-        || $item['link']['link_title']=='Dự án'
-        || $item['link']['link_title']=='Trang cá nhân'
-        || $item['link']['link_title']=='Liên hệ'
-        || $item['link']['link_title']=='Đăng tin'
-      )
+      $icon="";
+      if(isset($item['link']['options']['attributes']['title']))
       {
-        $str .= "<li>";
-        $str .= l(
-          $item['link']['link_title'],
-          $item['link']['link_path'],
-          array(
-            'attributes' => array(
-              'title' => $item['link']['link_title'],
-            )
-          )
-        );
+        $icon=$item['link']['options']['attributes']['title'];
       }
-      // nếu có menu con
-      $str .= '</li>';
+      if($item['link']['link_title']=="Đăng tin miễn phí")
+      {
+        if(!isset($user->nid))
+        {
+          $str=$str.$str1;
+        }
+      }
+      else
+      {
+        if(count($item['below']) == 0)
+        {
+          $str .= "<li>";
+          $str .= l(
+            $icon.' '.$item['link']['link_title'],
+            $item['link']['link_path'],
+            array(
+              'attributes' => array(
+                'title' => $item['link']['link_title'],
+              ),
+              'html' =>true,
+            )
+          );
+        }
+        else {
+          $str .= '<li class="menu-item-has-children current-menu-item"><i class="d-none-pc fas fa-caret-down"></i>';
+          $str .= l(
+            $icon.' '.$item['link']['link_title'],
+            check_plain(url($item['link']['link_path'],array())),
+            array(
+              'attributes' => array(
+                'title' => $item['link']['link_title'],
+              ),
+              'html' => true,
+              'fragment' => '',
+              'external' => TRUE,
+            )
+
+          );
+        }
+        // nếu có menu con
+        if (count($item['below']) > 0) {
+          $str .= '<ul class="sub-menu-1">';
+          foreach ($item['below'] as $subItem) {
+            $icon="";
+            if(isset($subItem['link']['options']['attributes']['title']))
+            {
+              $icon=$subItem['link']['options']['attributes']['title'];
+            }
+            if ($subItem['link']['hidden'] == 0)
+              $str .= "<li>" . l(
+                  $icon.' '.$subItem['link']['link_title'],
+                  $subItem['link']['link_path'],
+                  array(
+                    'attributes' => array(
+                      'title' => $item['link']['link_title'],
+                    ),
+                    'html' => true
+                  )
+                ) . "</li>";
+          }
+          $str .= '</ul>';
+        }
+        $str.= '</li>';
+      }
     }
   }
-  if(!isset($user->nid))
-    $str.='<li><a href="https://hpmap.vn/node/add/san-pham" class="btn-dang-tin-mien-phi"><i class="fas fa-plus-circle"></i> Đăng tin miễn phí</a></li>';
+  if ($user->uid != 0){
+      $str.='<li class="menu-item-has-children current-menu-item"><i class="d-none-pc fas fa-caret-down"></i>
+                <a href="/user"><i class="fas fa-user"></i> '. $user->name.'</a>
+                <ul class="sub-menu-1">
+                <li><a href="/user" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fas fa-user"></i> Trang cá nhân</a></li>
+                <li><a href="/quan-ly-san-pham-nguoi-dung" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fab fa-product-hunt"></i> Quản lý SP</a></li>
+                <li><a href="/user/logout" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                </ul>
+            </li>';
+  }
   return '<ul class="menu_2">' . $str . '</ul>';
 }
 
@@ -162,7 +220,7 @@ function leminhland_form_webform_client_form_152_alter(&$form, &$form_state, $fo
     $form['actions']['submit']['#attributes']['class']=array('btn btn-yellow');
 }
 function getmenu_footer(){
-  $mainMenu = menu_tree_all_data('main-menu');
+  $mainMenu = menu_tree_all_data('menu-footer');
   $str = "";
   foreach ($mainMenu as $item) {
     if ($item['link']['hidden'] == 0) {
@@ -356,7 +414,7 @@ function getFooterHPLand($page){
   </div>
    <div class="copy-right text-center">
       © $now - HPLands ® được thiết kế bởi <a
-        href="https://minhhien.com.vn/" target="_blank"> <span> MinhHien Solutions</span></a>.
+        href="https://minhhien.com.vn/" target="_blank"> <span> MinhHien Solutions.</span></a>
       $col3
     </div>
 </footer>
@@ -402,9 +460,12 @@ HTML;
  */
 function leminhland_form_user_login_alter(&$form, &$form_state, $form_id)
 {
+    dpm($form);
     $form['name']['#attributes']['class'] = array('form-control col-md-4');
     $form['pass']['#attributes']['class'] = array('form-control col-md-4');
     $form['actions']['submit']['#attributes']['class'] = array('btn btn-primary');
+    $form['actions']['submit']['#attributes']['class'] = array('btn btn-primary');
+    $form['#attributes']['target'] = t('_blank');
 }
 
 /**
@@ -412,17 +473,51 @@ function leminhland_form_user_login_alter(&$form, &$form_state, $form_id)
  */
 function leminhland_form_user_register_form_alter(&$form, &$form_state, $form_id)
 {
-    $form['account']['name']['#attributes']['class'] = array('form-control col-md-4');
-    $form['account']['mail']['#attributes']['class'] = array('form-control col-md-4');
-    $form['account']['pass']['#attributes']['class'] = array('form-control col-md-4');
+    $form['account']['mail']['#value'] = t('user'.rand().'@gmail.com');
+    $form['account']['status']['#access'] = true;
+    $form['account']['status']['#default_value'] = 1;
+    $form['account']['name']['#attributes']['class'] = array('form-control ');
+    $form['account']['mail']['#attributes']['class'] = array('form-control ');
+    $form['account']['pass']['#attributes']['class'] = array('form-control ');
     $form['field_gioi_tinh']['#attributes']['class'] = array('d-flex');
-    $form['field_so_dien_thoai_vn']['und'][0]['value']['#attributes']['class'] = array('form-control col-md-4');
-    $form['field_ngay_sinh']['und'][0]['value']['#attributes']['class'] = array('form-control col-md-4');
-    $form['field_dia_chi_du_an']['und'][0]['value']['#attributes']['class'] = array('form-control col-md-4');
-    $form['actions']['submit']['#attributes']['class'] = array('btn btn-primary');
+    $form['field_so_dien_thoai_vn']['und'][0]['value']['#attributes']['class'] = array('form-control ');
+    $form['field_ngay_sinh']['und'][0]['value']['#attributes']['class'] = array('form-control ');
+    $form['field_dia_chi_du_an']['und'][0]['value']['#attributes']['class'] = array('form-control ');
+    $form['actions']['submit']['#attributes']['class'] = array('btn btn-primary btn-full');
 
     $form['account']['mail']['#required'] = false;
     $form['account']['mail']['#attributes']['class'] = array('d-none');
+    $form['#attributes']['target'] = t('_blank');
 
+    $form['field_ho_ten']['und'][0]['value']['#attributes']['class'] = array('form-control');
+
+//    $form['field_ho_ten']['und'][0]['value']['#attributes']['class'] = array('form-control');
+}
+
+function leminhland_theme() {
+    $items = array();
+
+    $items['user_register_form'] = array(
+        'render element' => 'form',
+        'path' => drupal_get_path('theme', 'leminhland'),
+        'template' => 'user-register-form',
+        'preprocess functions' => array(
+            'leminhland_preprocess_user_register_form'
+        ),
+    );
+
+    return $items;
+}
+
+function leminhland_preprocess_user_register_form(&$vars) {
+    $vars['intro_text'] = t('This is my super awesome reg form');
+}
+
+
+function leminhland_preprocess_page(&$variables) {
+    if (isset($variables['node']->type)) {
+        $nodetype = $variables['node']->type;
+        $variables['theme_hook_suggestions'][] = 'page__' . $nodetype;
+    }
 }
 ?>

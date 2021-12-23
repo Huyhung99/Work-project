@@ -58,7 +58,7 @@
                                      data-paddingbottom="[0,0,0,0]"
                                      data-paddingleft="[0,0,0,0]"
                                      style="z-index: 5;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);
-                                            border-width:0px;background:linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(215 215 215)); cursor:default;">
+                                            border-width:0px;background:linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0)); cursor:default;">
                                 </div>
 
                                 <!-- LAYER NR. 3 -->
@@ -88,7 +88,7 @@
                                             text-transform:uppercase;
                                             color:#fff;
                                             font-family: 'Roboto', sans-serif;
-                                            "><span class="color-blue">  <?=$arr[0]?></div>
+                                            "><span class="text-white">  <?=$arr[0]?></div>
                                 </div>
                                 <!-- LAYER NR. 4 -->
                                 <div class="tp-caption BigBold-SubTitle  "
@@ -112,7 +112,7 @@
                                      data-paddingleft="[0,0,0,0]"
 
                                      style="z-index: 7;
-                                            color:#00365b;
+                                            color:#ffffff;
                                             "><?=$arr[2]?>
                                 </div>
 

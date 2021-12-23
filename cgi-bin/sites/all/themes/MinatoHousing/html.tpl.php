@@ -61,8 +61,8 @@
 <?php print $page; ?>
 <?php print $page_bottom; ?>
 <div class="hotlinefix ">
-    <span class="phone"><a href="tel:0866529033">0866.529.033</a></span>
-    <a href="tel:0866529033">
+    <span class="phone"><a href="tel:0862351900">0862.351.900</a></span>
+    <a href="tel:0862351900">
         <div class="circle-hotline">
             <span><img src="/sites/default/files/hotline.png" alt="Minato Housing" title="Minato Housing"></span>
         </div>

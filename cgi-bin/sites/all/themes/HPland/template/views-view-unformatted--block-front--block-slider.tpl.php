@@ -1,4 +1,4 @@
-<div class="slider-front owl-theme">
+<div class="slider-front owl-theme owl-carousel">
 <?php foreach ($rows as $id => $row):?>
     <?php print $row?>
 <?php endforeach;?>
