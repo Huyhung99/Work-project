@@ -178,8 +178,8 @@ function hpmap_form_alter(&$form, &$form_state, $form_id)
     //      $options[$item->id] = $item->name;
     //    }
     //    $form['field_thanh_pho']['und']['#options'] = $options;
-    $form['#prefix']='<div class="row"><div class="col-md-2"></div><div class="col-md-8">';
-    $form['#suffix']='</div><div class="col-md-2"></div></div>';
+    $form['#prefix']='<div class="row"><div class="col-md-8">';
+    $form['#suffix']='</div><div class="col-md-4">'.tamplate_sibarright().'</div></div>';
     $form['title']['#prefix']='<h3 class="title-dien-thong-tin text-center mt-20">Điền thông tin</h3><div class="title_thong_tin"><h4>Thông tin liên hệ</h4> <hr> </div><div class="row"><div class="col-md-12">';
     $form['title']['#suffix']='</div></div>';
     $form['title']['#attributes']['class'] = array('form-control');
@@ -211,13 +211,15 @@ function hpmap_form_alter(&$form, &$form_state, $form_id)
     $form['field_dien_tich_mat_bang']['#prefix'] = t('<div class="col-md-6 col-6">');
     $form['field_dien_tich_mat_bang']['#suffix'] = t('</div></div>');
 
-    $form['field_lien_he']['#prefix'] = t('<div class="row mt-30"><div class="d-none">');
+    $form['field_lien_he']['#prefix'] = t('<div class="row mt-30 post-date-1 d-none"><div class="d-none">');
     $form['field_lien_he']['#suffix'] = t('</div>');
     $form['field_phap_ly']['#prefix'] = t('<div class="col-md-6 col-6">');
     $form['field_phap_ly']['#suffix'] = t('</div></div>');
     $form['field_ngay_dang']['#prefix'] = t('<div class="col-md-6">');
     $form['field_ngay_dang']['#suffix'] = t('</div></div>');
-    $form['field_banner']['#attributes']['class']= array('mt-30');
+    $form['field_banner']['#attributes']['class']= array('mt-30 d-none');
+    $form['field_hien_thi_o_trang_chu']['#attributes']['class']= array('d-none');
+    $form['field_toa_do_vi_tri']['#attributes']['class']= array('mt-20');
     $form['field_tien_nghi_khac']['#prefix']='<div class="d-none">';
     $form['field_tien_nghi_khac']['#suffix']='</div>';
     $form['field_dien_tich_mat_bang']['und'][0]['value']['#attributes']['class'] = array('form-control');
@@ -231,7 +233,10 @@ function hpmap_form_alter(&$form, &$form_state, $form_id)
     $form['actions']['submit']['#attributes']['class'] = array('btn btn-primary');
     $form['actions']['preview']['#attributes']['class'] = array('d-none');
 
-
+    $form['field_chieu_dai_mb']['und'][0]['value']['#title'] = t('Chiều dài').' ( '.html_entity_decode('m').' )';
+    $form['field_chieu_rong']['und'][0]['value']['#title'] = t('Chiều rộng').' ( '.html_entity_decode('m').' )';
+    $form['field_dien_tich_su_dung']['und'][0]['value']['#title'] = t('Diện tích sử dụng').' ( '.html_entity_decode('m<sup>2</sup>').' )';
+    $form['field_dien_tich_mat_bang']['und'][0]['value']['#title'] = t('Diện tích mặt bằng'). ' ( '.html_entity_decode('m<sup>2</sup>').' )';
     $form['field_gia']['#prefix'] = t('<div class="title_thong_tin mt-20"><h4>Giá</h4> <hr> </div><div class="row"><div class="col-md-6 col-6">');
     $form['field_gia']['#suffix'] = t('</div>');
     $form['field_khoang_gia_den']['#prefix'] = t('<div class="col-md-6 col-6">');
@@ -264,16 +269,27 @@ function hpmap_form_alter(&$form, &$form_state, $form_id)
     $form['field_tags']['#suffix'] = t('</div></div>');
     $form['field_tags']['und']['#attributes']['class'] = array('form-control');
 
+
+    $form['field_tang']['und'][0]['value']['#attributes']['class'] = array('form-control');
+    $form['field_so_tang']['und'][0]['value']['#attributes']['class'] = array('form-control');
+
+    $form['field_tang']['#prefix'] = '<div class="row"><div class="col-md-6">';
+    $form['field_tang']['#suffix'] = '</div>';
+    $form['field_so_tang']['#prefix'] = '<div class="col-md-6">';
+    $form['field_so_tang']['#suffix'] = '</div></div>';
+
   }
   else if($form_id == 'user_register_form'){
-
+      $form['#submit'][] = 'hpmap_user_register_submit';
   }else if ($form_id == 'user_profile_form'){
     $form['#submit'][] = 'hpmap_user_update_submit';
   }else if ($form_id == 'user-login'){
 //    $form['#submit'][] = 'hpmap_user_presave';
   }
 }
-
+function tamplate_sibarright() {
+  return '<h3 class="title-dien-thong-tin text-center mt-20">Hướng dẫn</h3><img src="/sites/default/files/screencapture-hpmap-vn-node-add-san-pham-2021-12-27-17_28_48.png" alt="Hướng dẫn">';
+}
 /**
  * Implements hook_user_login().
  */
@@ -291,7 +307,7 @@ function hpmap_user_login(&$edit, $account)
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS => json_encode([
-      "username" => $user->name,
+      "username" => $account->name,
     ]),
     CURLOPT_HTTPHEADER => [
       'Content-Type: application/json',
@@ -306,7 +322,7 @@ function hpmap_user_login(&$edit, $account)
     }
     else {
         $data = json_decode($response, true);
-        $edit['redirect'] = 'https://app.hpmap.vn/site/login?auth_key='.$data['auth_key'].'&user_name='.$user->name;
+        $edit['redirect'] = 'https://app.hpmap.vn/site/login?auth_key='.$data['auth_key'].'&user_name='.$account->name;
     return $response;
   }
 }
@@ -352,44 +368,37 @@ function hpmap_user_logout($account)
     drupal_goto('http://app.hpmap.vn/site/logout');
 }
 
-function hpmap_user_register_submit(&$form, &$form_state){
-//  global $user;
-//  $token = md5(md5(date('YmdH').$user->uid.'MHS'));
-//  $value = $form_state['values'];
-//  $curl = curl_init();
-//  curl_setopt_array($curl, [
-//    CURLOPT_URL => 'https://app.hpmap.vn/service/save-user',
-//    CURLOPT_RETURNTRANSFER => TRUE,
-//    CURLOPT_ENCODING => '',
-//    CURLOPT_MAXREDIRS => 10,
-//    CURLOPT_TIMEOUT => 0,
-//    CURLOPT_FOLLOWLOCATION => TRUE,
-//    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//    CURLOPT_CUSTOMREQUEST => 'POST',
-//    CURLOPT_POSTFIELDS => json_encode([
-//      "name" => $value['name'],
-//      "field_ho_ten" => $value['field_ho_ten']['und'][0]['value'],
-//      "field_so_dien_thoai_vn" => $value['field_so_dien_thoai_vn']['und'][0]['value'],
-//      "field_dia_chi_du_an" => $value['field_dia_chi_du_an']['und'][0]['value'],
-//      "pass" => $value['pass'],
-//      "uid" => $value['uid'],
-//      "uid_nguoi_tao" => $user->uid,
-//      "token" => $token
-//    ]),
-//    CURLOPT_HTTPHEADER => [
-//      'Content-Type: application/json',
-//      'Cookie: _csrf-backend=1d1f189315c04255c97019c8d04a18e4815e9ebf7d68c24e3bf690d637ab0396a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22z6qHzQbiby8jcKCzN5VICKAsiwfySN4u%22%3B%7D'
-//    ],
-//  ]);
-//  $response = curl_exec($curl);
-//  $err = curl_error($curl);
-//  curl_close($curl);
-//    if ($err) {
-//        return $err;
-//    } else {
-//
-//        return json_decode($response, true);
-//    }
+function hpmap_user_register_submit($form, &$form_state){
+    global $user;
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://app.hpmap.vn/service/generation-auth',
+        CURLOPT_RETURNTRANSFER => TRUE,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => TRUE,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => json_encode([
+            "username" => $form['account']['name']['#value'],
+        ]),
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: application/json',
+//      'Cookie: _csrf-backend=1d1f189315c04255c97019c8d04a18e4815e9ebf7d68c24e3bf690d637ab0396a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22z6qHzQbiby8jcKCzN5VICKAsiwfySN4u%22%3B%7D',
+        ],
+    ]);
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+    if ($err) {
+        return $err;
+    }
+    else {
+        $data = json_decode($response, true);
+        $form_state['redirect'] = 'https://app.hpmap.vn/site/login?auth_key='.$data['auth_key'].'&user_name='.$form['account']['name']['#value'];
+        return $response;
+    }
 }
 function hpmap_user_update_submit(&$form, &$form_state){
   global $user;
@@ -457,6 +466,7 @@ function hpmap_user_presave(&$edit, $account, $category)
             "field_ho_ten" => $account->field_ho_ten['und'][0]['value'],
             "field_so_dien_thoai_vn" => $account->field_so_dien_thoai_vn['und'][0]['value'],
             "field_dia_chi_du_an" => isset($account->field_dia_chi_du_an['und'][0]['value']) ? $account->field_dia_chi_du_an['und'][0]['value']: '',
+            "field_dt_nguoi_gioi_thieu" => isset($account->field_dt_nguoi_gioi_thieu['und'][0]['value']) ? $account->field_dt_nguoi_gioi_thieu['und'][0]['value']: '',
             "pass" => $account->pass,
             "uid" => $uid_1,
             "uid_nguoi_tao" => $account->uid,
@@ -474,10 +484,10 @@ function hpmap_user_presave(&$edit, $account, $category)
     if ($err) {
         return $err;
     } else {
-        return json_decode($response, true);
-
+        $data = json_decode(strip_tags($response));
+//        $edit['redirect'] = 'https://app.hpmap.vn/site/login?auth_key='.str_replace('"','',$response).'&user_name='.$account->name;
+        return json_decode($response);
     }
-
 }
 /**
  * Implements hook_menu().
@@ -614,14 +624,14 @@ function get_thong_tin_chi_tiet_san_pham(){
     if (!empty($sanPham->field_anh_lien_quan)){
       foreach ($sanPham->field_anh_lien_quan['und'] as $index => $item){
         $path_style = image_style_url('1800_x_1150',$item['uri']);
-        $arrImages .= theme_image_style([
+        $arrImages .= '<div class="item">'.theme_image_style([
           'style_name' => '1800_x_1150',
           'path' => $item['uri'],
           'alt' => $sanPham->title,
           'attributes' => array('class' => 'img-responsive img-fluid'),
           'width' => '1800px',
           'height' => '1150px',
-        ]);
+        ]).'</div>';
       }
     }else{
       $arrImages = theme_image_style([
@@ -636,17 +646,17 @@ function get_thong_tin_chi_tiet_san_pham(){
     if (!empty($sanPham->field_anh_lien_quan)){
       foreach ($sanPham->field_anh_lien_quan['und'] as $index => $item){
         $path_style = image_style_url('1800_x_1150',$item['uri']);
-        $arrImages_desktop .= '<a href="'.$path_style.'" title="'.$sanPham->title.'">'.theme_image_style([
+        $arrImages_desktop .= '<a href="#" title="'.$sanPham->title.'">'.theme_image_style([
           'style_name' => '1800_x_1150',
           'path' => $item['uri'],
           'alt' => $sanPham->title,
-          'attributes' => array('class' => 'img-responsive img-fluid'),
+          'attributes' => array('class' => 'img-responsive img-fluid nav-image'),
           'width' => '1800px',
           'height' => '1150px',
         ]).'</a>';
       }
     }else{
-        $arrImages_desktop = '<a href="'.$path_style.'" title="'.$sanPham->title.'"> '.theme_image_style([
+        $arrImages_desktop = '<a href="#" title="'.$sanPham->title.'"> '.theme_image_style([
           'style_name' => '1800_x_1150',
           'path' => $sanPham->field_image['und'][0]['uri'],
           'alt' => $sanPham->title,
@@ -657,23 +667,80 @@ function get_thong_tin_chi_tiet_san_pham(){
     }
 
     $strSlider = <<<HTML
-                    <div class="d-block d-sm-none">
-                        <div class="owl-carousel">
+                    <div class="owl-carousel">
                           {$arrImages}
-                        </div>
-                    </div>      
-                    <div class="d-none d-sm-block">
-                        <div class="d-flex image-product-desktop popup-gallery flex-wrap">
-                           {$arrImages_desktop}
-                        </div>
-                    </div>   
+                    </div>
 HTML;
+    $strimage = '
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">';
+            $i = 0;
+            foreach ($sanPham->field_anh_lien_quan['und']  as $item){
+                $image = theme_image_style([
+                  'style_name' => '1800_x_1150',
+                  'path' => $item['uri'],
+                  'alt' => $sanPham->title,
+                  'attributes' => array('class' => 'img-responsive img-fluid nav-image'),
+                  'width' => '1800px',
+                  'height' => '1150px',
+                ]);
+                if ($i == 0){
+                    $strimage .= '<div class="carousel-item active">';
+                    $strimage .= $image;
+                    $strimage .= '</div>';
+                }
+                else{
+                    $strimage .= '<div class="carousel-item">';
+                    $strimage .= $image;
+                    $strimage .= '</div>';
+                }
+                $i++;
+            };
+        $strimage .= '</div>';
+        $strimage .= '<ol class="carousel-indicators nav-image owl-carousel">';
+             $i = 0;
+             foreach ($sanPham->field_anh_lien_quan['und']  as $item){
+                 $image = theme_image_style([
+                  'style_name' => '1800_x_1150',
+                  'path' => $item['uri'],
+                  'alt' => $sanPham->title,
+                  'attributes' => array('class' => 'img-responsive img-fluid '),
+                  'width' => '1800px',
+                  'height' => '1150px',
+                ]);
+                 if ($i == 0){
+                     $strimage .= '<li data-target="#carouselExampleIndicators" data-slide-to="'.$i.'" class="active item-image-nav">';
+                     $strimage .= $image;
+                     $strimage .= '</li>';
+                 }else{
+                    $strimage .= '<li data-target="#carouselExampleIndicators" data-slide-to="'.$i.'" class = "item-image-nav">';
+                    $strimage .= $image;
+                    $strimage .= '</li>';
+                 }
+                 $i++;
+             };
+        $strimage .= '</ol>';
+        $strimage .= '<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>';
+        $strimage .= '<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>';
+        $strimage .= '</div>';
+//    <div class="d-none d-sm-block">
+//                        <div class="d-flex image-product-desktop popup-gallery flex-wrap">
+//                           {$arrImages_desktop}
+//                        </div>
+//                    </div>
 
     $personInCharge = '<div class="person-in-charge">
                             <div class="avatar"><img src="/sites/default/files/'.$avatar.'" class="img-fluid" alt="avatar" title="avatar"></div>
                             <div class="info">
                             <span class="name">'.$softSanPham['nguoi_phu_trach']['ho_ten'].'</span>
-                            <a href="tel:'.$softSanPham['nguoi_phu_trach']['dien_thoai'].'" class="phone" data-value="'.$sanPham->nid.'">'.$softSanPham['nguoi_phu_trach']['dien_thoai'].'</a>
+                            <span> <a href="tel:'.$softSanPham['nguoi_phu_trach']['dien_thoai'].'" class="phone " data-value="'.$sanPham->nid.'">'.$softSanPham['nguoi_phu_trach']['dien_thoai'].'</a></span>
+                          
                             </div>
                        </div>';
     $detailContent = '<div class="detail-content">
@@ -712,16 +779,16 @@ HTML;
         <div class="detail-product">
           <div class="row">
               <div class="col-md-6">
-                        {$strSlider}
+                        {$strimage}
               </div>
               <div class="col-md-6">
                 <div class="content">
                     {$personInCharge}
                     {$detailContent}
-                </div>    
+                </div>
               </div>
           </div>
-          
+
         </div>
 HTML;
 

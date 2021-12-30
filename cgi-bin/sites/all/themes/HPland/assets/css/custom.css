@@ -81,7 +81,7 @@ span.pri {
 .mr-20 { margin-right: 20px; }
 .mr-15 { margin-right: 15px; }
 .mr-10 { margin-right: 10px; }
-.mr-5 { margin-right: 5px; }
+.mr-5 { margin-right: 5px !important; }
 
 /*------------------------------------------*/
 /*  Padding Top
@@ -842,7 +842,7 @@ div#TimKiemSPPC .dropdown button {
 }
 #btn-loc-bds {
   color: #fff;
-  padding: 15px;
+  padding: 0px 15px;
 }
 .dropdown-menu.show {
   top: 20px !important;
@@ -1007,7 +1007,7 @@ button.custom-map-control-button {
 ul.menu_2 li a {
   width: 100%;
   display: block;
-  padding: 15px;
+  padding: 0px 10px;
   color: #fff;
 }
 .menu_2_trang_chu ul.menu_2 li a:hover {
@@ -1042,7 +1042,7 @@ ul.menu_2 li a {
 }
 .search-box {
   padding: 10px;
-  border: 1px solid #133d8d;
+  border: 1px solid #4786a585;
   background: #fff;
   border-radius: 0px 0px 8px 8px;
   box-shadow: 1px 2px 3px 0px #90a5bc;
@@ -1108,8 +1108,8 @@ h6.price {
   text-transform: unset;
 }
 #carouselExampleIndicators img {
-  /*border: 1px solid #133d8d96;*/
-  /*border-radius: 10px;*/
+  border: 1px solid #4786a585;
+  border-radius: 5px;
 }
 .property-news-single-card.detail-info {
   border: unset !important;
@@ -1136,6 +1136,7 @@ h6.price span.pri {
   color: #c00001;
   font-size: 16pt;
   font-weight: 600;
+  margin-left: 5px;
 }
 .property-area .summary-project .btn-primary {
   background: #153e90;
@@ -1151,7 +1152,7 @@ ul.menu_2 li a::after {
   right: 0;
   width: 0px;
   background: #94a1bf;
-  height: 4px;
+  height: 3px;
   z-index: 99999999;
   -webkit-transition: all ease .5s;
   transition: all ease .5s;
@@ -1469,18 +1470,27 @@ html body.admin-menu {
 button.custom-map-control-button:hover {
   cursor: pointer;
 }
+.tabs ul.primary li:nth-child(3) {
+  display: none;
+}
 @media (max-width: 1517px)
 {
   ul.menu_2 li a {
     width: 100%;
     display: block;
-    padding: 15px 10px;
+    padding: 5px 10px;
     color: #fff;
   }
 }
-
 .main-summary-project{
   border: none;
   padding: 0;
   background: #d3b21414;
+}
+#admin-menu-wrapper {
+  font-size: .846em;
+  padding: 10px 10px;
+}
+div#admin-menu {
+  height: 40px;
 }

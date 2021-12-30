@@ -397,6 +397,76 @@
           })
         });
 
+        $(document).on('click', '.brower', function (e) {
+          e.preventDefault();
+          $(this).parents('tr').find('td:nth-child(5)').html('<div class="spinner-border text-primary" role="status">\n' +
+            '  <span class="sr-only">Loading...</span>\n' +
+            '</div>')
+          var id_value=$(this).attr('data-value');
+          if(!$(this).parents('tr').find('td:nth-child(5)').hasClass('id_sua_'+id_value))
+          {
+            $(this).parents('tr').find('td:nth-child(5)').addClass('id_sua_'+id_value);
+          }
+          $.ajax({
+            url: 'http://cangvuhanghaidanang.gov.vn/thao-tac-duyet',
+            type: 'post',
+            dataType: 'json',
+            data: {
+              id_value:id_value,
+              duyet:'duyet'
+            },
+            success: function (data) {
+              console.log(data);
+              if(data.thong_bao==='Không sửa được')
+              {
+                $('.id_sua_'+id_value).html('<a href="/" class="btn btn-success">Load lại</a>');
+              }
+              else
+              {
+                $('.id_sua_'+id_value).html(data.thong_bao);
+              }
+            },
+            error: function (r1, r2) {
+              alert(r1.responseText);
+            }
+          })
+        });
+
+        $(document).on('click', '.un-brower', function (e) {
+          e.preventDefault();
+          $(this).parents('tr').find('td:nth-child(5)').html('<div class="spinner-border text-primary" role="status">\n' +
+            '  <span class="sr-only">Loading...</span>\n' +
+            '</div>')
+          var id_value=$(this).attr('data-value');
+          if(!$(this).parents('tr').find('td:nth-child(5)').hasClass('id_sua_'+id_value))
+          {
+            $(this).parents('tr').find('td:nth-child(5)').addClass('id_sua_'+id_value);
+          }
+          $.ajax({
+            url: 'http://cangvuhanghaidanang.gov.vn/thao-tac-duyet',
+            data:{
+              id_value:id_value,
+              khong_duyet:'khong_duyet'
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function(data){
+              console.log(data);
+              if(data.thong_bao==='Không sửa được')
+              {
+                $('.id_sua_'+id_value).html('<a href="/" class="btn btn-success">Load lại</a>');
+              }
+              else
+              {
+                $('.id_sua_'+id_value).html(data.thong_bao);
+              }
+            },
+            error: function(r1, r2){
+              consoloe.log(r1);
+            }
+          });
+        });
+
 				setTimeout(function () {
           if($("#table-tree-website").length > 0){
             $('#table-tree-website tbody p.hidden').each(function () {

@@ -140,12 +140,14 @@ function getMenu2LeMinhLand(){
       $str.='<li class="menu-item-has-children current-menu-item"><i class="d-none-pc fas fa-caret-down"></i>
                 <a href="/user"><i class="fas fa-user"></i> '. $user->name.'</a>
                 <ul class="sub-menu-1">
-                <li><a href="/user" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fas fa-user"></i> Trang cá nhân</a></li>
-                <li><a href="/quan-ly-san-pham-nguoi-dung" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fab fa-product-hunt"></i> Quản lý SP</a></li>
                 <li><a href="/user/logout" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
                 </ul>
             </li>';
   }
+
+//  <li><a href="/user" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fas fa-user"></i> Trang cá nhân</a></li>
+//  <li><a href="/quan-ly-san-pham-nguoi-dung" class="ml-10"><i class="fa fa-caret-right mr-10"></i><i class="fab fa-product-hunt"></i> Quản lý SP</a></li>
+
   return '<ul class="menu_2">' . $str . '</ul>';
 }
 
@@ -460,7 +462,6 @@ HTML;
  */
 function leminhland_form_user_login_alter(&$form, &$form_state, $form_id)
 {
-    dpm($form);
     $form['name']['#attributes']['class'] = array('form-control col-md-4');
     $form['pass']['#attributes']['class'] = array('form-control col-md-4');
     $form['actions']['submit']['#attributes']['class'] = array('btn btn-primary');
@@ -483,6 +484,7 @@ function leminhland_form_user_register_form_alter(&$form, &$form_state, $form_id
     $form['field_so_dien_thoai_vn']['und'][0]['value']['#attributes']['class'] = array('form-control ');
     $form['field_ngay_sinh']['und'][0]['value']['#attributes']['class'] = array('form-control ');
     $form['field_dia_chi_du_an']['und'][0]['value']['#attributes']['class'] = array('form-control ');
+    $form['field_dt_nguoi_gioi_thieu']['und'][0]['value']['#attributes']['class'] = array('form-control ');
     $form['actions']['submit']['#attributes']['class'] = array('btn btn-primary btn-full');
 
     $form['account']['mail']['#required'] = false;

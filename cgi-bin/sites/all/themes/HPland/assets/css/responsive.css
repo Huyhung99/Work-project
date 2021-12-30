@@ -650,9 +650,7 @@
 	.news-details-wrap .title1 {
 		font-size: 26px;
 	}
-	.single-property-info {
-		margin-bottom: 20px;
-	}
+
 	.gm-style-iw-d,
 	.gm-style-iw.gm-style-iw-c {
 	    max-width: 290px !important;
@@ -738,6 +736,38 @@
 	.modal-footer .box-btn {
 		width: 100%;
 	}
+	.title-login{
+		font-size: 12pt;
+	}
+	.single-property-info {
+		flex: 1 1 45%;
+		/*margin-bottom: 20px;*/
+	}
+	.rld-banner-tab {
+			display: none;
+	}
+	.property-info .left-product .single-property-info + .single-property-info{
+		margin-left: 0;
+	}
+	.close{
+		top: 0;
+		font-size: 32pt;
+		position: absolute;
+		right: 10px;
+	}
+	.modal-dialog{
+		margin-top: 30px;
+	}
+	.detail-product .slide{
+		margin-top: 0;
+	}
+	#carouselExampleIndicators .carousel-control-next, #carouselExampleIndicators .carousel-control-prev {
+		-webkit-transform: translateY(-180%);
+		-moz-transform: translateY(-180%);
+		-ms-transform: translateY(-180%);
+		-o-transform: translateY(-180%);
+		transform: translateY(-180%);
+	}
 }
 
 @media only screen and (max-width: 376px){
@@ -767,6 +797,13 @@
 	    font-size: 10px;
 	    line-height: 10px;
 	}
+	.title-login {
+		font-size: 11pt;
+		line-height: 16pt;
+	}
+	br{
+		display: none;
+	}
 
 }
 
@@ -781,7 +818,12 @@
 	    padding-left: 1px;
 	    font-size: 10px;
 	}
-
+	.title-login{
+		font-size: 13pt;
+	}
+	br{
+		display: none;
+	}
 }
 
 .navbar-area-3 {

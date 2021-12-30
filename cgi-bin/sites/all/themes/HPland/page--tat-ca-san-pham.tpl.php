@@ -295,8 +295,6 @@
         </div>
     </div>
 </div>
-<div class="d-flex image-product-desktop flex-wrap-reverse popup-gallery">
-    <a href="https://hpmap.vn/sites/default/files/styles/1800_x_1150/public/20211118103236-9262_wm.jpeg?itok=1ZnPwslJ"><img class="img-responsive img-fluid" typeof="foaf:Image" src="https://hpmap.vn/sites/default/files/styles/1800_x_1150/public/20211118103236-9262_wm.jpeg?itok=1ZnPwslJ" width="1800" height="1150" alt="GIỎ HÀNG CHUYỂN NHƯỢNG MASTERI THẢO ĐIỀN"></a><a href="https://hpmap.vn/sites/default/files/styles/1800_x_1150/public/20211118103236-9b0f_wm.jpeg?itok=ELM5iRNH"><img class="img-responsive img-fluid" typeof="foaf:Image" src="https://hpmap.vn/sites/default/files/styles/1800_x_1150/public/20211118103236-9b0f_wm.jpeg?itok=ELM5iRNH" width="1800" height="1150" alt="GIỎ HÀNG CHUYỂN NHƯỢNG MASTERI THẢO ĐIỀN"></a><a href="https://hpmap.vn/sites/default/files/styles/1800_x_1150/public/20211118103236-79aa_wm.jpeg?itok=7l8yEXOr"><img class="img-responsive img-fluid" typeof="foaf:Image" src="https://hpmap.vn/sites/default/files/styles/1800_x_1150/public/20211118103236-79aa_wm.jpeg?itok=7l8yEXOr" width="1800" height="1150" alt="GIỎ HÀNG CHUYỂN NHƯỢNG MASTERI THẢO ĐIỀN"></a>
-</div>
+
 <?php print getFooterHPLand($page)?>
 

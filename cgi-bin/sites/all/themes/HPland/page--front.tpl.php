@@ -136,13 +136,6 @@ $_SESSION = [];
               <span aria-hidden="true">&times;</span>
           </button>
       </div>
-      <div class="modal-footer">
-          <div class="box-btn">
-
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng lại</button>
-          </div>
-
-      </div>
     </div>
   </div>
 </div>

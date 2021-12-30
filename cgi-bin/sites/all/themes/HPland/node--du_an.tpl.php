@@ -6,28 +6,6 @@
         <h3 class="title_can_ho text-center">THÔNG TIN CHI TIẾT</h3>
         <?php print render($content['body']) ?>
         <?php print render($content['field_anh_lien_quan'])?>
-        <div class="d-block mx-auto">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <h4 class="text-center"> Để lại thông tin liên hệ</h4>
-              <form class="form_thong_tin_tu_van-1" onsubmit="return false">
-                <input required="required" placeholder="Nhập họ tên (*)" class="form-control form-text required mb-15" type="text" id="edit-submitted-ho-ten-1" name="ho_ten" value="" size="60" maxlength="128">
-                <div class="row">
-                  <div class="col-md-6">
-                    <input required="required" placeholder="Nhập số điện thoại (*)" class="form-control form-text form-number required mb-15" type="text" id="edit-submitted-so-dien-thoai-1" name="so_dien_thoai" step="any">
-                  </div>
-                  <div class="col-md-6">
-                    <input required="required" class="email form-control  form-text form-email mb-15" placeholder="Nhập email" type="email" id="edit-submitted-email-1" name="email" size="60">
-                  </div>
-                </div>
-                <textarea placeholder="Nội dung" required="required" class="form-control mb-15 form-textarea" id="edit-submitted-noi-dung-1" name="noi_dung" cols="60" rows="5"></textarea>
-                <input  type="hidden" value="<?=md5(md5(date("YmdHi")));?>" name="token">
-                <input type="submit"  href="#" class="btn btn-yellow form_submit_thong_tin_tu_van" value="Gửi thông tin">
-              </form>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>

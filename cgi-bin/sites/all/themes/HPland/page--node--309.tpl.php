@@ -471,20 +471,4 @@
 <?php $messages?>
 <div class="mt-100 mt-mb-0"><?php if ($page['main_content_front']) print render($page['main_content_front']) ?></div>
 <?php print getFooterHPLand($page)?>
-<?php
-
-//$query = db_select('users', 'u');
-//$query->fields('u', array('uid'));
-//$result = $query->execute();
-//$arr = [];
-//$i=0;
-//while($record = $result->fetchAssoc()) {
-//    $arr[$i] = $record['uid'];
-//    $i++;
-//}
-$users = entity_load('user');
-$myLastElement = end($users);
-dpm($myLastElement->uid + 1);
-?>
-
 

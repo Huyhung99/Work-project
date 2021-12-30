@@ -140,7 +140,7 @@
         <div class="posts-holder ">
             <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
             <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-            <div class="resp-container"><iframe class="resp-iframe" src="http://tttb.cangvuhanghaidanang.gov.vn/public-kh#/tra-cuu/ke_hoach/0/0/KeHoachDieuDongTau2"></iframe></div>
+            <div class="resp-container"><iframe class="resp-iframe" src="https://tttb.cangvuhanghaidanang.gov.vn/public-kh#/tra-cuu/ke_hoach/0/0/KeHoachDieuDongTau2"></iframe></div>
         </div>
     </div>	<!-- END BLOG PAGE CONTENT -->
     <!--        end body-->

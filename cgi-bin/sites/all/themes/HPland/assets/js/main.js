@@ -565,6 +565,15 @@ $(document).ready(function () {
       $('.tim_kiem_pop_up').removeClass('dong_tab_hien_thi');
     }
   });
+  function customPager() {
+    $.each($('.owl-item'), function (i) {
+      var titleData = jQuery(this).find('img').attr('alt');
+      var imageData = jQuery(this).find('img');
+      var paginationLinks = jQuery('.owl-dots .owl-dot span');
+
+      $(paginationLinks[i]).append(imageData);
+    });
+  }
   $(window).on("scroll", function() {
     /*---------------------------------------
     sticky menu activation && Sticky Icon Bar
@@ -583,6 +592,7 @@ $(document).ready(function () {
       ScrollTop.fadeOut(1000);
     }
   });
+
   $(window).on('load', function () {
     /*-----------------
         preloader
@@ -617,10 +627,27 @@ $(document).ready(function () {
     $('#edit-field-ngay-sinh-und-0-value-month').addClass('form-control mt-10');
     $('#edit-field-ngay-sinh-und-0-value-year').addClass('form-control mt-10');
     $('.hidden_phone_contact').on('click',function (){
-      $(this).addClass('d-none');
-      $(this).next().removeClass('d-none');
+      let nid = $(this).data('nid');
+      $.ajax({
+        data: {
+          nid: nid,
+        },
+        type: 'post',
+        dataType: 'json',
+        url: 'https://app.hpmap.vn/service/click-sdt'
+      }).done((data) => {
+        // If successful
+        $(this).next().removeClass('d-none');
+        $(this).prev().addClass('d-none');
+        $(this).addClass('d-none');
+        console.log(data);
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        // If fail
+        console.log(textStatus + ': ' + errorThrown);
+      });
       return false;
     })
+
     $(document).on('click', '.leaflet-marker-icon.leaflet-div-icon.leaflet-zoom-animated.leaflet-interactive', function(e){
       e.preventDefault();
       var $span = $(this).find('span.xem-chi-tiet-san-pham');
@@ -640,30 +667,42 @@ $(document).ready(function () {
           $("#modal-thong-tin-san-pham .modal-body").html('');
         },
         success: function(data){
-          $("#modal-thong-tin-san-pham .modal-body").html(data.content);
+          $("#modal-thong-tin-san-pham .modal-body").html('<button type="button" class="close" data-dismiss="modal"\n' +
+              '                                                                  aria-label="Close">\n' +
+              '            <span aria-hidden="true">&times;</span>\n' +
+              '          </button>' + data.content);
           $("#modal-thong-tin-san-pham").modal('show');
           let phone = $('.person-in-charge .phone').text();
           if ($('.btn.btn-primary').length > 0){
             $('.btn.btn-primary').remove();
           }
           setTimeout(function(e){
-            $(".owl-carousel").owlCarousel({
-                loop:true,
-                margin:10,
-                responsiveClass:true,
-                nav: true,
-                autoplay: true,
+            $(".nav-image").owlCarousel({
+                loop: true,
+                autoplay: false,
+                autoPlayTimeout: 1000,
+                dots: false,
+                nav: false,
+                smartSpeed: 1500,
+                margin: 30,
                 responsive:{
                   0:{
-                    items:1,
-                    nav:true
+                    items:3,
+                  },
+                  400:{
+                    items:3,
                   },
                   600:{
-                    items:1,
-                    nav:false
+                    items:3,
                   },
                 }
               });
+            $('.carousel').carousel({
+              interval: 2000,
+            });
+            if($(window).width() > 992){
+              $('.modal-dialog.modal-xl').css('margin-top',($('body').height() - $('.modal-dialog.modal-xl').height())/2 - 30);
+            }
             $('.popup-gallery').magnificPopup({
               delegate: 'a',
               type: 'image',
@@ -681,7 +720,6 @@ $(document).ready(function () {
                 }
               }
             });
-            $("button.btn.btn-secondary").before(`<a href="tel:${phone}"  class="btn btn-primary">Liên hệ</a>`)
           }, 1000);
         }
       });
@@ -707,20 +745,104 @@ $(document).ready(function () {
         location.reload();
       },1000);
     })
-    $(document).on('click','#user-register-form #edit-actions #edit-submit', function (e){
-      setTimeout(function (e){
-        location.reload();
-      },3000)
-      // e.preventDefault();
-      var value = $('#edit-name').val();
-      var illegalChars = /^[a-z0-9]+$/;
-      if (value.match(illegalChars)) {
-        return true;
-      }else {
-        alert("Tên người dùng bao gồm chữ viết thường và số");
-        return false;
+
+    $("#edit-field-so-dien-thoai-vn-und-0-value").on("keypress keyup blur",function (event) {
+      $(this).val($(this).val().replace(/[^\d].+/, ""));
+      if ((event.which < 48 || event.which > 57)) {
+        event.preventDefault();
       }
+      if ($(this).val().length > 10){
+        event.preventDefault();
+      }
+    });
+    $(document).on('click','#user-register-form #edit-actions #edit-submit', function (e){
+
+      var value = $('#edit-name').val();
+      var phone = $('#edit-field-so-dien-thoai-vn-und-0-value').val();
+      var userName = $('#user-register-form #edit-name').val();
+      var pass1 = $('#edit-pass-pass1').val();
+      var pass2 = $('#edit-pass-pass2').val();
+      var illegalChars = /^[a-z0-9]+$/;
+
+      e.preventDefault();
+      var checkPhone = $.ajax({
+            data: {
+              dien_thoai: phone
+            },
+            type: 'post',
+            dataType: 'json',
+            url: 'https://app.hpmap.vn/service/check-phone'
+          }),
+          checkUsername = $.ajax({
+            data: {
+              username: userName
+            },
+            type: 'post',
+            dataType: 'json',
+            url: 'https://app.hpmap.vn/service/check-username'
+          });
+      $.when(checkPhone, checkUsername).done(function(r1, r2) {
+        // Each returned resolve has the following structure:
+        // [data, textStatus, jqXHR]
+        // e.g. To access returned data, access the array at index 0
+        if (r1[0].status === 0 || r2[0].status === 0 || !value.match(illegalChars) || pass1 !== pass2){
+          if (r1[0].status === 0){
+            if($('#error-phone').length > 0){
+              $('#error-phone').text('* Số điện thoại đã được đăng kí.');
+            }
+            else {
+              $('#user-register-form #edit-field-so-dien-thoai-vn-und-0-value').after('<p class="text-danger mt-10" id="error-phone"> * Số điện thoại đã được đăng kí. </p>')
+            }
+            $('#user-register-form #edit-field-so-dien-thoai-vn-und-0-value').css('border','1px solid #fe0202');
+          }else {
+            $('#user-register-form #edit-field-so-dien-thoai-vn-und-0-value').css('border','1px solid #027bfe');
+            $('#error-phone').remove();
+          }
+          if (r2[0].status === 0 || !value.match(illegalChars)){
+            if(r2[0].status === 0){
+              if($('#error-username').length > 0){
+                $('#error-username').text('* Tên người dùng đã được đăng kí.');
+              }
+              else {
+                $('#user-register-form #edit-name').after('<p class="text-danger mt-10" id="error-username"> * Tên người dùng đã được đăng kí. </p>')
+              }
+            }else if (!value.match(illegalChars)) {
+              if($('#error-username').length > 0){
+                $('#error-username').text('* Tên người dùng không gồm dấu và chữ viết hoa.');
+              }else {
+                $('#user-register-form #edit-name').after('<p class="text-danger mt-10" id="error-username"> * Tên người dùng không gồm dấu và chữ viết hoa. </p>')
+              }
+            }
+            $('#user-register-form #edit-name').css('border','1px solid #fe0202');
+          }else {
+            $('#user-register-form #edit-name').css('border','1px solid #027bfe');
+            $('#error-username').remove();
+          }
+          if (pass1 !== pass2){
+            if($('#edit-pass2').length > 0){
+              $('#edit-pass2').text('* Mật khẩu không trùng nhau.');
+
+            }
+            else {
+              $('#edit-pass-pass2').after('<p class="text-danger mt-10" id="edit-pass2"> * Mật khẩu không trùng nhau. </p>')
+            }
+            $('#edit-pass-pass2').css('border','1px solid #fe0202');
+          }else {
+            $('#edit-pass-pass2').css('border','1px solid #027bfe');
+            $('#edit-pass2').remove();
+          }
+        }else {
+          $('#user-register-form').submit();
+          setTimeout(function (e){
+            location.reload();
+          },5000);
+        }
+
+        return false;
+
+      });
     })
+
   });
 
 });

@@ -72,109 +72,87 @@
  * @ingroup themeable
  */
 ?>
+<?php print render($page['content']['metatags']); ?>
 <div id="page" class="page">
-    <header id="header-2" class="header ">
-        <!-- MOBILE HEADER -->
-        <div class="wsmobileheader clearfix">
-            <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-            <span class="smllogo">
+  <header id="header-2" class="header ">
+    <!-- MOBILE HEADER -->
+    <div class="wsmobileheader clearfix">
+      <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+      <span class="smllogo">
                 <?php if ($logo): ?>
-                    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo1">
+                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo1">
               <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
             </a>
                 <?php endif; ?>
             </span>
+    </div>
+    <?php if($page['header_slider']) print render($page['header_slider'])?>
+
+
+    <!-- HEADER WIDGETS -->
+    <div class="hero-widget clearfix">
+      <div class="container">
+        <?php if($page['header_banner']) print html_entity_decode(render($page['header_banner'])) ?>
+      </div>
+    </div>	<!-- END HEADER WIDGETS -->
+    <!-- NAVIGATION MENU -->
+    <div class="wsmainfull menu clearfix">
+      <div class="wsmainwp clearfix">
+        <!-- LOGO IMAGE -->
+        <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 360 x 80 pixels) -->
+        <div class="desktoplogo">
+          <?php if ($logo): ?>
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+              <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+            </a>
+          <?php endif; ?>
         </div>
-        <?php if($page['header_slider']) print render($page['header_slider'])?>
+        <div class="row">
+          <div class="col-md-12">
+            <nav class="wsmenu clearfix">
+              <?php print getMainMenuPhuongNguyenGrp(); ?>
+            </nav>	<!-- END MAIN MENU -->
+          </div>
+        </div>
+        <!-- MAIN MENU -->
 
 
-        <!-- HEADER WIDGETS -->
-        <div class="hero-widget clearfix">
-            <div class="container">
-                <?php if($page['header_banner']) print html_entity_decode(render($page['header_banner'])) ?>
-            </div>
-        </div>	<!-- END HEADER WIDGETS -->
-        <!-- NAVIGATION MENU -->
-        <div class="wsmainfull menu clearfix">
-            <div class="wsmainwp clearfix">
-                <!-- LOGO IMAGE -->
-                <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 360 x 80 pixels) -->
-                <div class="desktoplogo">
-                    <?php if ($logo): ?>
-                        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-                            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-                        </a>
-                    <?php endif; ?>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <nav class="wsmenu clearfix">
-                            <?php print getMainMenuPhuongNguyenGrp(); ?>
-                        </nav>	<!-- END MAIN MENU -->
-                    </div>
-                </div>
-                <!-- MAIN MENU -->
+        <!-- NAVIGATION MENU BUTTON -->
+
+      </div>
+    </div>	<!-- END NAVIGATION MENU -->
+  </header>	<!-- END HEADER -->
+  <!-- END HEADER -->
 
 
-                <!-- NAVIGATION MENU BUTTON -->
+  <!-- END HEADER -->
+  <div class="bgc-breadcrumb">
+    <div class="container">
+      <?php if ($breadcrumb): ?>
+        <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+      <?php endif; ?>
+    </div>	<!-- End container -->
+  </div>
 
-            </div>
-        </div>	<!-- END NAVIGATION MENU -->
-    </header>	<!-- END HEADER -->
-    <!-- END HEADER -->
-
-
-    <!-- END HEADER -->
-    <div class="bgc-breadcrumb">
-        <div class="container">
-            <?php if ($breadcrumb): ?>
-                <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-            <?php endif; ?>
-        </div>	<!-- End container -->
-    </div>	<!-- END BREADCRUMB -->
-
-    <!--    body-->
-    <?php print $messages;?>
-    <div id="blog-page" class="wide-40 blog-page-section division">
-        <div class="container">
-            <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-            <?php print render($page['help']); ?>
-            <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-            <div class="row" id="contactForm">
-                <div class="col-lg-6">
-                    <div class="custom-form custom-form--box">
-                        <?php if ($page['contact']) print render($page['contact']) ?>
-                    </div>
-                </div>
-                <!-- end contact form -->
-                <!-- contact information -->
-                <div class="col-lg-6">
-                    <div class="contact-info">
-                        <?php if ($page['contact_info']) print html_entity_decode(render($page['contact_info'])) ?>
-                    </div>
-                    <!-- google map -->
-                    <div class="location">
-                        <div id="map">
-                            <?php if ($page['contact_map']) print html_entity_decode(render($page['contact_map'])) ?>
-                        </div>
-                    </div>
-                    <!-- end google map -->
-                </div>
-                <!-- end contact information -->
-            </div>	<!-- End row -->
-        </div>	 <!-- End container -->
-    </div>	<!-- END BLOG PAGE CONTENT -->
-    <!--        end body-->
-    <footer id="footer-1" class="p-60 footer division">
-        <div class="container">
-            <!-- FOOTER CONTENT -->
-            <?php if ($page['content_footer']) print html_entity_decode(render($page['content_footer']))?>
-
-            <!-- FOOTER COPYRIGHT -->
-        </div>	   <!-- End container -->
-    </footer>	<!-- END FOOTER-2 -->
-
-    <!-- END FOOTER-2 -->
+  <!--    body-->
+  <?php print $messages;?>
+  <div id="blog-page" class="wide-40 blog-page-section division">
+    <div class="posts-holder ">
+      <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+      <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+        <?php print render($page['content'])?>
+    </div>
+  </div>	<!-- END BLOG PAGE CONTENT -->
+  <!--        end body-->
+  <footer id="footer-1" class="pt-30 footer division">
+    <div class="container">
+      <!-- FOOTER CONTENT -->
+      <?php if ($page['content_footer']) print html_entity_decode(render($page['content_footer']))?>
+    </div>	   <!-- End container -->
+  </footer>	<!-- END FOOTER-2 -->
+  <!-- END FOOTER-2 -->
 
 </div>
 <!--service-->
+
+

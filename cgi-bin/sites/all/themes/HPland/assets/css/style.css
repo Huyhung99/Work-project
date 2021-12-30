@@ -657,8 +657,8 @@ ul {
     ## Button
 ---------------------------------------*/
 .btn {
-    height: 35px;
-    line-height: 35px;
+    height: 45px;
+    line-height: 45px;
     padding: 0 30px;
     border-radius: 4px;
     overflow: hidden;
@@ -5899,8 +5899,8 @@ h3.title-properties {
     flex: 0 0 25%;
 }
 .widget-owner-info {
-    border: 1px solid #133d8d;
-    border-radius: 10px;
+    border: 1px solid #4786a585;
+    border-radius: 3px;
     margin-bottom: 30px;
     /*padding-top: 30px;*/
 }
@@ -5921,7 +5921,8 @@ svg.svg-inline--fa.fa-phone.fa-w-16 {
 }
 
 .region-content .single-feature {
-  border: 1px solid #4786a585;
+    border: 1px solid #4786a585;
+  border-radius: 5px;
 }
 
 .carousel-control-next, .carousel-control-prev{
@@ -6067,9 +6068,10 @@ fieldset.date-combo .container-inline-date .date-padding {
     color: #143e90;
 }
 
-.person-in-charge .phone{
-    font-weight: 500;
-    color: #143e90;
+.person-in-charge .phone {
+    font-weight: bold;
+    color: #ef233c;
+    font-size: 18px;
 }
 
 .detail-content .summary .title {
@@ -6160,8 +6162,8 @@ fieldset.date-combo .container-inline-date .date-padding {
 }
 
 .detail-product .slide .carousel-inner {
-    border: 1px solid #143c8c80;
-    border-radius: 10px;
+    /*border: 1px solid #143c8c80;*/
+    border-radius: 5px;
     box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
 }
 
@@ -6177,8 +6179,8 @@ fieldset.date-combo .container-inline-date .date-padding {
 }
 
 .details .info-price .left-info {
-    border: 1px solid #143e9063;
-    padding: 8px 15px;
+    /*border: 1px solid #143e9063;*/
+    /*padding: 8px 15px;*/
     border-radius: 5px;
 }
 
@@ -6193,11 +6195,12 @@ fieldset.date-combo .container-inline-date .date-padding {
     display: flex;
     flex: 1 1 75%;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .property-info {
     display: flex;
-    border: 1px solid #133a8799;
+    border: 1px solid #4786a585;
     padding: 10px;
     border-radius: 5px;
     flex-wrap: wrap;
@@ -6230,7 +6233,7 @@ fieldset.date-combo .container-inline-date .date-padding {
 }
 
 .region-content .content .detail-info {
-    border: 1px solid #143e9082;
+    border: 1px solid #4786a585;
     border-radius: 5px;
 }
 
@@ -6291,8 +6294,8 @@ div.password-confirm{
 }
 
 #user-register-form input {
-    border: 1px solid #143e90a1;
-    border-radius: 15px;
+    border: 1px solid #027bfe;
+    border-radius: 5px;
 }
 
 #user-register-form label {
@@ -6358,11 +6361,12 @@ form#san-pham-node-form input#edit-delete {
 }
 .price-location .price svg {
     color: #ef233c;
+    font-size: 12px;
 }
 .price-location span svg {
     color: #ef233c;
-    width: 25px!important;
-    font-size: 14pt;
+    /*width: 25px!important;*/
+    font-size: 18px;
 }
 .info-bottom span svg {
     color: #ef233c;
@@ -6431,4 +6435,68 @@ form#san-pham-node-form input#edit-delete {
     width: 50%;
     display: flex;
     justify-content: space-between;
+}
+.modal-xl {
+    max-width: 80%;
+}
+.btn-contact {
+    padding: 5px;
+    border-radius: 5px;
+}
+table[id^="edit-field-anh-lien-quan-und"] .image-widget-data .form-item {
+    display: none;
+}
+table[id^="edit-field-anh-lien-quan-und"] thead {
+    display: none;
+}
+table[id^="edit-field-anh-lien-quan-und"] tbody tr {
+    background-color: #fff;
+    padding: 0;
+    border-radius: 5px;
+    border: 1px solid #4786a585;
+    position: relative;
+}
+table[id^="edit-field-anh-lien-quan-und"] tbody {
+    border-top: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+table[id^="edit-field-anh-lien-quan-und"] .draggable a.tabledrag-handle {
+    display: none;
+}
+table[id^="edit-field-anh-lien-quan-und"] .tabledrag-toggle-weight {
+    display: none;
+}
+table[id^="edit-field-anh-lien-quan-und"] tbody tr td:nth-child(3) input {
+    background: none;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 15pt;
+    color: #143e90;
+    border-radius: 0 3px 0 0 !important;
+    width: 38px;
+    text-shadow: rgb(91, 112, 154) 1px 0px 0px, rgb(91, 112, 154) 0.540302px 0.841471px 0px, rgb(91, 112, 154) -0.416147px 0.909297px 0px, rgb(91, 112, 154) -0.989992px 0.14112px 0px, rgb(91, 112, 154) -0.653644px -0.756802px 0px, rgb(91, 112, 154) 0.283662px -0.958924px 0px, rgb(91, 112, 154) 0.96017px -0.279415px 0px;
+}
+
+#san-pham-node-form .title_thong_tin h4{
+    font-weight: bold;
+}
+
+#carouselExampleIndicators .carousel-control-next, #carouselExampleIndicators .carousel-control-prev{
+    -webkit-transform: translateY(-225%);
+    -moz-transform: translateY(-225%);
+    -ms-transform: translateY(-225%);
+    -o-transform: translateY(-225%);
+    transform: translateY(-225%);
+}
+.modal-body{
+    padding-top: 48px;
+}
+.close{
+    top: -40px;
+    font-size: 32pt;
+    position: relative;
 }

@@ -1,7 +1,7 @@
 <?php
 foreach ($rows as $row){
+    $nid = $row;
     $member = getThanhVien($row);
-
 }
 ?>
 <div class="owner-info text-center">
@@ -15,7 +15,8 @@ foreach ($rows as $row){
         <span class="designation">
 
             <?php if (!empty($member)):?>
-                <a href="#" class="hidden_phone_contact">03342***** Hiện số</a>
+                <span href="#" >03342***** </span>
+                <a class="btn-contact btn-primary hidden_phone_contact" href="#" data-nid = '<?=trim($nid)?>'>Hiện số</a>
                 <span class="phone-contact d-none"><a href="tel:<?=$member['nguoi_phu_trach']['dien_thoai']?>"><?=$member['nguoi_phu_trach']['dien_thoai']?></a></span>
             <?php endif;?>
         </span>

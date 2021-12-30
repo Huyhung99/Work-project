@@ -6706,3 +6706,9 @@ i.fas.fa-phone {
 .dropdown-item a {
   color: #2d2d2d;
 }
+form#views-exposed-form-taxonomy-term-page-quan-ly-bai-viet .views-exposed-widgets {
+    display: flex;
+    align-items: flex-end;
+    gap: 70px;
+    margin-bottom: 30px;
+}

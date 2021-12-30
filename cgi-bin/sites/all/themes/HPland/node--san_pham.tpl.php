@@ -126,7 +126,7 @@
         </div>
     </div>
 </div>
-<h3 class="title-properties mt-50">Thông tin chi tiết </h3>
+<h3 class="title-properties mt-50 mb-30">Thông tin chi tiết </h3>
 
 <div class="detail-info">
     <div class="item-detail-info"><strong>Tiêu đề: </strong><span><?= $node->title ?></span></div>
@@ -161,7 +161,7 @@
 </div>
 
 
-<h3 class="title-properties mt-50">Mô tả chi tiết </h3>
+<h3 class="title-properties mt-50 mb-30">Mô tả chi tiết </h3>
 <div class="property-news-single-card style-two border-bottom-yellow detail-info">
     <?php if (!empty($node->body)): ?>
         <?= $node->body['und'][0]['value'] ?>

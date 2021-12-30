@@ -22,11 +22,11 @@ function duyet_bai_viet_menu()
     return $items;
 }
 function quan_ly_duyet_bai_viet($form,&$form_state){
-
     return $form;
+
 }
 function duyet_bai_viet(){
-
+    dpm($_POST);
 }
 function duyet_bai_viet_permission()
 {

@@ -6343,7 +6343,7 @@ $(document).ready(function () {
         dataType: 'json',
         type: 'post',
         beforeSend: function () {
-          $.blockUI({message: '<h4 style=""><img width="80px" src="https://hpmap.vn/sites/all/themes/leminhland/assets/img/loading2.gif" /> Vui lòng đợi trong giây lát...</h4>'});
+          $.blockUI({message: '<h4 style=""><img width="80px" src="https://hpmap.vn/sites/all/themes/hplands/assets/img/loading2.gif" /> Vui lòng đợi trong giây lát...</h4>'});
         },
         data: {
           quan_huyen: $('#quan-huyen').val(),
@@ -6395,7 +6395,7 @@ $(document).ready(function () {
         dataType: 'json',
         type: 'post',
         beforeSend: function () {
-          $.blockUI({message: '<h4 style=""><img width="80px" src="https://hpmap.vn/sites/all/themes/leminhland/assets/img/loading2.gif" /> Vui lòng đợi trong giây lát...</h4>'});
+          $.blockUI({message: '<h4 style=""><img width="80px" src="https://hpmap.vn/sites/all/themes/hplands/assets/img/loading2.gif" /> Vui lòng đợi trong giây lát...</h4>'});
         },
         data: {
           khoang_gia: giaTien,
@@ -6423,7 +6423,7 @@ $(document).ready(function () {
         dataType: 'json',
         type: 'post',
         beforeSend: function () {
-          $.blockUI({message: '<h4 style=""><img width="80px" src="https://hpmap.vn/sites/all/themes/leminhland/assets/img/loading2.gif" /> Vui lòng đợi trong giây lát...</h4>'});
+          $.blockUI({message: '<h4 style=""><img width="80px" src="https://hpmap.vn/sites/all/themes/hplands/assets/img/loading2.gif" /> Vui lòng đợi trong giây lát...</h4>'});
         },
         data: {
           name: valInput,
